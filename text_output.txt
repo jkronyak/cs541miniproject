@@ -1,0 +1,1201 @@
+Setting up [LPIPS] perceptual loss: trunk [alex], v[0.1], spatial [off]
+Loading model from: C:\Users\aceth\AppData\Local\Programs\Python\Python39\lib\site-packages\lpips\weights\v0.1\alex.pth
+===== Use GPU to Test! =====
+---------- Networks architecture -------------
+Generator:
+G_Net(
+  (encoder_prePad): ReflectionPad2d((3, 3, 3, 3))
+  (encoder_conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(1, 1))
+  (encoder_in1): RN_B(
+    (rn): RN_binarylabel(
+      (bn_norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+    )
+  )
+  (encoder_relu1): ReLU(inplace=True)
+  (encoder_conv2): Conv2d(64, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+  (encoder_in2): RN_B(
+    (rn): RN_binarylabel(
+      (bn_norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+    )
+  )
+  (encoder_relu2): ReLU(inplace=True)
+  (encoder_conv3): Conv2d(128, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+  (encoder_in3): RN_B(
+    (rn): RN_binarylabel(
+      (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+    )
+  )
+  (encoder_relu3): ReLU(inplace=True)
+  (middle): Sequential(
+    (0): saRN_ResnetBlock(
+      (conv_block): Sequential(
+        (0): ReflectionPad2d((2, 2, 2, 2))
+        (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), dilation=(2, 2))
+        (2): RN_L(
+          (sa): SelfAware_Affine(
+            (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (sigmoid): Sigmoid()
+            (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+            (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+          )
+          (rn): RN_binarylabel(
+            (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+        )
+        (3): ReLU(inplace=True)
+        (4): ReflectionPad2d((1, 1, 1, 1))
+        (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+        (6): RN_L(
+          (sa): SelfAware_Affine(
+            (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (sigmoid): Sigmoid()
+            (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+            (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+          )
+          (rn): RN_binarylabel(
+            (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+        )
+      )
+    )
+    (1): saRN_ResnetBlock(
+      (conv_block): Sequential(
+        (0): ReflectionPad2d((2, 2, 2, 2))
+        (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), dilation=(2, 2))
+        (2): RN_L(
+          (sa): SelfAware_Affine(
+            (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (sigmoid): Sigmoid()
+            (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+            (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+          )
+          (rn): RN_binarylabel(
+            (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+        )
+        (3): ReLU(inplace=True)
+        (4): ReflectionPad2d((1, 1, 1, 1))
+        (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+        (6): RN_L(
+          (sa): SelfAware_Affine(
+            (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (sigmoid): Sigmoid()
+            (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+            (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+          )
+          (rn): RN_binarylabel(
+            (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+        )
+      )
+    )
+    (2): saRN_ResnetBlock(
+      (conv_block): Sequential(
+        (0): ReflectionPad2d((2, 2, 2, 2))
+        (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), dilation=(2, 2))
+        (2): RN_L(
+          (sa): SelfAware_Affine(
+            (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (sigmoid): Sigmoid()
+            (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+            (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+          )
+          (rn): RN_binarylabel(
+            (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+        )
+        (3): ReLU(inplace=True)
+        (4): ReflectionPad2d((1, 1, 1, 1))
+        (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+        (6): RN_L(
+          (sa): SelfAware_Affine(
+            (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (sigmoid): Sigmoid()
+            (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+            (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+          )
+          (rn): RN_binarylabel(
+            (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+        )
+      )
+    )
+    (3): saRN_ResnetBlock(
+      (conv_block): Sequential(
+        (0): ReflectionPad2d((2, 2, 2, 2))
+        (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), dilation=(2, 2))
+        (2): RN_L(
+          (sa): SelfAware_Affine(
+            (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (sigmoid): Sigmoid()
+            (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+            (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+          )
+          (rn): RN_binarylabel(
+            (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+        )
+        (3): ReLU(inplace=True)
+        (4): ReflectionPad2d((1, 1, 1, 1))
+        (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+        (6): RN_L(
+          (sa): SelfAware_Affine(
+            (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (sigmoid): Sigmoid()
+            (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+            (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+          )
+          (rn): RN_binarylabel(
+            (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+        )
+      )
+    )
+    (4): saRN_ResnetBlock(
+      (conv_block): Sequential(
+        (0): ReflectionPad2d((2, 2, 2, 2))
+        (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), dilation=(2, 2))
+        (2): RN_L(
+          (sa): SelfAware_Affine(
+            (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (sigmoid): Sigmoid()
+            (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+            (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+          )
+          (rn): RN_binarylabel(
+            (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+        )
+        (3): ReLU(inplace=True)
+        (4): ReflectionPad2d((1, 1, 1, 1))
+        (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+        (6): RN_L(
+          (sa): SelfAware_Affine(
+            (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (sigmoid): Sigmoid()
+            (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+            (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+          )
+          (rn): RN_binarylabel(
+            (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+        )
+      )
+    )
+    (5): saRN_ResnetBlock(
+      (conv_block): Sequential(
+        (0): ReflectionPad2d((2, 2, 2, 2))
+        (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), dilation=(2, 2))
+        (2): RN_L(
+          (sa): SelfAware_Affine(
+            (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (sigmoid): Sigmoid()
+            (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+            (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+          )
+          (rn): RN_binarylabel(
+            (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+        )
+        (3): ReLU(inplace=True)
+        (4): ReflectionPad2d((1, 1, 1, 1))
+        (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+        (6): RN_L(
+          (sa): SelfAware_Affine(
+            (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (sigmoid): Sigmoid()
+            (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+            (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+          )
+          (rn): RN_binarylabel(
+            (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+        )
+      )
+    )
+    (6): saRN_ResnetBlock(
+      (conv_block): Sequential(
+        (0): ReflectionPad2d((2, 2, 2, 2))
+        (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), dilation=(2, 2))
+        (2): RN_L(
+          (sa): SelfAware_Affine(
+            (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (sigmoid): Sigmoid()
+            (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+            (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+          )
+          (rn): RN_binarylabel(
+            (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+        )
+        (3): ReLU(inplace=True)
+        (4): ReflectionPad2d((1, 1, 1, 1))
+        (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+        (6): RN_L(
+          (sa): SelfAware_Affine(
+            (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (sigmoid): Sigmoid()
+            (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+            (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+          )
+          (rn): RN_binarylabel(
+            (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+        )
+      )
+    )
+    (7): saRN_ResnetBlock(
+      (conv_block): Sequential(
+        (0): ReflectionPad2d((2, 2, 2, 2))
+        (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), dilation=(2, 2))
+        (2): RN_L(
+          (sa): SelfAware_Affine(
+            (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (sigmoid): Sigmoid()
+            (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+            (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+          )
+          (rn): RN_binarylabel(
+            (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+        )
+        (3): ReLU(inplace=True)
+        (4): ReflectionPad2d((1, 1, 1, 1))
+        (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+        (6): RN_L(
+          (sa): SelfAware_Affine(
+            (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (sigmoid): Sigmoid()
+            (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+            (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+          )
+          (rn): RN_binarylabel(
+            (bn_norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          )
+        )
+      )
+    )
+  )
+  (decoder): Sequential(
+    (0): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): PixelShuffle(upscale_factor=2)
+    (2): RN_L(
+      (sa): SelfAware_Affine(
+        (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+        (sigmoid): Sigmoid()
+        (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+        (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+      )
+      (rn): RN_binarylabel(
+        (bn_norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+      )
+    )
+    (3): ReLU(inplace=True)
+    (4): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): PixelShuffle(upscale_factor=2)
+    (6): RN_L(
+      (sa): SelfAware_Affine(
+        (conv1): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+        (sigmoid): Sigmoid()
+        (gamma_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+        (beta_conv): Conv2d(1, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
+      )
+      (rn): RN_binarylabel(
+        (bn_norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+      )
+    )
+    (7): ReLU(inplace=True)
+    (8): ReflectionPad2d((3, 3, 3, 3))
+    (9): Conv2d(64, 3, kernel_size=(7, 7), stride=(1, 1))
+  )
+)
+Total number of parameters: 11596591
+Learnable number of parameters: 11596591
+Discriminator:
+D_Net(
+  (conv1): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (1): LeakyReLU(negative_slope=0.2, inplace=True)
+  )
+  (conv2): Sequential(
+    (0): Conv2d(64, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (1): LeakyReLU(negative_slope=0.2, inplace=True)
+  )
+  (conv3): Sequential(
+    (0): Conv2d(128, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (1): LeakyReLU(negative_slope=0.2, inplace=True)
+  )
+  (conv4): Sequential(
+    (0): Conv2d(256, 512, kernel_size=(4, 4), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): LeakyReLU(negative_slope=0.2, inplace=True)
+  )
+  (conv5): Sequential(
+    (0): Conv2d(512, 1, kernel_size=(4, 4), stride=(1, 1), padding=(1, 1), bias=False)
+  )
+)
+Total number of parameters: 2763776
+Learnable number of parameters: 2763776
+----------------------------------------------
+Pre-trained G model is loaded.
+===> Loading datasets
+Total instance number: 12000
+===> Dataset loaded!
+Number: 00014  | Average: PSNR: 33.7960  SSIM: 0.9746  LPIPS: 0.0210  L1: 0.0042 | Current batch: 1  PSNR: 33.7960  SSIM: 0.9746  LPIPS: 0.0210  L1: 0.0042
+Number: 00028  | Average: PSNR: 34.3079  SSIM: 0.9803  LPIPS: 0.0167  L1: 0.0034 | Current batch: 2  PSNR: 34.8199  SSIM: 0.9860  LPIPS: 0.0123  L1: 0.0026
+Number: 00042  | Average: PSNR: 33.6318  SSIM: 0.9783  LPIPS: 0.0177  L1: 0.0038 | Current batch: 3  PSNR: 32.2796  SSIM: 0.9744  LPIPS: 0.0198  L1: 0.0046
+Number: 00056  | Average: PSNR: 33.3009  SSIM: 0.9769  LPIPS: 0.0192  L1: 0.0040 | Current batch: 4  PSNR: 32.3081  SSIM: 0.9728  LPIPS: 0.0238  L1: 0.0047
+Number: 00070  | Average: PSNR: 33.8419  SSIM: 0.9781  LPIPS: 0.0178  L1: 0.0037 | Current batch: 5  PSNR: 36.0062  SSIM: 0.9825  LPIPS: 0.0119  L1: 0.0025
+Number: 00084  | Average: PSNR: 34.1323  SSIM: 0.9789  LPIPS: 0.0171  L1: 0.0036 | Current batch: 6  PSNR: 35.5844  SSIM: 0.9831  LPIPS: 0.0136  L1: 0.0029
+Number: 00098  | Average: PSNR: 33.9158  SSIM: 0.9782  LPIPS: 0.0178  L1: 0.0037 | Current batch: 7  PSNR: 32.6163  SSIM: 0.9738  LPIPS: 0.0224  L1: 0.0045
+Number: 00112  | Average: PSNR: 33.9426  SSIM: 0.9785  LPIPS: 0.0177  L1: 0.0036 | Current batch: 8  PSNR: 34.1306  SSIM: 0.9810  LPIPS: 0.0170  L1: 0.0031
+Number: 00126  | Average: PSNR: 34.0136  SSIM: 0.9787  LPIPS: 0.0174  L1: 0.0036 | Current batch: 9  PSNR: 34.5812  SSIM: 0.9802  LPIPS: 0.0149  L1: 0.0032
+Number: 00140  | Average: PSNR: 34.0799  SSIM: 0.9785  LPIPS: 0.0178  L1: 0.0035 | Current batch: 10  PSNR: 34.6769  SSIM: 0.9772  LPIPS: 0.0217  L1: 0.0033
+Number: 00154  | Average: PSNR: 34.3980  SSIM: 0.9789  LPIPS: 0.0173  L1: 0.0035 | Current batch: 11  PSNR: 37.5793  SSIM: 0.9830  LPIPS: 0.0119  L1: 0.0026
+Number: 00168  | Average: PSNR: 34.4699  SSIM: 0.9790  LPIPS: 0.0173  L1: 0.0034 | Current batch: 12  PSNR: 35.2605  SSIM: 0.9797  LPIPS: 0.0171  L1: 0.0032
+Number: 00182  | Average: PSNR: 34.5128  SSIM: 0.9790  LPIPS: 0.0172  L1: 0.0034 | Current batch: 13  PSNR: 35.0281  SSIM: 0.9784  LPIPS: 0.0169  L1: 0.0033
+Number: 00196  | Average: PSNR: 34.5981  SSIM: 0.9790  LPIPS: 0.0172  L1: 0.0034 | Current batch: 14  PSNR: 35.7059  SSIM: 0.9792  LPIPS: 0.0159  L1: 0.0028
+Number: 00210  | Average: PSNR: 34.5768  SSIM: 0.9790  LPIPS: 0.0172  L1: 0.0034 | Current batch: 15  PSNR: 34.2794  SSIM: 0.9785  LPIPS: 0.0181  L1: 0.0030
+Number: 00224  | Average: PSNR: 34.5393  SSIM: 0.9787  LPIPS: 0.0174  L1: 0.0034 | Current batch: 16  PSNR: 33.9759  SSIM: 0.9755  LPIPS: 0.0203  L1: 0.0035
+Number: 00238  | Average: PSNR: 34.5892  SSIM: 0.9787  LPIPS: 0.0174  L1: 0.0034 | Current batch: 17  PSNR: 35.3882  SSIM: 0.9785  LPIPS: 0.0179  L1: 0.0033
+Number: 00252  | Average: PSNR: 34.6377  SSIM: 0.9787  LPIPS: 0.0174  L1: 0.0033 | Current batch: 18  PSNR: 35.4616  SSIM: 0.9784  LPIPS: 0.0173  L1: 0.0029
+Number: 00266  | Average: PSNR: 34.7536  SSIM: 0.9788  LPIPS: 0.0174  L1: 0.0033 | Current batch: 19  PSNR: 36.8410  SSIM: 0.9798  LPIPS: 0.0168  L1: 0.0032
+Number: 00280  | Average: PSNR: 34.7568  SSIM: 0.9788  LPIPS: 0.0174  L1: 0.0033 | Current batch: 20  PSNR: 34.8165  SSIM: 0.9787  LPIPS: 0.0178  L1: 0.0029
+Number: 00294  | Average: PSNR: 34.8312  SSIM: 0.9787  LPIPS: 0.0175  L1: 0.0033 | Current batch: 21  PSNR: 36.3207  SSIM: 0.9768  LPIPS: 0.0189  L1: 0.0031
+Number: 00308  | Average: PSNR: 34.7597  SSIM: 0.9786  LPIPS: 0.0176  L1: 0.0033 | Current batch: 22  PSNR: 33.2575  SSIM: 0.9766  LPIPS: 0.0188  L1: 0.0039
+Number: 00322  | Average: PSNR: 34.8530  SSIM: 0.9788  LPIPS: 0.0173  L1: 0.0033 | Current batch: 23  PSNR: 36.9049  SSIM: 0.9838  LPIPS: 0.0124  L1: 0.0023
+Number: 00336  | Average: PSNR: 34.9285  SSIM: 0.9790  LPIPS: 0.0171  L1: 0.0033 | Current batch: 24  PSNR: 36.6655  SSIM: 0.9828  LPIPS: 0.0122  L1: 0.0026
+Number: 00350  | Average: PSNR: 34.9073  SSIM: 0.9789  LPIPS: 0.0172  L1: 0.0033 | Current batch: 25  PSNR: 34.3980  SSIM: 0.9771  LPIPS: 0.0187  L1: 0.0035
+Number: 00364  | Average: PSNR: 34.8779  SSIM: 0.9787  LPIPS: 0.0173  L1: 0.0033 | Current batch: 26  PSNR: 34.1442  SSIM: 0.9754  LPIPS: 0.0195  L1: 0.0037
+Number: 00378  | Average: PSNR: 34.8789  SSIM: 0.9788  LPIPS: 0.0171  L1: 0.0033 | Current batch: 27  PSNR: 34.9031  SSIM: 0.9803  LPIPS: 0.0138  L1: 0.0033
+Number: 00392  | Average: PSNR: 34.8954  SSIM: 0.9789  LPIPS: 0.0171  L1: 0.0033 | Current batch: 28  PSNR: 35.3428  SSIM: 0.9804  LPIPS: 0.0164  L1: 0.0028
+Number: 00406  | Average: PSNR: 34.9837  SSIM: 0.9790  LPIPS: 0.0170  L1: 0.0032 | Current batch: 29  PSNR: 37.4539  SSIM: 0.9842  LPIPS: 0.0134  L1: 0.0024
+Number: 00420  | Average: PSNR: 34.9020  SSIM: 0.9789  LPIPS: 0.0171  L1: 0.0033 | Current batch: 30  PSNR: 32.5341  SSIM: 0.9752  LPIPS: 0.0206  L1: 0.0043
+Number: 00434  | Average: PSNR: 34.8877  SSIM: 0.9787  LPIPS: 0.0173  L1: 0.0033 | Current batch: 31  PSNR: 34.4594  SSIM: 0.9731  LPIPS: 0.0225  L1: 0.0041
+Number: 00448  | Average: PSNR: 34.8669  SSIM: 0.9786  LPIPS: 0.0174  L1: 0.0033 | Current batch: 32  PSNR: 34.2228  SSIM: 0.9737  LPIPS: 0.0201  L1: 0.0038
+Number: 00462  | Average: PSNR: 34.9130  SSIM: 0.9786  LPIPS: 0.0172  L1: 0.0033 | Current batch: 33  PSNR: 36.3867  SSIM: 0.9812  LPIPS: 0.0136  L1: 0.0027
+Number: 00476  | Average: PSNR: 34.8987  SSIM: 0.9786  LPIPS: 0.0172  L1: 0.0033 | Current batch: 34  PSNR: 34.4263  SSIM: 0.9773  LPIPS: 0.0173  L1: 0.0031
+Number: 00490  | Average: PSNR: 34.8476  SSIM: 0.9785  LPIPS: 0.0174  L1: 0.0033 | Current batch: 35  PSNR: 33.1104  SSIM: 0.9749  LPIPS: 0.0213  L1: 0.0038
+Number: 00504  | Average: PSNR: 34.8414  SSIM: 0.9785  LPIPS: 0.0174  L1: 0.0033 | Current batch: 36  PSNR: 34.6241  SSIM: 0.9780  LPIPS: 0.0181  L1: 0.0034
+Number: 00518  | Average: PSNR: 34.8305  SSIM: 0.9785  LPIPS: 0.0173  L1: 0.0033 | Current batch: 37  PSNR: 34.4387  SSIM: 0.9805  LPIPS: 0.0147  L1: 0.0032
+Number: 00532  | Average: PSNR: 34.8078  SSIM: 0.9784  LPIPS: 0.0174  L1: 0.0033 | Current batch: 38  PSNR: 33.9693  SSIM: 0.9748  LPIPS: 0.0199  L1: 0.0039
+Number: 00546  | Average: PSNR: 34.8103  SSIM: 0.9785  LPIPS: 0.0174  L1: 0.0033 | Current batch: 39  PSNR: 34.9043  SSIM: 0.9794  LPIPS: 0.0175  L1: 0.0032
+Number: 00560  | Average: PSNR: 34.7405  SSIM: 0.9784  LPIPS: 0.0175  L1: 0.0033 | Current batch: 40  PSNR: 32.0196  SSIM: 0.9740  LPIPS: 0.0217  L1: 0.0042
+Number: 00574  | Average: PSNR: 34.7696  SSIM: 0.9784  LPIPS: 0.0175  L1: 0.0033 | Current batch: 41  PSNR: 35.9339  SSIM: 0.9806  LPIPS: 0.0162  L1: 0.0029
+Number: 00588  | Average: PSNR: 34.7837  SSIM: 0.9783  LPIPS: 0.0175  L1: 0.0033 | Current batch: 42  PSNR: 35.3597  SSIM: 0.9741  LPIPS: 0.0209  L1: 0.0034
+Number: 00602  | Average: PSNR: 34.8666  SSIM: 0.9785  LPIPS: 0.0174  L1: 0.0033 | Current batch: 43  PSNR: 38.3495  SSIM: 0.9866  LPIPS: 0.0102  L1: 0.0020
+Number: 00616  | Average: PSNR: 34.8484  SSIM: 0.9785  LPIPS: 0.0173  L1: 0.0033 | Current batch: 44  PSNR: 34.0654  SSIM: 0.9803  LPIPS: 0.0143  L1: 0.0031
+Number: 00630  | Average: PSNR: 34.8271  SSIM: 0.9785  LPIPS: 0.0173  L1: 0.0033 | Current batch: 45  PSNR: 33.8875  SSIM: 0.9778  LPIPS: 0.0179  L1: 0.0036
+Number: 00644  | Average: PSNR: 34.8260  SSIM: 0.9785  LPIPS: 0.0173  L1: 0.0033 | Current batch: 46  PSNR: 34.7801  SSIM: 0.9794  LPIPS: 0.0178  L1: 0.0032
+Number: 00658  | Average: PSNR: 34.8247  SSIM: 0.9786  LPIPS: 0.0173  L1: 0.0033 | Current batch: 47  PSNR: 34.7654  SSIM: 0.9823  LPIPS: 0.0139  L1: 0.0027
+Number: 00672  | Average: PSNR: 34.8354  SSIM: 0.9787  LPIPS: 0.0172  L1: 0.0033 | Current batch: 48  PSNR: 35.3382  SSIM: 0.9802  LPIPS: 0.0155  L1: 0.0031
+Number: 00686  | Average: PSNR: 34.8497  SSIM: 0.9788  LPIPS: 0.0171  L1: 0.0033 | Current batch: 49  PSNR: 35.5319  SSIM: 0.9842  LPIPS: 0.0133  L1: 0.0025
+Number: 00700  | Average: PSNR: 34.8295  SSIM: 0.9787  LPIPS: 0.0172  L1: 0.0033 | Current batch: 50  PSNR: 33.8422  SSIM: 0.9753  LPIPS: 0.0212  L1: 0.0045
+Number: 00714  | Average: PSNR: 34.8299  SSIM: 0.9787  LPIPS: 0.0172  L1: 0.0033 | Current batch: 51  PSNR: 34.8485  SSIM: 0.9808  LPIPS: 0.0156  L1: 0.0027
+Number: 00728  | Average: PSNR: 34.8453  SSIM: 0.9788  LPIPS: 0.0172  L1: 0.0033 | Current batch: 52  PSNR: 35.6297  SSIM: 0.9797  LPIPS: 0.0154  L1: 0.0029
+Number: 00742  | Average: PSNR: 34.8301  SSIM: 0.9787  LPIPS: 0.0173  L1: 0.0033 | Current batch: 53  PSNR: 34.0428  SSIM: 0.9736  LPIPS: 0.0234  L1: 0.0042
+Number: 00756  | Average: PSNR: 34.8639  SSIM: 0.9787  LPIPS: 0.0172  L1: 0.0033 | Current batch: 54  PSNR: 36.6528  SSIM: 0.9806  LPIPS: 0.0157  L1: 0.0024
+Number: 00770  | Average: PSNR: 34.8633  SSIM: 0.9787  LPIPS: 0.0172  L1: 0.0033 | Current batch: 55  PSNR: 34.8338  SSIM: 0.9797  LPIPS: 0.0165  L1: 0.0032
+Number: 00784  | Average: PSNR: 34.8729  SSIM: 0.9786  LPIPS: 0.0172  L1: 0.0033 | Current batch: 56  PSNR: 35.3990  SSIM: 0.9751  LPIPS: 0.0180  L1: 0.0033
+Number: 00798  | Average: PSNR: 34.9034  SSIM: 0.9787  LPIPS: 0.0172  L1: 0.0033 | Current batch: 57  PSNR: 36.6134  SSIM: 0.9807  LPIPS: 0.0144  L1: 0.0028
+Number: 00812  | Average: PSNR: 34.9194  SSIM: 0.9787  LPIPS: 0.0172  L1: 0.0033 | Current batch: 58  PSNR: 35.8289  SSIM: 0.9808  LPIPS: 0.0169  L1: 0.0028
+Number: 00826  | Average: PSNR: 34.9572  SSIM: 0.9788  LPIPS: 0.0171  L1: 0.0032 | Current batch: 59  PSNR: 37.1502  SSIM: 0.9846  LPIPS: 0.0124  L1: 0.0022
+Number: 00840  | Average: PSNR: 34.9553  SSIM: 0.9788  LPIPS: 0.0171  L1: 0.0032 | Current batch: 60  PSNR: 34.8419  SSIM: 0.9793  LPIPS: 0.0152  L1: 0.0034
+Number: 00854  | Average: PSNR: 34.9239  SSIM: 0.9787  LPIPS: 0.0172  L1: 0.0033 | Current batch: 61  PSNR: 33.0395  SSIM: 0.9709  LPIPS: 0.0266  L1: 0.0049
+Number: 00868  | Average: PSNR: 34.9255  SSIM: 0.9787  LPIPS: 0.0172  L1: 0.0033 | Current batch: 62  PSNR: 35.0278  SSIM: 0.9782  LPIPS: 0.0170  L1: 0.0032
+Number: 00882  | Average: PSNR: 34.9309  SSIM: 0.9787  LPIPS: 0.0172  L1: 0.0033 | Current batch: 63  PSNR: 35.2624  SSIM: 0.9797  LPIPS: 0.0140  L1: 0.0029
+Number: 00896  | Average: PSNR: 34.9557  SSIM: 0.9787  LPIPS: 0.0171  L1: 0.0033 | Current batch: 64  PSNR: 36.5195  SSIM: 0.9806  LPIPS: 0.0151  L1: 0.0026
+Number: 00910  | Average: PSNR: 34.9717  SSIM: 0.9787  LPIPS: 0.0172  L1: 0.0033 | Current batch: 65  PSNR: 35.9946  SSIM: 0.9770  LPIPS: 0.0181  L1: 0.0031
+Number: 00924  | Average: PSNR: 34.9963  SSIM: 0.9787  LPIPS: 0.0171  L1: 0.0032 | Current batch: 66  PSNR: 36.5960  SSIM: 0.9802  LPIPS: 0.0152  L1: 0.0028
+Number: 00938  | Average: PSNR: 35.0392  SSIM: 0.9788  LPIPS: 0.0171  L1: 0.0032 | Current batch: 67  PSNR: 37.8732  SSIM: 0.9813  LPIPS: 0.0154  L1: 0.0025
+Number: 00952  | Average: PSNR: 35.0143  SSIM: 0.9787  LPIPS: 0.0171  L1: 0.0033 | Current batch: 68  PSNR: 33.3398  SSIM: 0.9758  LPIPS: 0.0187  L1: 0.0044
+Number: 00966  | Average: PSNR: 35.0130  SSIM: 0.9788  LPIPS: 0.0171  L1: 0.0033 | Current batch: 69  PSNR: 34.9308  SSIM: 0.9802  LPIPS: 0.0153  L1: 0.0032
+Number: 00980  | Average: PSNR: 35.0041  SSIM: 0.9787  LPIPS: 0.0171  L1: 0.0033 | Current batch: 70  PSNR: 34.3840  SSIM: 0.9773  LPIPS: 0.0180  L1: 0.0033
+Number: 00994  | Average: PSNR: 35.0047  SSIM: 0.9787  LPIPS: 0.0171  L1: 0.0033 | Current batch: 71  PSNR: 35.0501  SSIM: 0.9779  LPIPS: 0.0186  L1: 0.0034
+Number: 01008  | Average: PSNR: 35.0073  SSIM: 0.9788  LPIPS: 0.0171  L1: 0.0033 | Current batch: 72  PSNR: 35.1892  SSIM: 0.9823  LPIPS: 0.0138  L1: 0.0031
+Number: 01022  | Average: PSNR: 34.9945  SSIM: 0.9788  LPIPS: 0.0170  L1: 0.0033 | Current batch: 73  PSNR: 34.0733  SSIM: 0.9790  LPIPS: 0.0141  L1: 0.0034
+Number: 01036  | Average: PSNR: 35.0086  SSIM: 0.9788  LPIPS: 0.0170  L1: 0.0032 | Current batch: 74  PSNR: 36.0409  SSIM: 0.9803  LPIPS: 0.0168  L1: 0.0029
+Number: 01050  | Average: PSNR: 35.0189  SSIM: 0.9788  LPIPS: 0.0170  L1: 0.0032 | Current batch: 75  PSNR: 35.7777  SSIM: 0.9807  LPIPS: 0.0151  L1: 0.0028
+Number: 01064  | Average: PSNR: 35.0342  SSIM: 0.9788  LPIPS: 0.0170  L1: 0.0032 | Current batch: 76  PSNR: 36.1860  SSIM: 0.9790  LPIPS: 0.0153  L1: 0.0028
+Number: 01078  | Average: PSNR: 35.0466  SSIM: 0.9789  LPIPS: 0.0169  L1: 0.0032 | Current batch: 77  PSNR: 35.9890  SSIM: 0.9821  LPIPS: 0.0132  L1: 0.0033
+Number: 01092  | Average: PSNR: 35.0571  SSIM: 0.9789  LPIPS: 0.0169  L1: 0.0032 | Current batch: 78  PSNR: 35.8607  SSIM: 0.9780  LPIPS: 0.0149  L1: 0.0029
+Number: 01106  | Average: PSNR: 35.0296  SSIM: 0.9788  LPIPS: 0.0169  L1: 0.0032 | Current batch: 79  PSNR: 32.8889  SSIM: 0.9734  LPIPS: 0.0185  L1: 0.0044
+Number: 01120  | Average: PSNR: 35.0475  SSIM: 0.9788  LPIPS: 0.0169  L1: 0.0032 | Current batch: 80  PSNR: 36.4596  SSIM: 0.9821  LPIPS: 0.0123  L1: 0.0031
+Number: 01134  | Average: PSNR: 35.0458  SSIM: 0.9788  LPIPS: 0.0169  L1: 0.0032 | Current batch: 81  PSNR: 34.9065  SSIM: 0.9780  LPIPS: 0.0163  L1: 0.0029
+Number: 01148  | Average: PSNR: 35.0649  SSIM: 0.9789  LPIPS: 0.0168  L1: 0.0032 | Current batch: 82  PSNR: 36.6167  SSIM: 0.9839  LPIPS: 0.0110  L1: 0.0023
+Number: 01162  | Average: PSNR: 35.0497  SSIM: 0.9788  LPIPS: 0.0169  L1: 0.0032 | Current batch: 83  PSNR: 33.7986  SSIM: 0.9731  LPIPS: 0.0223  L1: 0.0044
+Number: 01176  | Average: PSNR: 35.0427  SSIM: 0.9788  LPIPS: 0.0169  L1: 0.0033 | Current batch: 84  PSNR: 34.4629  SSIM: 0.9754  LPIPS: 0.0190  L1: 0.0042
+Number: 01190  | Average: PSNR: 35.0491  SSIM: 0.9788  LPIPS: 0.0169  L1: 0.0033 | Current batch: 85  PSNR: 35.5871  SSIM: 0.9833  LPIPS: 0.0136  L1: 0.0030
+Number: 01204  | Average: PSNR: 35.0335  SSIM: 0.9788  LPIPS: 0.0168  L1: 0.0033 | Current batch: 86  PSNR: 33.7132  SSIM: 0.9811  LPIPS: 0.0143  L1: 0.0032
+Number: 01218  | Average: PSNR: 35.0412  SSIM: 0.9789  LPIPS: 0.0168  L1: 0.0033 | Current batch: 87  PSNR: 35.6996  SSIM: 0.9806  LPIPS: 0.0166  L1: 0.0031
+Number: 01232  | Average: PSNR: 35.0623  SSIM: 0.9789  LPIPS: 0.0168  L1: 0.0032 | Current batch: 88  PSNR: 36.8954  SSIM: 0.9839  LPIPS: 0.0140  L1: 0.0028
+Number: 01246  | Average: PSNR: 35.0547  SSIM: 0.9790  LPIPS: 0.0167  L1: 0.0032 | Current batch: 89  PSNR: 34.3922  SSIM: 0.9833  LPIPS: 0.0113  L1: 0.0028
+Number: 01260  | Average: PSNR: 35.0391  SSIM: 0.9789  LPIPS: 0.0168  L1: 0.0032 | Current batch: 90  PSNR: 33.6505  SSIM: 0.9766  LPIPS: 0.0191  L1: 0.0039
+Number: 01274  | Average: PSNR: 35.0629  SSIM: 0.9790  LPIPS: 0.0167  L1: 0.0032 | Current batch: 91  PSNR: 37.2019  SSIM: 0.9856  LPIPS: 0.0090  L1: 0.0023
+Number: 01288  | Average: PSNR: 35.1052  SSIM: 0.9791  LPIPS: 0.0166  L1: 0.0032 | Current batch: 92  PSNR: 38.9526  SSIM: 0.9838  LPIPS: 0.0099  L1: 0.0022
+Number: 01302  | Average: PSNR: 35.1392  SSIM: 0.9791  LPIPS: 0.0165  L1: 0.0032 | Current batch: 93  PSNR: 38.2677  SSIM: 0.9853  LPIPS: 0.0115  L1: 0.0024
+Number: 01316  | Average: PSNR: 35.1406  SSIM: 0.9791  LPIPS: 0.0166  L1: 0.0032 | Current batch: 94  PSNR: 35.2721  SSIM: 0.9756  LPIPS: 0.0177  L1: 0.0034
+Number: 01330  | Average: PSNR: 35.1568  SSIM: 0.9791  LPIPS: 0.0165  L1: 0.0032 | Current batch: 95  PSNR: 36.6794  SSIM: 0.9831  LPIPS: 0.0126  L1: 0.0026
+Number: 01344  | Average: PSNR: 35.1492  SSIM: 0.9791  LPIPS: 0.0165  L1: 0.0032 | Current batch: 96  PSNR: 34.4312  SSIM: 0.9790  LPIPS: 0.0157  L1: 0.0036
+Number: 01358  | Average: PSNR: 35.1472  SSIM: 0.9791  LPIPS: 0.0165  L1: 0.0032 | Current batch: 97  PSNR: 34.9530  SSIM: 0.9770  LPIPS: 0.0170  L1: 0.0036
+Number: 01372  | Average: PSNR: 35.1389  SSIM: 0.9792  LPIPS: 0.0165  L1: 0.0032 | Current batch: 98  PSNR: 34.3354  SSIM: 0.9824  LPIPS: 0.0131  L1: 0.0031
+Number: 01386  | Average: PSNR: 35.1406  SSIM: 0.9792  LPIPS: 0.0164  L1: 0.0032 | Current batch: 99  PSNR: 35.3006  SSIM: 0.9828  LPIPS: 0.0114  L1: 0.0028
+Number: 01400  | Average: PSNR: 35.1287  SSIM: 0.9792  LPIPS: 0.0164  L1: 0.0032 | Current batch: 100  PSNR: 33.9515  SSIM: 0.9802  LPIPS: 0.0137  L1: 0.0034
+Number: 01414  | Average: PSNR: 35.1519  SSIM: 0.9792  LPIPS: 0.0164  L1: 0.0032 | Current batch: 101  PSNR: 37.4773  SSIM: 0.9815  LPIPS: 0.0132  L1: 0.0024
+Number: 01428  | Average: PSNR: 35.1622  SSIM: 0.9792  LPIPS: 0.0164  L1: 0.0032 | Current batch: 102  PSNR: 36.1971  SSIM: 0.9785  LPIPS: 0.0181  L1: 0.0029
+Number: 01442  | Average: PSNR: 35.1974  SSIM: 0.9793  LPIPS: 0.0163  L1: 0.0032 | Current batch: 103  PSNR: 38.7854  SSIM: 0.9858  LPIPS: 0.0101  L1: 0.0024
+Number: 01456  | Average: PSNR: 35.2007  SSIM: 0.9793  LPIPS: 0.0163  L1: 0.0032 | Current batch: 104  PSNR: 35.5424  SSIM: 0.9801  LPIPS: 0.0157  L1: 0.0030
+Number: 01470  | Average: PSNR: 35.2204  SSIM: 0.9793  LPIPS: 0.0163  L1: 0.0032 | Current batch: 105  PSNR: 37.2738  SSIM: 0.9849  LPIPS: 0.0117  L1: 0.0022
+Number: 01484  | Average: PSNR: 35.2233  SSIM: 0.9794  LPIPS: 0.0162  L1: 0.0032 | Current batch: 106  PSNR: 35.5217  SSIM: 0.9811  LPIPS: 0.0123  L1: 0.0031
+Number: 01498  | Average: PSNR: 35.2138  SSIM: 0.9794  LPIPS: 0.0162  L1: 0.0032 | Current batch: 107  PSNR: 34.2066  SSIM: 0.9797  LPIPS: 0.0161  L1: 0.0034
+Number: 01512  | Average: PSNR: 35.2251  SSIM: 0.9794  LPIPS: 0.0162  L1: 0.0032 | Current batch: 108  PSNR: 36.4373  SSIM: 0.9833  LPIPS: 0.0122  L1: 0.0025
+Number: 01526  | Average: PSNR: 35.2258  SSIM: 0.9794  LPIPS: 0.0162  L1: 0.0032 | Current batch: 109  PSNR: 35.2984  SSIM: 0.9772  LPIPS: 0.0174  L1: 0.0034
+Number: 01540  | Average: PSNR: 35.2172  SSIM: 0.9794  LPIPS: 0.0162  L1: 0.0032 | Current batch: 110  PSNR: 34.2867  SSIM: 0.9804  LPIPS: 0.0130  L1: 0.0035
+Number: 01554  | Average: PSNR: 35.2261  SSIM: 0.9794  LPIPS: 0.0161  L1: 0.0032 | Current batch: 111  PSNR: 36.2062  SSIM: 0.9808  LPIPS: 0.0130  L1: 0.0029
+Number: 01568  | Average: PSNR: 35.2501  SSIM: 0.9794  LPIPS: 0.0161  L1: 0.0032 | Current batch: 112  PSNR: 37.9147  SSIM: 0.9844  LPIPS: 0.0111  L1: 0.0027
+Number: 01582  | Average: PSNR: 35.2513  SSIM: 0.9795  LPIPS: 0.0161  L1: 0.0032 | Current batch: 113  PSNR: 35.3781  SSIM: 0.9820  LPIPS: 0.0139  L1: 0.0027
+Number: 01596  | Average: PSNR: 35.2644  SSIM: 0.9795  LPIPS: 0.0161  L1: 0.0032 | Current batch: 114  PSNR: 36.7515  SSIM: 0.9801  LPIPS: 0.0153  L1: 0.0029
+Number: 01610  | Average: PSNR: 35.2723  SSIM: 0.9795  LPIPS: 0.0161  L1: 0.0032 | Current batch: 115  PSNR: 36.1676  SSIM: 0.9797  LPIPS: 0.0170  L1: 0.0030
+Number: 01624  | Average: PSNR: 35.2626  SSIM: 0.9795  LPIPS: 0.0161  L1: 0.0032 | Current batch: 116  PSNR: 34.1438  SSIM: 0.9775  LPIPS: 0.0169  L1: 0.0041
+Number: 01638  | Average: PSNR: 35.2873  SSIM: 0.9795  LPIPS: 0.0161  L1: 0.0032 | Current batch: 117  PSNR: 38.1524  SSIM: 0.9850  LPIPS: 0.0119  L1: 0.0022
+Number: 01652  | Average: PSNR: 35.3016  SSIM: 0.9795  LPIPS: 0.0160  L1: 0.0032 | Current batch: 118  PSNR: 36.9782  SSIM: 0.9817  LPIPS: 0.0115  L1: 0.0025
+Number: 01666  | Average: PSNR: 35.3164  SSIM: 0.9796  LPIPS: 0.0160  L1: 0.0032 | Current batch: 119  PSNR: 37.0602  SSIM: 0.9854  LPIPS: 0.0094  L1: 0.0022
+Number: 01680  | Average: PSNR: 35.3214  SSIM: 0.9796  LPIPS: 0.0159  L1: 0.0032 | Current batch: 120  PSNR: 35.9166  SSIM: 0.9840  LPIPS: 0.0099  L1: 0.0027
+Number: 01694  | Average: PSNR: 35.3127  SSIM: 0.9796  LPIPS: 0.0159  L1: 0.0032 | Current batch: 121  PSNR: 34.2741  SSIM: 0.9790  LPIPS: 0.0159  L1: 0.0033
+Number: 01708  | Average: PSNR: 35.3350  SSIM: 0.9796  LPIPS: 0.0159  L1: 0.0031 | Current batch: 122  PSNR: 38.0370  SSIM: 0.9838  LPIPS: 0.0147  L1: 0.0024
+Number: 01722  | Average: PSNR: 35.3233  SSIM: 0.9796  LPIPS: 0.0160  L1: 0.0032 | Current batch: 123  PSNR: 33.8943  SSIM: 0.9735  LPIPS: 0.0229  L1: 0.0038
+Number: 01736  | Average: PSNR: 35.3287  SSIM: 0.9796  LPIPS: 0.0159  L1: 0.0031 | Current batch: 124  PSNR: 35.9859  SSIM: 0.9854  LPIPS: 0.0098  L1: 0.0025
+Number: 01750  | Average: PSNR: 35.3324  SSIM: 0.9796  LPIPS: 0.0159  L1: 0.0032 | Current batch: 125  PSNR: 35.7908  SSIM: 0.9758  LPIPS: 0.0181  L1: 0.0035
+Number: 01764  | Average: PSNR: 35.3440  SSIM: 0.9796  LPIPS: 0.0159  L1: 0.0031 | Current batch: 126  PSNR: 36.7997  SSIM: 0.9817  LPIPS: 0.0148  L1: 0.0026
+Number: 01778  | Average: PSNR: 35.3542  SSIM: 0.9796  LPIPS: 0.0159  L1: 0.0031 | Current batch: 127  PSNR: 36.6371  SSIM: 0.9826  LPIPS: 0.0121  L1: 0.0030
+Number: 01792  | Average: PSNR: 35.3507  SSIM: 0.9797  LPIPS: 0.0159  L1: 0.0031 | Current batch: 128  PSNR: 34.9132  SSIM: 0.9810  LPIPS: 0.0119  L1: 0.0032
+Number: 01806  | Average: PSNR: 35.3711  SSIM: 0.9797  LPIPS: 0.0158  L1: 0.0031 | Current batch: 129  PSNR: 37.9699  SSIM: 0.9843  LPIPS: 0.0103  L1: 0.0024
+Number: 01820  | Average: PSNR: 35.3661  SSIM: 0.9797  LPIPS: 0.0158  L1: 0.0031 | Current batch: 130  PSNR: 34.7338  SSIM: 0.9773  LPIPS: 0.0178  L1: 0.0036
+Number: 01834  | Average: PSNR: 35.3892  SSIM: 0.9797  LPIPS: 0.0158  L1: 0.0031 | Current batch: 131  PSNR: 38.3883  SSIM: 0.9783  LPIPS: 0.0151  L1: 0.0026
+Number: 01848  | Average: PSNR: 35.4025  SSIM: 0.9797  LPIPS: 0.0158  L1: 0.0031 | Current batch: 132  PSNR: 37.1420  SSIM: 0.9836  LPIPS: 0.0102  L1: 0.0027
+Number: 01862  | Average: PSNR: 35.3971  SSIM: 0.9797  LPIPS: 0.0158  L1: 0.0031 | Current batch: 133  PSNR: 34.6886  SSIM: 0.9820  LPIPS: 0.0145  L1: 0.0031
+Number: 01876  | Average: PSNR: 35.4102  SSIM: 0.9798  LPIPS: 0.0157  L1: 0.0031 | Current batch: 134  PSNR: 37.1435  SSIM: 0.9855  LPIPS: 0.0079  L1: 0.0020
+Number: 01890  | Average: PSNR: 35.3994  SSIM: 0.9798  LPIPS: 0.0157  L1: 0.0031 | Current batch: 135  PSNR: 33.9629  SSIM: 0.9797  LPIPS: 0.0155  L1: 0.0038
+Number: 01904  | Average: PSNR: 35.4002  SSIM: 0.9797  LPIPS: 0.0157  L1: 0.0031 | Current batch: 136  PSNR: 35.4978  SSIM: 0.9787  LPIPS: 0.0149  L1: 0.0038
+Number: 01918  | Average: PSNR: 35.3877  SSIM: 0.9797  LPIPS: 0.0157  L1: 0.0031 | Current batch: 137  PSNR: 33.6929  SSIM: 0.9751  LPIPS: 0.0184  L1: 0.0038
+Number: 01932  | Average: PSNR: 35.4053  SSIM: 0.9797  LPIPS: 0.0157  L1: 0.0031 | Current batch: 138  PSNR: 37.8111  SSIM: 0.9832  LPIPS: 0.0121  L1: 0.0026
+Number: 01946  | Average: PSNR: 35.3925  SSIM: 0.9797  LPIPS: 0.0157  L1: 0.0031 | Current batch: 139  PSNR: 33.6350  SSIM: 0.9760  LPIPS: 0.0208  L1: 0.0038
+Number: 01960  | Average: PSNR: 35.4142  SSIM: 0.9797  LPIPS: 0.0157  L1: 0.0031 | Current batch: 140  PSNR: 38.4270  SSIM: 0.9855  LPIPS: 0.0084  L1: 0.0022
+Number: 01974  | Average: PSNR: 35.4126  SSIM: 0.9797  LPIPS: 0.0157  L1: 0.0031 | Current batch: 141  PSNR: 35.1885  SSIM: 0.9775  LPIPS: 0.0151  L1: 0.0035
+Number: 01988  | Average: PSNR: 35.3985  SSIM: 0.9797  LPIPS: 0.0157  L1: 0.0031 | Current batch: 142  PSNR: 33.4063  SSIM: 0.9761  LPIPS: 0.0182  L1: 0.0044
+Number: 02002  | Average: PSNR: 35.3955  SSIM: 0.9797  LPIPS: 0.0157  L1: 0.0031 | Current batch: 143  PSNR: 34.9721  SSIM: 0.9800  LPIPS: 0.0143  L1: 0.0031
+Number: 02016  | Average: PSNR: 35.3519  SSIM: 0.9794  LPIPS: 0.0159  L1: 0.0032 | Current batch: 144  PSNR: 29.1152  SSIM: 0.9408  LPIPS: 0.0473  L1: 0.0090
+Number: 02030  | Average: PSNR: 35.3011  SSIM: 0.9791  LPIPS: 0.0161  L1: 0.0032 | Current batch: 145  PSNR: 27.9912  SSIM: 0.9360  LPIPS: 0.0466  L1: 0.0098
+Number: 02044  | Average: PSNR: 35.2664  SSIM: 0.9789  LPIPS: 0.0163  L1: 0.0033 | Current batch: 146  PSNR: 30.2276  SSIM: 0.9470  LPIPS: 0.0427  L1: 0.0080
+Number: 02058  | Average: PSNR: 35.2249  SSIM: 0.9787  LPIPS: 0.0165  L1: 0.0033 | Current batch: 147  PSNR: 29.1742  SSIM: 0.9444  LPIPS: 0.0434  L1: 0.0084
+Number: 02072  | Average: PSNR: 35.1884  SSIM: 0.9784  LPIPS: 0.0167  L1: 0.0033 | Current batch: 148  PSNR: 29.8248  SSIM: 0.9439  LPIPS: 0.0458  L1: 0.0082
+Number: 02086  | Average: PSNR: 35.1489  SSIM: 0.9782  LPIPS: 0.0169  L1: 0.0034 | Current batch: 149  PSNR: 29.3015  SSIM: 0.9375  LPIPS: 0.0546  L1: 0.0090
+Number: 02100  | Average: PSNR: 35.1145  SSIM: 0.9779  LPIPS: 0.0171  L1: 0.0034 | Current batch: 150  PSNR: 29.9863  SSIM: 0.9415  LPIPS: 0.0467  L1: 0.0078
+Number: 02114  | Average: PSNR: 35.0794  SSIM: 0.9777  LPIPS: 0.0173  L1: 0.0034 | Current batch: 151  PSNR: 29.8191  SSIM: 0.9415  LPIPS: 0.0462  L1: 0.0082
+Number: 02128  | Average: PSNR: 35.0347  SSIM: 0.9774  LPIPS: 0.0175  L1: 0.0035 | Current batch: 152  PSNR: 28.2788  SSIM: 0.9364  LPIPS: 0.0504  L1: 0.0093
+Number: 02142  | Average: PSNR: 34.9989  SSIM: 0.9772  LPIPS: 0.0178  L1: 0.0035 | Current batch: 153  PSNR: 29.5604  SSIM: 0.9401  LPIPS: 0.0500  L1: 0.0089
+Number: 02156  | Average: PSNR: 34.9698  SSIM: 0.9770  LPIPS: 0.0179  L1: 0.0035 | Current batch: 154  PSNR: 30.5143  SSIM: 0.9469  LPIPS: 0.0411  L1: 0.0079
+Number: 02170  | Average: PSNR: 34.9260  SSIM: 0.9767  LPIPS: 0.0181  L1: 0.0036 | Current batch: 155  PSNR: 28.1815  SSIM: 0.9301  LPIPS: 0.0525  L1: 0.0102
+Number: 02184  | Average: PSNR: 34.8949  SSIM: 0.9764  LPIPS: 0.0183  L1: 0.0036 | Current batch: 156  PSNR: 30.0798  SSIM: 0.9388  LPIPS: 0.0464  L1: 0.0086
+Number: 02198  | Average: PSNR: 34.8611  SSIM: 0.9762  LPIPS: 0.0185  L1: 0.0036 | Current batch: 157  PSNR: 29.5754  SSIM: 0.9423  LPIPS: 0.0428  L1: 0.0085
+Number: 02212  | Average: PSNR: 34.8391  SSIM: 0.9760  LPIPS: 0.0186  L1: 0.0037 | Current batch: 158  PSNR: 31.3941  SSIM: 0.9481  LPIPS: 0.0437  L1: 0.0072
+Number: 02226  | Average: PSNR: 34.8033  SSIM: 0.9758  LPIPS: 0.0188  L1: 0.0037 | Current batch: 159  PSNR: 29.1526  SSIM: 0.9427  LPIPS: 0.0423  L1: 0.0089
+Number: 02240  | Average: PSNR: 34.7736  SSIM: 0.9756  LPIPS: 0.0189  L1: 0.0037 | Current batch: 160  PSNR: 30.0487  SSIM: 0.9444  LPIPS: 0.0412  L1: 0.0078
+Number: 02254  | Average: PSNR: 34.7374  SSIM: 0.9754  LPIPS: 0.0191  L1: 0.0038 | Current batch: 161  PSNR: 28.9431  SSIM: 0.9411  LPIPS: 0.0473  L1: 0.0094
+Number: 02268  | Average: PSNR: 34.7164  SSIM: 0.9753  LPIPS: 0.0192  L1: 0.0038 | Current batch: 162  PSNR: 31.3347  SSIM: 0.9533  LPIPS: 0.0397  L1: 0.0068
+Number: 02282  | Average: PSNR: 34.6783  SSIM: 0.9751  LPIPS: 0.0194  L1: 0.0038 | Current batch: 163  PSNR: 28.5005  SSIM: 0.9447  LPIPS: 0.0430  L1: 0.0089
+Number: 02296  | Average: PSNR: 34.6529  SSIM: 0.9749  LPIPS: 0.0195  L1: 0.0038 | Current batch: 164  PSNR: 30.5114  SSIM: 0.9456  LPIPS: 0.0423  L1: 0.0078
+Number: 02310  | Average: PSNR: 34.6272  SSIM: 0.9747  LPIPS: 0.0197  L1: 0.0039 | Current batch: 165  PSNR: 30.4104  SSIM: 0.9437  LPIPS: 0.0487  L1: 0.0081
+Number: 02324  | Average: PSNR: 34.5988  SSIM: 0.9746  LPIPS: 0.0198  L1: 0.0039 | Current batch: 166  PSNR: 29.9222  SSIM: 0.9463  LPIPS: 0.0424  L1: 0.0078
+Number: 02338  | Average: PSNR: 34.5680  SSIM: 0.9744  LPIPS: 0.0200  L1: 0.0039 | Current batch: 167  PSNR: 29.4599  SSIM: 0.9427  LPIPS: 0.0446  L1: 0.0082
+Number: 02352  | Average: PSNR: 34.5374  SSIM: 0.9742  LPIPS: 0.0201  L1: 0.0039 | Current batch: 168  PSNR: 29.4121  SSIM: 0.9399  LPIPS: 0.0449  L1: 0.0089
+Number: 02366  | Average: PSNR: 34.5024  SSIM: 0.9740  LPIPS: 0.0203  L1: 0.0040 | Current batch: 169  PSNR: 28.6355  SSIM: 0.9428  LPIPS: 0.0435  L1: 0.0090
+Number: 02380  | Average: PSNR: 34.4736  SSIM: 0.9738  LPIPS: 0.0204  L1: 0.0040 | Current batch: 170  PSNR: 29.5963  SSIM: 0.9374  LPIPS: 0.0471  L1: 0.0086
+Number: 02394  | Average: PSNR: 34.4367  SSIM: 0.9735  LPIPS: 0.0206  L1: 0.0040 | Current batch: 171  PSNR: 28.1695  SSIM: 0.9305  LPIPS: 0.0501  L1: 0.0102
+Number: 02408  | Average: PSNR: 34.4070  SSIM: 0.9733  LPIPS: 0.0207  L1: 0.0041 | Current batch: 172  PSNR: 29.3341  SSIM: 0.9417  LPIPS: 0.0476  L1: 0.0083
+Number: 02422  | Average: PSNR: 34.3856  SSIM: 0.9731  LPIPS: 0.0209  L1: 0.0041 | Current batch: 173  PSNR: 30.6900  SSIM: 0.9439  LPIPS: 0.0484  L1: 0.0074
+Number: 02436  | Average: PSNR: 34.3520  SSIM: 0.9729  LPIPS: 0.0211  L1: 0.0041 | Current batch: 174  PSNR: 28.5525  SSIM: 0.9256  LPIPS: 0.0571  L1: 0.0101
+Number: 02450  | Average: PSNR: 34.3215  SSIM: 0.9727  LPIPS: 0.0213  L1: 0.0041 | Current batch: 175  PSNR: 29.0094  SSIM: 0.9407  LPIPS: 0.0469  L1: 0.0088
+Number: 02464  | Average: PSNR: 34.2981  SSIM: 0.9725  LPIPS: 0.0214  L1: 0.0042 | Current batch: 176  PSNR: 30.1989  SSIM: 0.9469  LPIPS: 0.0455  L1: 0.0075
+Number: 02478  | Average: PSNR: 34.2734  SSIM: 0.9725  LPIPS: 0.0215  L1: 0.0042 | Current batch: 177  PSNR: 29.9379  SSIM: 0.9567  LPIPS: 0.0338  L1: 0.0075
+Number: 02492  | Average: PSNR: 34.2387  SSIM: 0.9722  LPIPS: 0.0216  L1: 0.0042 | Current batch: 178  PSNR: 28.0899  SSIM: 0.9336  LPIPS: 0.0521  L1: 0.0110
+Number: 02506  | Average: PSNR: 34.2087  SSIM: 0.9720  LPIPS: 0.0218  L1: 0.0042 | Current batch: 179  PSNR: 28.8641  SSIM: 0.9345  LPIPS: 0.0515  L1: 0.0092
+Number: 02520  | Average: PSNR: 34.1821  SSIM: 0.9719  LPIPS: 0.0219  L1: 0.0043 | Current batch: 180  PSNR: 29.4213  SSIM: 0.9487  LPIPS: 0.0412  L1: 0.0077
+Number: 02534  | Average: PSNR: 34.1580  SSIM: 0.9718  LPIPS: 0.0220  L1: 0.0043 | Current batch: 181  PSNR: 29.8202  SSIM: 0.9482  LPIPS: 0.0403  L1: 0.0075
+Number: 02548  | Average: PSNR: 34.1308  SSIM: 0.9716  LPIPS: 0.0222  L1: 0.0043 | Current batch: 182  PSNR: 29.2135  SSIM: 0.9449  LPIPS: 0.0469  L1: 0.0087
+Number: 02562  | Average: PSNR: 34.0996  SSIM: 0.9714  LPIPS: 0.0223  L1: 0.0043 | Current batch: 183  PSNR: 28.4187  SSIM: 0.9307  LPIPS: 0.0554  L1: 0.0097
+Number: 02576  | Average: PSNR: 34.0790  SSIM: 0.9712  LPIPS: 0.0225  L1: 0.0044 | Current batch: 184  PSNR: 30.3137  SSIM: 0.9432  LPIPS: 0.0482  L1: 0.0077
+Number: 02590  | Average: PSNR: 34.0563  SSIM: 0.9711  LPIPS: 0.0226  L1: 0.0044 | Current batch: 185  PSNR: 29.8688  SSIM: 0.9514  LPIPS: 0.0382  L1: 0.0072
+Number: 02604  | Average: PSNR: 34.0250  SSIM: 0.9710  LPIPS: 0.0227  L1: 0.0044 | Current batch: 186  PSNR: 28.2416  SSIM: 0.9402  LPIPS: 0.0508  L1: 0.0094
+Number: 02618  | Average: PSNR: 34.0022  SSIM: 0.9708  LPIPS: 0.0228  L1: 0.0044 | Current batch: 187  PSNR: 29.7681  SSIM: 0.9435  LPIPS: 0.0436  L1: 0.0086
+Number: 02632  | Average: PSNR: 33.9756  SSIM: 0.9707  LPIPS: 0.0230  L1: 0.0044 | Current batch: 188  PSNR: 28.9901  SSIM: 0.9415  LPIPS: 0.0526  L1: 0.0083
+Number: 02646  | Average: PSNR: 33.9429  SSIM: 0.9705  LPIPS: 0.0231  L1: 0.0045 | Current batch: 189  PSNR: 27.7978  SSIM: 0.9321  LPIPS: 0.0543  L1: 0.0101
+Number: 02660  | Average: PSNR: 33.9252  SSIM: 0.9703  LPIPS: 0.0233  L1: 0.0045 | Current batch: 190  PSNR: 30.5858  SSIM: 0.9438  LPIPS: 0.0468  L1: 0.0073
+Number: 02674  | Average: PSNR: 33.9026  SSIM: 0.9702  LPIPS: 0.0234  L1: 0.0045 | Current batch: 191  PSNR: 29.6111  SSIM: 0.9417  LPIPS: 0.0498  L1: 0.0078
+Number: 02688  | Average: PSNR: 33.8810  SSIM: 0.9700  LPIPS: 0.0235  L1: 0.0045 | Current batch: 192  PSNR: 29.7391  SSIM: 0.9459  LPIPS: 0.0432  L1: 0.0079
+Number: 02702  | Average: PSNR: 33.8654  SSIM: 0.9700  LPIPS: 0.0236  L1: 0.0045 | Current batch: 193  PSNR: 30.8750  SSIM: 0.9555  LPIPS: 0.0364  L1: 0.0069
+Number: 02716  | Average: PSNR: 33.8499  SSIM: 0.9699  LPIPS: 0.0237  L1: 0.0045 | Current batch: 194  PSNR: 30.8702  SSIM: 0.9498  LPIPS: 0.0374  L1: 0.0074
+Number: 02730  | Average: PSNR: 33.8215  SSIM: 0.9697  LPIPS: 0.0238  L1: 0.0046 | Current batch: 195  PSNR: 28.3003  SSIM: 0.9327  LPIPS: 0.0584  L1: 0.0101
+Number: 02744  | Average: PSNR: 33.7940  SSIM: 0.9695  LPIPS: 0.0239  L1: 0.0046 | Current batch: 196  PSNR: 28.4346  SSIM: 0.9446  LPIPS: 0.0448  L1: 0.0086
+Number: 02758  | Average: PSNR: 33.7805  SSIM: 0.9694  LPIPS: 0.0240  L1: 0.0046 | Current batch: 197  PSNR: 31.1263  SSIM: 0.9498  LPIPS: 0.0423  L1: 0.0070
+Number: 02772  | Average: PSNR: 33.7634  SSIM: 0.9693  LPIPS: 0.0242  L1: 0.0046 | Current batch: 198  PSNR: 30.4070  SSIM: 0.9459  LPIPS: 0.0479  L1: 0.0074
+Number: 02786  | Average: PSNR: 33.7339  SSIM: 0.9692  LPIPS: 0.0243  L1: 0.0046 | Current batch: 199  PSNR: 27.8945  SSIM: 0.9393  LPIPS: 0.0505  L1: 0.0104
+Number: 02800  | Average: PSNR: 33.7117  SSIM: 0.9690  LPIPS: 0.0244  L1: 0.0047 | Current batch: 200  PSNR: 29.2852  SSIM: 0.9338  LPIPS: 0.0529  L1: 0.0095
+Number: 02814  | Average: PSNR: 33.6876  SSIM: 0.9689  LPIPS: 0.0245  L1: 0.0047 | Current batch: 201  PSNR: 28.8712  SSIM: 0.9456  LPIPS: 0.0408  L1: 0.0086
+Number: 02828  | Average: PSNR: 33.6667  SSIM: 0.9687  LPIPS: 0.0246  L1: 0.0047 | Current batch: 202  PSNR: 29.4565  SSIM: 0.9396  LPIPS: 0.0457  L1: 0.0083
+Number: 02842  | Average: PSNR: 33.6510  SSIM: 0.9687  LPIPS: 0.0247  L1: 0.0047 | Current batch: 203  PSNR: 30.4793  SSIM: 0.9520  LPIPS: 0.0392  L1: 0.0072
+Number: 02856  | Average: PSNR: 33.6247  SSIM: 0.9685  LPIPS: 0.0249  L1: 0.0048 | Current batch: 204  PSNR: 28.3045  SSIM: 0.9283  LPIPS: 0.0600  L1: 0.0103
+Number: 02870  | Average: PSNR: 33.5968  SSIM: 0.9683  LPIPS: 0.0250  L1: 0.0048 | Current batch: 205  PSNR: 27.8986  SSIM: 0.9343  LPIPS: 0.0489  L1: 0.0100
+Number: 02884  | Average: PSNR: 33.5759  SSIM: 0.9682  LPIPS: 0.0251  L1: 0.0048 | Current batch: 206  PSNR: 29.2841  SSIM: 0.9442  LPIPS: 0.0411  L1: 0.0085
+Number: 02898  | Average: PSNR: 33.5530  SSIM: 0.9680  LPIPS: 0.0252  L1: 0.0048 | Current batch: 207  PSNR: 28.8320  SSIM: 0.9281  LPIPS: 0.0597  L1: 0.0101
+Number: 02912  | Average: PSNR: 33.5336  SSIM: 0.9678  LPIPS: 0.0253  L1: 0.0048 | Current batch: 208  PSNR: 29.5361  SSIM: 0.9394  LPIPS: 0.0480  L1: 0.0089
+Number: 02926  | Average: PSNR: 33.5185  SSIM: 0.9677  LPIPS: 0.0254  L1: 0.0049 | Current batch: 209  PSNR: 30.3598  SSIM: 0.9460  LPIPS: 0.0394  L1: 0.0078
+Number: 02940  | Average: PSNR: 33.5015  SSIM: 0.9676  LPIPS: 0.0255  L1: 0.0049 | Current batch: 210  PSNR: 29.9476  SSIM: 0.9395  LPIPS: 0.0452  L1: 0.0082
+Number: 02954  | Average: PSNR: 33.4721  SSIM: 0.9674  LPIPS: 0.0257  L1: 0.0049 | Current batch: 211  PSNR: 27.3168  SSIM: 0.9244  LPIPS: 0.0596  L1: 0.0112
+Number: 02968  | Average: PSNR: 33.4493  SSIM: 0.9673  LPIPS: 0.0257  L1: 0.0049 | Current batch: 212  PSNR: 28.6337  SSIM: 0.9473  LPIPS: 0.0432  L1: 0.0084
+Number: 02982  | Average: PSNR: 33.4243  SSIM: 0.9671  LPIPS: 0.0259  L1: 0.0049 | Current batch: 213  PSNR: 28.1134  SSIM: 0.9338  LPIPS: 0.0577  L1: 0.0099
+Number: 02996  | Average: PSNR: 33.4155  SSIM: 0.9671  LPIPS: 0.0259  L1: 0.0049 | Current batch: 214  PSNR: 31.5569  SSIM: 0.9623  LPIPS: 0.0339  L1: 0.0060
+Number: 03010  | Average: PSNR: 33.4008  SSIM: 0.9670  LPIPS: 0.0260  L1: 0.0050 | Current batch: 215  PSNR: 30.2356  SSIM: 0.9444  LPIPS: 0.0441  L1: 0.0072
+Number: 03024  | Average: PSNR: 33.3838  SSIM: 0.9670  LPIPS: 0.0260  L1: 0.0050 | Current batch: 216  PSNR: 29.7483  SSIM: 0.9588  LPIPS: 0.0315  L1: 0.0067
+Number: 03038  | Average: PSNR: 33.3803  SSIM: 0.9670  LPIPS: 0.0260  L1: 0.0050 | Current batch: 217  PSNR: 32.6169  SSIM: 0.9611  LPIPS: 0.0286  L1: 0.0055
+Number: 03052  | Average: PSNR: 33.3664  SSIM: 0.9669  LPIPS: 0.0261  L1: 0.0050 | Current batch: 218  PSNR: 30.3498  SSIM: 0.9539  LPIPS: 0.0329  L1: 0.0071
+Number: 03066  | Average: PSNR: 33.3539  SSIM: 0.9668  LPIPS: 0.0261  L1: 0.0050 | Current batch: 219  PSNR: 30.6197  SSIM: 0.9519  LPIPS: 0.0328  L1: 0.0072
+Number: 03080  | Average: PSNR: 33.3381  SSIM: 0.9668  LPIPS: 0.0261  L1: 0.0050 | Current batch: 220  PSNR: 29.8802  SSIM: 0.9571  LPIPS: 0.0324  L1: 0.0070
+Number: 03094  | Average: PSNR: 33.3221  SSIM: 0.9667  LPIPS: 0.0262  L1: 0.0050 | Current batch: 221  PSNR: 29.8132  SSIM: 0.9452  LPIPS: 0.0458  L1: 0.0078
+Number: 03108  | Average: PSNR: 33.3010  SSIM: 0.9665  LPIPS: 0.0263  L1: 0.0050 | Current batch: 222  PSNR: 28.6304  SSIM: 0.9375  LPIPS: 0.0469  L1: 0.0096
+Number: 03122  | Average: PSNR: 33.2746  SSIM: 0.9664  LPIPS: 0.0264  L1: 0.0051 | Current batch: 223  PSNR: 27.4049  SSIM: 0.9370  LPIPS: 0.0489  L1: 0.0106
+Number: 03136  | Average: PSNR: 33.2569  SSIM: 0.9663  LPIPS: 0.0265  L1: 0.0051 | Current batch: 224  PSNR: 29.3271  SSIM: 0.9487  LPIPS: 0.0403  L1: 0.0083
+Number: 03150  | Average: PSNR: 33.2495  SSIM: 0.9663  LPIPS: 0.0265  L1: 0.0051 | Current batch: 225  PSNR: 31.5945  SSIM: 0.9650  LPIPS: 0.0272  L1: 0.0065
+Number: 03164  | Average: PSNR: 33.2306  SSIM: 0.9662  LPIPS: 0.0265  L1: 0.0051 | Current batch: 226  PSNR: 28.9610  SSIM: 0.9426  LPIPS: 0.0409  L1: 0.0085
+Number: 03178  | Average: PSNR: 33.2140  SSIM: 0.9661  LPIPS: 0.0266  L1: 0.0051 | Current batch: 227  PSNR: 29.4662  SSIM: 0.9467  LPIPS: 0.0368  L1: 0.0082
+Number: 03192  | Average: PSNR: 33.2029  SSIM: 0.9661  LPIPS: 0.0266  L1: 0.0051 | Current batch: 228  PSNR: 30.6960  SSIM: 0.9457  LPIPS: 0.0368  L1: 0.0082
+Number: 03206  | Average: PSNR: 33.1976  SSIM: 0.9660  LPIPS: 0.0267  L1: 0.0051 | Current batch: 229  PSNR: 31.9814  SSIM: 0.9571  LPIPS: 0.0321  L1: 0.0064
+Number: 03220  | Average: PSNR: 33.1862  SSIM: 0.9660  LPIPS: 0.0267  L1: 0.0051 | Current batch: 230  PSNR: 30.5786  SSIM: 0.9590  LPIPS: 0.0299  L1: 0.0067
+Number: 03234  | Average: PSNR: 33.1709  SSIM: 0.9659  LPIPS: 0.0267  L1: 0.0051 | Current batch: 231  PSNR: 29.6366  SSIM: 0.9482  LPIPS: 0.0420  L1: 0.0085
+Number: 03248  | Average: PSNR: 33.1682  SSIM: 0.9659  LPIPS: 0.0268  L1: 0.0052 | Current batch: 232  PSNR: 32.5601  SSIM: 0.9554  LPIPS: 0.0321  L1: 0.0067
+Number: 03262  | Average: PSNR: 33.1582  SSIM: 0.9658  LPIPS: 0.0268  L1: 0.0052 | Current batch: 233  PSNR: 30.8312  SSIM: 0.9521  LPIPS: 0.0357  L1: 0.0071
+Number: 03276  | Average: PSNR: 33.1425  SSIM: 0.9657  LPIPS: 0.0269  L1: 0.0052 | Current batch: 234  PSNR: 29.4969  SSIM: 0.9443  LPIPS: 0.0419  L1: 0.0088
+Number: 03290  | Average: PSNR: 33.1243  SSIM: 0.9656  LPIPS: 0.0269  L1: 0.0052 | Current batch: 235  PSNR: 28.8593  SSIM: 0.9468  LPIPS: 0.0385  L1: 0.0090
+Number: 03304  | Average: PSNR: 33.1117  SSIM: 0.9656  LPIPS: 0.0270  L1: 0.0052 | Current batch: 236  PSNR: 30.1381  SSIM: 0.9506  LPIPS: 0.0354  L1: 0.0071
+Number: 03318  | Average: PSNR: 33.0901  SSIM: 0.9654  LPIPS: 0.0270  L1: 0.0052 | Current batch: 237  PSNR: 28.0092  SSIM: 0.9352  LPIPS: 0.0496  L1: 0.0116
+Number: 03332  | Average: PSNR: 33.0764  SSIM: 0.9653  LPIPS: 0.0271  L1: 0.0052 | Current batch: 238  PSNR: 29.8243  SSIM: 0.9432  LPIPS: 0.0438  L1: 0.0091
+Number: 03346  | Average: PSNR: 33.0695  SSIM: 0.9653  LPIPS: 0.0272  L1: 0.0052 | Current batch: 239  PSNR: 31.4298  SSIM: 0.9522  LPIPS: 0.0369  L1: 0.0069
+Number: 03360  | Average: PSNR: 33.0557  SSIM: 0.9652  LPIPS: 0.0272  L1: 0.0053 | Current batch: 240  PSNR: 29.7625  SSIM: 0.9501  LPIPS: 0.0416  L1: 0.0075
+Number: 03374  | Average: PSNR: 33.0402  SSIM: 0.9651  LPIPS: 0.0273  L1: 0.0053 | Current batch: 241  PSNR: 29.3011  SSIM: 0.9437  LPIPS: 0.0433  L1: 0.0085
+Number: 03388  | Average: PSNR: 33.0257  SSIM: 0.9650  LPIPS: 0.0273  L1: 0.0053 | Current batch: 242  PSNR: 29.5318  SSIM: 0.9433  LPIPS: 0.0424  L1: 0.0085
+Number: 03402  | Average: PSNR: 33.0093  SSIM: 0.9650  LPIPS: 0.0274  L1: 0.0053 | Current batch: 243  PSNR: 29.0372  SSIM: 0.9523  LPIPS: 0.0359  L1: 0.0081
+Number: 03416  | Average: PSNR: 33.0031  SSIM: 0.9650  LPIPS: 0.0274  L1: 0.0053 | Current batch: 244  PSNR: 31.5053  SSIM: 0.9550  LPIPS: 0.0344  L1: 0.0065
+Number: 03430  | Average: PSNR: 32.9873  SSIM: 0.9648  LPIPS: 0.0275  L1: 0.0053 | Current batch: 245  PSNR: 29.1460  SSIM: 0.9380  LPIPS: 0.0443  L1: 0.0094
+Number: 03444  | Average: PSNR: 32.9773  SSIM: 0.9648  LPIPS: 0.0275  L1: 0.0053 | Current batch: 246  PSNR: 30.5182  SSIM: 0.9488  LPIPS: 0.0347  L1: 0.0073
+Number: 03458  | Average: PSNR: 32.9652  SSIM: 0.9647  LPIPS: 0.0276  L1: 0.0053 | Current batch: 247  PSNR: 29.9955  SSIM: 0.9475  LPIPS: 0.0385  L1: 0.0083
+Number: 03472  | Average: PSNR: 32.9522  SSIM: 0.9646  LPIPS: 0.0276  L1: 0.0053 | Current batch: 248  PSNR: 29.7351  SSIM: 0.9462  LPIPS: 0.0366  L1: 0.0078
+Number: 03486  | Average: PSNR: 32.9382  SSIM: 0.9646  LPIPS: 0.0276  L1: 0.0054 | Current batch: 249  PSNR: 29.4745  SSIM: 0.9527  LPIPS: 0.0331  L1: 0.0079
+Number: 03500  | Average: PSNR: 32.9254  SSIM: 0.9645  LPIPS: 0.0276  L1: 0.0054 | Current batch: 250  PSNR: 29.7181  SSIM: 0.9537  LPIPS: 0.0318  L1: 0.0075
+Number: 03514  | Average: PSNR: 32.9080  SSIM: 0.9644  LPIPS: 0.0277  L1: 0.0054 | Current batch: 251  PSNR: 28.5626  SSIM: 0.9405  LPIPS: 0.0475  L1: 0.0095
+Number: 03528  | Average: PSNR: 32.8929  SSIM: 0.9644  LPIPS: 0.0278  L1: 0.0054 | Current batch: 252  PSNR: 29.1134  SSIM: 0.9453  LPIPS: 0.0413  L1: 0.0094
+Number: 03542  | Average: PSNR: 32.8767  SSIM: 0.9643  LPIPS: 0.0278  L1: 0.0054 | Current batch: 253  PSNR: 28.7870  SSIM: 0.9435  LPIPS: 0.0431  L1: 0.0090
+Number: 03556  | Average: PSNR: 32.8684  SSIM: 0.9642  LPIPS: 0.0279  L1: 0.0054 | Current batch: 254  PSNR: 30.7635  SSIM: 0.9509  LPIPS: 0.0353  L1: 0.0067
+Number: 03570  | Average: PSNR: 32.8652  SSIM: 0.9642  LPIPS: 0.0279  L1: 0.0054 | Current batch: 255  PSNR: 32.0695  SSIM: 0.9568  LPIPS: 0.0297  L1: 0.0065
+Number: 03584  | Average: PSNR: 32.8524  SSIM: 0.9641  LPIPS: 0.0279  L1: 0.0054 | Current batch: 256  PSNR: 29.5681  SSIM: 0.9497  LPIPS: 0.0369  L1: 0.0083
+Number: 03598  | Average: PSNR: 32.8389  SSIM: 0.9641  LPIPS: 0.0279  L1: 0.0054 | Current batch: 257  PSNR: 29.3975  SSIM: 0.9465  LPIPS: 0.0405  L1: 0.0087
+Number: 03612  | Average: PSNR: 32.8211  SSIM: 0.9640  LPIPS: 0.0280  L1: 0.0055 | Current batch: 258  PSNR: 28.2528  SSIM: 0.9428  LPIPS: 0.0429  L1: 0.0093
+Number: 03626  | Average: PSNR: 32.8124  SSIM: 0.9639  LPIPS: 0.0280  L1: 0.0055 | Current batch: 259  PSNR: 30.5485  SSIM: 0.9495  LPIPS: 0.0396  L1: 0.0076
+Number: 03640  | Average: PSNR: 32.7967  SSIM: 0.9638  LPIPS: 0.0281  L1: 0.0055 | Current batch: 260  PSNR: 28.7306  SSIM: 0.9396  LPIPS: 0.0481  L1: 0.0097
+Number: 03654  | Average: PSNR: 32.7820  SSIM: 0.9638  LPIPS: 0.0282  L1: 0.0055 | Current batch: 261  PSNR: 28.9545  SSIM: 0.9478  LPIPS: 0.0374  L1: 0.0085
+Number: 03668  | Average: PSNR: 32.7769  SSIM: 0.9638  LPIPS: 0.0282  L1: 0.0055 | Current batch: 262  PSNR: 31.4627  SSIM: 0.9579  LPIPS: 0.0315  L1: 0.0065
+Number: 03682  | Average: PSNR: 32.7644  SSIM: 0.9637  LPIPS: 0.0282  L1: 0.0055 | Current batch: 263  PSNR: 29.4769  SSIM: 0.9459  LPIPS: 0.0383  L1: 0.0082
+Number: 03696  | Average: PSNR: 32.7461  SSIM: 0.9636  LPIPS: 0.0283  L1: 0.0055 | Current batch: 264  PSNR: 27.9375  SSIM: 0.9384  LPIPS: 0.0444  L1: 0.0107
+Number: 03710  | Average: PSNR: 32.7412  SSIM: 0.9636  LPIPS: 0.0283  L1: 0.0055 | Current batch: 265  PSNR: 31.4584  SSIM: 0.9540  LPIPS: 0.0314  L1: 0.0069
+Number: 03724  | Average: PSNR: 32.7332  SSIM: 0.9635  LPIPS: 0.0283  L1: 0.0055 | Current batch: 266  PSNR: 30.6091  SSIM: 0.9569  LPIPS: 0.0339  L1: 0.0069
+Number: 03738  | Average: PSNR: 32.7263  SSIM: 0.9635  LPIPS: 0.0283  L1: 0.0055 | Current batch: 267  PSNR: 30.8960  SSIM: 0.9513  LPIPS: 0.0368  L1: 0.0072
+Number: 03752  | Average: PSNR: 32.7063  SSIM: 0.9634  LPIPS: 0.0284  L1: 0.0056 | Current batch: 268  PSNR: 27.3548  SSIM: 0.9412  LPIPS: 0.0441  L1: 0.0109
+Number: 03766  | Average: PSNR: 32.6935  SSIM: 0.9633  LPIPS: 0.0284  L1: 0.0056 | Current batch: 269  PSNR: 29.2579  SSIM: 0.9467  LPIPS: 0.0398  L1: 0.0087
+Number: 03780  | Average: PSNR: 32.6924  SSIM: 0.9633  LPIPS: 0.0284  L1: 0.0056 | Current batch: 270  PSNR: 32.4063  SSIM: 0.9634  LPIPS: 0.0272  L1: 0.0059
+Number: 03794  | Average: PSNR: 32.6829  SSIM: 0.9633  LPIPS: 0.0285  L1: 0.0056 | Current batch: 271  PSNR: 30.1195  SSIM: 0.9467  LPIPS: 0.0415  L1: 0.0081
+Number: 03808  | Average: PSNR: 32.6706  SSIM: 0.9632  LPIPS: 0.0286  L1: 0.0056 | Current batch: 272  PSNR: 29.3455  SSIM: 0.9456  LPIPS: 0.0469  L1: 0.0081
+Number: 03822  | Average: PSNR: 32.6626  SSIM: 0.9632  LPIPS: 0.0286  L1: 0.0056 | Current batch: 273  PSNR: 30.4812  SSIM: 0.9484  LPIPS: 0.0399  L1: 0.0070
+Number: 03836  | Average: PSNR: 32.6556  SSIM: 0.9631  LPIPS: 0.0286  L1: 0.0056 | Current batch: 274  PSNR: 30.7318  SSIM: 0.9490  LPIPS: 0.0362  L1: 0.0077
+Number: 03850  | Average: PSNR: 32.6462  SSIM: 0.9631  LPIPS: 0.0287  L1: 0.0056 | Current batch: 275  PSNR: 30.0740  SSIM: 0.9527  LPIPS: 0.0403  L1: 0.0075
+Number: 03864  | Average: PSNR: 32.6325  SSIM: 0.9630  LPIPS: 0.0287  L1: 0.0056 | Current batch: 276  PSNR: 28.8632  SSIM: 0.9342  LPIPS: 0.0471  L1: 0.0091
+Number: 03878  | Average: PSNR: 32.6193  SSIM: 0.9629  LPIPS: 0.0287  L1: 0.0056 | Current batch: 277  PSNR: 28.9906  SSIM: 0.9554  LPIPS: 0.0331  L1: 0.0082
+Number: 03892  | Average: PSNR: 32.6095  SSIM: 0.9629  LPIPS: 0.0288  L1: 0.0056 | Current batch: 278  PSNR: 29.8925  SSIM: 0.9545  LPIPS: 0.0329  L1: 0.0074
+Number: 03906  | Average: PSNR: 32.6001  SSIM: 0.9628  LPIPS: 0.0288  L1: 0.0057 | Current batch: 279  PSNR: 29.9737  SSIM: 0.9391  LPIPS: 0.0435  L1: 0.0084
+Number: 03920  | Average: PSNR: 32.5883  SSIM: 0.9628  LPIPS: 0.0289  L1: 0.0057 | Current batch: 280  PSNR: 29.3078  SSIM: 0.9417  LPIPS: 0.0404  L1: 0.0093
+Number: 03934  | Average: PSNR: 32.5791  SSIM: 0.9627  LPIPS: 0.0289  L1: 0.0057 | Current batch: 281  PSNR: 30.0092  SSIM: 0.9575  LPIPS: 0.0297  L1: 0.0072
+Number: 03948  | Average: PSNR: 32.5726  SSIM: 0.9627  LPIPS: 0.0289  L1: 0.0057 | Current batch: 282  PSNR: 30.7330  SSIM: 0.9513  LPIPS: 0.0324  L1: 0.0072
+Number: 03962  | Average: PSNR: 32.5709  SSIM: 0.9627  LPIPS: 0.0289  L1: 0.0057 | Current batch: 283  PSNR: 32.0884  SSIM: 0.9551  LPIPS: 0.0342  L1: 0.0064
+Number: 03976  | Average: PSNR: 32.5626  SSIM: 0.9626  LPIPS: 0.0289  L1: 0.0057 | Current batch: 284  PSNR: 30.2108  SSIM: 0.9485  LPIPS: 0.0370  L1: 0.0078
+Number: 03990  | Average: PSNR: 32.5510  SSIM: 0.9625  LPIPS: 0.0290  L1: 0.0057 | Current batch: 285  PSNR: 29.2765  SSIM: 0.9414  LPIPS: 0.0401  L1: 0.0091
+Number: 04004  | Average: PSNR: 32.5370  SSIM: 0.9625  LPIPS: 0.0290  L1: 0.0057 | Current batch: 286  PSNR: 28.5259  SSIM: 0.9395  LPIPS: 0.0471  L1: 0.0105
+Number: 04018  | Average: PSNR: 32.5102  SSIM: 0.9622  LPIPS: 0.0292  L1: 0.0058 | Current batch: 287  PSNR: 24.8480  SSIM: 0.8862  LPIPS: 0.0891  L1: 0.0168
+Number: 04032  | Average: PSNR: 32.4879  SSIM: 0.9620  LPIPS: 0.0294  L1: 0.0058 | Current batch: 288  PSNR: 26.0878  SSIM: 0.8938  LPIPS: 0.0766  L1: 0.0151
+Number: 04046  | Average: PSNR: 32.4627  SSIM: 0.9617  LPIPS: 0.0296  L1: 0.0058 | Current batch: 289  PSNR: 25.2178  SSIM: 0.8897  LPIPS: 0.0833  L1: 0.0165
+Number: 04060  | Average: PSNR: 32.4398  SSIM: 0.9614  LPIPS: 0.0298  L1: 0.0059 | Current batch: 290  PSNR: 25.8067  SSIM: 0.8791  LPIPS: 0.0871  L1: 0.0171
+Number: 04074  | Average: PSNR: 32.4161  SSIM: 0.9612  LPIPS: 0.0299  L1: 0.0059 | Current batch: 291  PSNR: 25.5450  SSIM: 0.8979  LPIPS: 0.0780  L1: 0.0157
+Number: 04088  | Average: PSNR: 32.3981  SSIM: 0.9611  LPIPS: 0.0301  L1: 0.0059 | Current batch: 292  PSNR: 27.1568  SSIM: 0.9177  LPIPS: 0.0665  L1: 0.0126
+Number: 04102  | Average: PSNR: 32.3775  SSIM: 0.9608  LPIPS: 0.0302  L1: 0.0060 | Current batch: 293  PSNR: 26.3712  SSIM: 0.8990  LPIPS: 0.0792  L1: 0.0146
+Number: 04116  | Average: PSNR: 32.3572  SSIM: 0.9606  LPIPS: 0.0304  L1: 0.0060 | Current batch: 294  PSNR: 26.4189  SSIM: 0.8868  LPIPS: 0.0876  L1: 0.0152
+Number: 04130  | Average: PSNR: 32.3354  SSIM: 0.9604  LPIPS: 0.0306  L1: 0.0060 | Current batch: 295  PSNR: 25.9245  SSIM: 0.8891  LPIPS: 0.0732  L1: 0.0173
+Number: 04144  | Average: PSNR: 32.3147  SSIM: 0.9601  LPIPS: 0.0307  L1: 0.0061 | Current batch: 296  PSNR: 26.2034  SSIM: 0.8996  LPIPS: 0.0774  L1: 0.0143
+Number: 04158  | Average: PSNR: 32.2929  SSIM: 0.9599  LPIPS: 0.0309  L1: 0.0061 | Current batch: 297  PSNR: 25.8383  SSIM: 0.8957  LPIPS: 0.0790  L1: 0.0156
+Number: 04172  | Average: PSNR: 32.2704  SSIM: 0.9597  LPIPS: 0.0311  L1: 0.0061 | Current batch: 298  PSNR: 25.5879  SSIM: 0.8871  LPIPS: 0.0872  L1: 0.0167
+Number: 04186  | Average: PSNR: 32.2449  SSIM: 0.9594  LPIPS: 0.0313  L1: 0.0062 | Current batch: 299  PSNR: 24.6406  SSIM: 0.8669  LPIPS: 0.0921  L1: 0.0193
+Number: 04200  | Average: PSNR: 32.2253  SSIM: 0.9591  LPIPS: 0.0315  L1: 0.0062 | Current batch: 300  PSNR: 26.3691  SSIM: 0.8918  LPIPS: 0.0804  L1: 0.0142
+Number: 04214  | Average: PSNR: 32.2111  SSIM: 0.9590  LPIPS: 0.0316  L1: 0.0062 | Current batch: 301  PSNR: 27.9531  SSIM: 0.9050  LPIPS: 0.0716  L1: 0.0130
+Number: 04228  | Average: PSNR: 32.1908  SSIM: 0.9587  LPIPS: 0.0318  L1: 0.0062 | Current batch: 302  PSNR: 26.0825  SSIM: 0.8836  LPIPS: 0.0843  L1: 0.0161
+Number: 04242  | Average: PSNR: 32.1750  SSIM: 0.9585  LPIPS: 0.0319  L1: 0.0063 | Current batch: 303  PSNR: 27.4018  SSIM: 0.9026  LPIPS: 0.0745  L1: 0.0138
+Number: 04256  | Average: PSNR: 32.1532  SSIM: 0.9583  LPIPS: 0.0321  L1: 0.0063 | Current batch: 304  PSNR: 25.5418  SSIM: 0.8797  LPIPS: 0.0868  L1: 0.0181
+Number: 04270  | Average: PSNR: 32.1315  SSIM: 0.9580  LPIPS: 0.0323  L1: 0.0063 | Current batch: 305  PSNR: 25.5335  SSIM: 0.8744  LPIPS: 0.0916  L1: 0.0174
+Number: 04284  | Average: PSNR: 32.1056  SSIM: 0.9577  LPIPS: 0.0325  L1: 0.0064 | Current batch: 306  PSNR: 24.2121  SSIM: 0.8702  LPIPS: 0.0992  L1: 0.0197
+Number: 04298  | Average: PSNR: 32.0871  SSIM: 0.9575  LPIPS: 0.0327  L1: 0.0064 | Current batch: 307  PSNR: 26.4299  SSIM: 0.8940  LPIPS: 0.0816  L1: 0.0156
+Number: 04312  | Average: PSNR: 32.0678  SSIM: 0.9573  LPIPS: 0.0328  L1: 0.0064 | Current batch: 308  PSNR: 26.1259  SSIM: 0.9010  LPIPS: 0.0754  L1: 0.0149
+Number: 04326  | Average: PSNR: 32.0440  SSIM: 0.9571  LPIPS: 0.0330  L1: 0.0065 | Current batch: 309  PSNR: 24.7339  SSIM: 0.8803  LPIPS: 0.0846  L1: 0.0180
+Number: 04340  | Average: PSNR: 32.0216  SSIM: 0.9568  LPIPS: 0.0332  L1: 0.0065 | Current batch: 310  PSNR: 25.1004  SSIM: 0.8706  LPIPS: 0.0943  L1: 0.0181
+Number: 04354  | Average: PSNR: 32.0032  SSIM: 0.9566  LPIPS: 0.0333  L1: 0.0065 | Current batch: 311  PSNR: 26.2765  SSIM: 0.8874  LPIPS: 0.0838  L1: 0.0154
+Number: 04368  | Average: PSNR: 31.9874  SSIM: 0.9564  LPIPS: 0.0334  L1: 0.0066 | Current batch: 312  PSNR: 27.1015  SSIM: 0.9016  LPIPS: 0.0718  L1: 0.0141
+Number: 04382  | Average: PSNR: 31.9693  SSIM: 0.9562  LPIPS: 0.0336  L1: 0.0066 | Current batch: 313  PSNR: 26.3030  SSIM: 0.8893  LPIPS: 0.0847  L1: 0.0165
+Number: 04396  | Average: PSNR: 31.9499  SSIM: 0.9560  LPIPS: 0.0338  L1: 0.0066 | Current batch: 314  PSNR: 25.8779  SSIM: 0.8927  LPIPS: 0.0808  L1: 0.0155
+Number: 04410  | Average: PSNR: 31.9306  SSIM: 0.9557  LPIPS: 0.0339  L1: 0.0067 | Current batch: 315  PSNR: 25.8645  SSIM: 0.8793  LPIPS: 0.0918  L1: 0.0167
+Number: 04424  | Average: PSNR: 31.9063  SSIM: 0.9555  LPIPS: 0.0342  L1: 0.0067 | Current batch: 316  PSNR: 24.2551  SSIM: 0.8692  LPIPS: 0.1015  L1: 0.0202
+Number: 04438  | Average: PSNR: 31.8899  SSIM: 0.9553  LPIPS: 0.0343  L1: 0.0067 | Current batch: 317  PSNR: 26.7291  SSIM: 0.9069  LPIPS: 0.0698  L1: 0.0139
+Number: 04452  | Average: PSNR: 31.8727  SSIM: 0.9551  LPIPS: 0.0344  L1: 0.0068 | Current batch: 318  PSNR: 26.3932  SSIM: 0.8985  LPIPS: 0.0721  L1: 0.0144
+Number: 04466  | Average: PSNR: 31.8550  SSIM: 0.9550  LPIPS: 0.0345  L1: 0.0068 | Current batch: 319  PSNR: 26.2327  SSIM: 0.9038  LPIPS: 0.0735  L1: 0.0144
+Number: 04480  | Average: PSNR: 31.8381  SSIM: 0.9548  LPIPS: 0.0346  L1: 0.0068 | Current batch: 320  PSNR: 26.4579  SSIM: 0.9062  LPIPS: 0.0700  L1: 0.0144
+Number: 04494  | Average: PSNR: 31.8220  SSIM: 0.9546  LPIPS: 0.0348  L1: 0.0068 | Current batch: 321  PSNR: 26.6778  SSIM: 0.8842  LPIPS: 0.0888  L1: 0.0159
+Number: 04508  | Average: PSNR: 31.8089  SSIM: 0.9544  LPIPS: 0.0349  L1: 0.0068 | Current batch: 322  PSNR: 27.5849  SSIM: 0.9067  LPIPS: 0.0686  L1: 0.0127
+Number: 04522  | Average: PSNR: 31.7875  SSIM: 0.9543  LPIPS: 0.0351  L1: 0.0069 | Current batch: 323  PSNR: 24.8978  SSIM: 0.8943  LPIPS: 0.0832  L1: 0.0159
+Number: 04536  | Average: PSNR: 31.7705  SSIM: 0.9541  LPIPS: 0.0352  L1: 0.0069 | Current batch: 324  PSNR: 26.2899  SSIM: 0.8963  LPIPS: 0.0765  L1: 0.0146
+Number: 04550  | Average: PSNR: 31.7531  SSIM: 0.9539  LPIPS: 0.0353  L1: 0.0069 | Current batch: 325  PSNR: 26.1237  SSIM: 0.8920  LPIPS: 0.0789  L1: 0.0157
+Number: 04564  | Average: PSNR: 31.7278  SSIM: 0.9536  LPIPS: 0.0355  L1: 0.0070 | Current batch: 326  PSNR: 23.4817  SSIM: 0.8656  LPIPS: 0.0954  L1: 0.0215
+Number: 04578  | Average: PSNR: 31.7085  SSIM: 0.9534  LPIPS: 0.0356  L1: 0.0070 | Current batch: 327  PSNR: 25.4158  SSIM: 0.8836  LPIPS: 0.0853  L1: 0.0164
+Number: 04592  | Average: PSNR: 31.6921  SSIM: 0.9533  LPIPS: 0.0358  L1: 0.0070 | Current batch: 328  PSNR: 26.3526  SSIM: 0.9039  LPIPS: 0.0729  L1: 0.0139
+Number: 04606  | Average: PSNR: 31.6736  SSIM: 0.9531  LPIPS: 0.0359  L1: 0.0071 | Current batch: 329  PSNR: 25.5811  SSIM: 0.8890  LPIPS: 0.0797  L1: 0.0166
+Number: 04620  | Average: PSNR: 31.6601  SSIM: 0.9529  LPIPS: 0.0360  L1: 0.0071 | Current batch: 330  PSNR: 27.2418  SSIM: 0.8987  LPIPS: 0.0749  L1: 0.0129
+Number: 04634  | Average: PSNR: 31.6404  SSIM: 0.9527  LPIPS: 0.0362  L1: 0.0071 | Current batch: 331  PSNR: 25.1201  SSIM: 0.8891  LPIPS: 0.0830  L1: 0.0183
+Number: 04648  | Average: PSNR: 31.6217  SSIM: 0.9525  LPIPS: 0.0363  L1: 0.0071 | Current batch: 332  PSNR: 25.4388  SSIM: 0.8787  LPIPS: 0.0906  L1: 0.0178
+Number: 04662  | Average: PSNR: 31.6040  SSIM: 0.9523  LPIPS: 0.0365  L1: 0.0072 | Current batch: 333  PSNR: 25.7248  SSIM: 0.8921  LPIPS: 0.0799  L1: 0.0166
+Number: 04676  | Average: PSNR: 31.5890  SSIM: 0.9521  LPIPS: 0.0366  L1: 0.0072 | Current batch: 334  PSNR: 26.6081  SSIM: 0.8773  LPIPS: 0.0965  L1: 0.0159
+Number: 04690  | Average: PSNR: 31.5741  SSIM: 0.9519  LPIPS: 0.0368  L1: 0.0072 | Current batch: 335  PSNR: 26.5778  SSIM: 0.8938  LPIPS: 0.0767  L1: 0.0148
+Number: 04704  | Average: PSNR: 31.5535  SSIM: 0.9516  LPIPS: 0.0369  L1: 0.0073 | Current batch: 336  PSNR: 24.6684  SSIM: 0.8636  LPIPS: 0.0990  L1: 0.0199
+Number: 04718  | Average: PSNR: 31.5421  SSIM: 0.9515  LPIPS: 0.0370  L1: 0.0073 | Current batch: 337  PSNR: 27.6912  SSIM: 0.9015  LPIPS: 0.0681  L1: 0.0140
+Number: 04732  | Average: PSNR: 31.5265  SSIM: 0.9513  LPIPS: 0.0371  L1: 0.0073 | Current batch: 338  PSNR: 26.2764  SSIM: 0.8907  LPIPS: 0.0778  L1: 0.0159
+Number: 04746  | Average: PSNR: 31.5115  SSIM: 0.9512  LPIPS: 0.0373  L1: 0.0073 | Current batch: 339  PSNR: 26.4469  SSIM: 0.9097  LPIPS: 0.0739  L1: 0.0137
+Number: 04760  | Average: PSNR: 31.4995  SSIM: 0.9511  LPIPS: 0.0374  L1: 0.0073 | Current batch: 340  PSNR: 27.4462  SSIM: 0.9118  LPIPS: 0.0703  L1: 0.0131
+Number: 04774  | Average: PSNR: 31.4828  SSIM: 0.9509  LPIPS: 0.0375  L1: 0.0074 | Current batch: 341  PSNR: 25.7781  SSIM: 0.8844  LPIPS: 0.0845  L1: 0.0175
+Number: 04788  | Average: PSNR: 31.4707  SSIM: 0.9507  LPIPS: 0.0376  L1: 0.0074 | Current batch: 342  PSNR: 27.3655  SSIM: 0.9058  LPIPS: 0.0722  L1: 0.0124
+Number: 04802  | Average: PSNR: 31.4521  SSIM: 0.9506  LPIPS: 0.0377  L1: 0.0074 | Current batch: 343  PSNR: 25.0726  SSIM: 0.8958  LPIPS: 0.0780  L1: 0.0160
+Number: 04816  | Average: PSNR: 31.4367  SSIM: 0.9504  LPIPS: 0.0378  L1: 0.0074 | Current batch: 344  PSNR: 26.1830  SSIM: 0.8960  LPIPS: 0.0721  L1: 0.0159
+Number: 04830  | Average: PSNR: 31.4183  SSIM: 0.9502  LPIPS: 0.0380  L1: 0.0075 | Current batch: 345  PSNR: 25.0743  SSIM: 0.8701  LPIPS: 0.0990  L1: 0.0177
+Number: 04844  | Average: PSNR: 31.4075  SSIM: 0.9501  LPIPS: 0.0381  L1: 0.0075 | Current batch: 346  PSNR: 27.6672  SSIM: 0.9134  LPIPS: 0.0668  L1: 0.0124
+Number: 04858  | Average: PSNR: 31.3882  SSIM: 0.9499  LPIPS: 0.0382  L1: 0.0075 | Current batch: 347  PSNR: 24.7311  SSIM: 0.8737  LPIPS: 0.0860  L1: 0.0185
+Number: 04872  | Average: PSNR: 31.3735  SSIM: 0.9497  LPIPS: 0.0383  L1: 0.0075 | Current batch: 348  PSNR: 26.2620  SSIM: 0.8908  LPIPS: 0.0814  L1: 0.0155
+Number: 04886  | Average: PSNR: 31.3563  SSIM: 0.9495  LPIPS: 0.0385  L1: 0.0076 | Current batch: 349  PSNR: 25.3636  SSIM: 0.8789  LPIPS: 0.0876  L1: 0.0177
+Number: 04900  | Average: PSNR: 31.3425  SSIM: 0.9493  LPIPS: 0.0386  L1: 0.0076 | Current batch: 350  PSNR: 26.5328  SSIM: 0.8983  LPIPS: 0.0821  L1: 0.0132
+Number: 04914  | Average: PSNR: 31.3251  SSIM: 0.9491  LPIPS: 0.0387  L1: 0.0076 | Current batch: 351  PSNR: 25.2465  SSIM: 0.8774  LPIPS: 0.0892  L1: 0.0185
+Number: 04928  | Average: PSNR: 31.3125  SSIM: 0.9490  LPIPS: 0.0388  L1: 0.0076 | Current batch: 352  PSNR: 26.8722  SSIM: 0.9035  LPIPS: 0.0708  L1: 0.0137
+Number: 04942  | Average: PSNR: 31.2961  SSIM: 0.9488  LPIPS: 0.0390  L1: 0.0076 | Current batch: 353  PSNR: 25.5241  SSIM: 0.8908  LPIPS: 0.0841  L1: 0.0155
+Number: 04956  | Average: PSNR: 31.2841  SSIM: 0.9487  LPIPS: 0.0391  L1: 0.0077 | Current batch: 354  PSNR: 27.0584  SSIM: 0.8991  LPIPS: 0.0724  L1: 0.0141
+Number: 04970  | Average: PSNR: 31.2703  SSIM: 0.9485  LPIPS: 0.0392  L1: 0.0077 | Current batch: 355  PSNR: 26.3920  SSIM: 0.8888  LPIPS: 0.0784  L1: 0.0151
+Number: 04984  | Average: PSNR: 31.2588  SSIM: 0.9484  LPIPS: 0.0393  L1: 0.0077 | Current batch: 356  PSNR: 27.1523  SSIM: 0.8984  LPIPS: 0.0774  L1: 0.0150
+Number: 04998  | Average: PSNR: 31.2420  SSIM: 0.9482  LPIPS: 0.0394  L1: 0.0077 | Current batch: 357  PSNR: 25.2630  SSIM: 0.8947  LPIPS: 0.0776  L1: 0.0175
+Number: 05012  | Average: PSNR: 31.2309  SSIM: 0.9481  LPIPS: 0.0395  L1: 0.0077 | Current batch: 358  PSNR: 27.2726  SSIM: 0.8997  LPIPS: 0.0743  L1: 0.0148
+Number: 05026  | Average: PSNR: 31.2251  SSIM: 0.9480  LPIPS: 0.0395  L1: 0.0078 | Current batch: 359  PSNR: 29.1674  SSIM: 0.9209  LPIPS: 0.0546  L1: 0.0117
+Number: 05040  | Average: PSNR: 31.2112  SSIM: 0.9479  LPIPS: 0.0396  L1: 0.0078 | Current batch: 360  PSNR: 26.2094  SSIM: 0.8902  LPIPS: 0.0801  L1: 0.0159
+Number: 05054  | Average: PSNR: 31.1971  SSIM: 0.9478  LPIPS: 0.0397  L1: 0.0078 | Current batch: 361  PSNR: 26.1245  SSIM: 0.9049  LPIPS: 0.0716  L1: 0.0146
+Number: 05068  | Average: PSNR: 31.1884  SSIM: 0.9477  LPIPS: 0.0398  L1: 0.0078 | Current batch: 362  PSNR: 28.0553  SSIM: 0.9212  LPIPS: 0.0575  L1: 0.0120
+Number: 05082  | Average: PSNR: 31.1774  SSIM: 0.9476  LPIPS: 0.0398  L1: 0.0078 | Current batch: 363  PSNR: 27.2008  SSIM: 0.9137  LPIPS: 0.0586  L1: 0.0130
+Number: 05096  | Average: PSNR: 31.1661  SSIM: 0.9475  LPIPS: 0.0399  L1: 0.0078 | Current batch: 364  PSNR: 27.0404  SSIM: 0.9123  LPIPS: 0.0601  L1: 0.0138
+Number: 05110  | Average: PSNR: 31.1516  SSIM: 0.9474  LPIPS: 0.0400  L1: 0.0079 | Current batch: 365  PSNR: 25.8677  SSIM: 0.8989  LPIPS: 0.0747  L1: 0.0153
+Number: 05124  | Average: PSNR: 31.1379  SSIM: 0.9472  LPIPS: 0.0401  L1: 0.0079 | Current batch: 366  PSNR: 26.1450  SSIM: 0.8972  LPIPS: 0.0748  L1: 0.0172
+Number: 05138  | Average: PSNR: 31.1258  SSIM: 0.9471  LPIPS: 0.0402  L1: 0.0079 | Current batch: 367  PSNR: 26.7146  SSIM: 0.8960  LPIPS: 0.0724  L1: 0.0146
+Number: 05152  | Average: PSNR: 31.1158  SSIM: 0.9470  LPIPS: 0.0402  L1: 0.0079 | Current batch: 368  PSNR: 27.4540  SSIM: 0.9017  LPIPS: 0.0673  L1: 0.0141
+Number: 05166  | Average: PSNR: 31.1030  SSIM: 0.9468  LPIPS: 0.0403  L1: 0.0079 | Current batch: 369  PSNR: 26.3783  SSIM: 0.8987  LPIPS: 0.0759  L1: 0.0150
+Number: 05180  | Average: PSNR: 31.0895  SSIM: 0.9467  LPIPS: 0.0404  L1: 0.0080 | Current batch: 370  PSNR: 26.1150  SSIM: 0.8959  LPIPS: 0.0729  L1: 0.0155
+Number: 05194  | Average: PSNR: 31.0735  SSIM: 0.9466  LPIPS: 0.0405  L1: 0.0080 | Current batch: 371  PSNR: 25.1585  SSIM: 0.9029  LPIPS: 0.0680  L1: 0.0180
+Number: 05208  | Average: PSNR: 31.0615  SSIM: 0.9464  LPIPS: 0.0406  L1: 0.0080 | Current batch: 372  PSNR: 26.5997  SSIM: 0.8997  LPIPS: 0.0678  L1: 0.0154
+Number: 05222  | Average: PSNR: 31.0496  SSIM: 0.9464  LPIPS: 0.0406  L1: 0.0080 | Current batch: 373  PSNR: 26.6181  SSIM: 0.9172  LPIPS: 0.0618  L1: 0.0135
+Number: 05236  | Average: PSNR: 31.0340  SSIM: 0.9462  LPIPS: 0.0407  L1: 0.0081 | Current batch: 374  PSNR: 25.2162  SSIM: 0.8850  LPIPS: 0.0806  L1: 0.0175
+Number: 05250  | Average: PSNR: 31.0237  SSIM: 0.9461  LPIPS: 0.0408  L1: 0.0081 | Current batch: 375  PSNR: 27.1652  SSIM: 0.9116  LPIPS: 0.0599  L1: 0.0136
+Number: 05264  | Average: PSNR: 31.0133  SSIM: 0.9460  LPIPS: 0.0409  L1: 0.0081 | Current batch: 376  PSNR: 27.1216  SSIM: 0.9113  LPIPS: 0.0695  L1: 0.0136
+Number: 05278  | Average: PSNR: 31.0007  SSIM: 0.9459  LPIPS: 0.0409  L1: 0.0081 | Current batch: 377  PSNR: 26.2433  SSIM: 0.8990  LPIPS: 0.0685  L1: 0.0158
+Number: 05292  | Average: PSNR: 30.9943  SSIM: 0.9458  LPIPS: 0.0410  L1: 0.0081 | Current batch: 378  PSNR: 28.5834  SSIM: 0.9105  LPIPS: 0.0637  L1: 0.0124
+Number: 05306  | Average: PSNR: 30.9836  SSIM: 0.9457  LPIPS: 0.0410  L1: 0.0081 | Current batch: 379  PSNR: 26.9366  SSIM: 0.9147  LPIPS: 0.0619  L1: 0.0132
+Number: 05320  | Average: PSNR: 30.9688  SSIM: 0.9456  LPIPS: 0.0411  L1: 0.0081 | Current batch: 380  PSNR: 25.3896  SSIM: 0.8942  LPIPS: 0.0750  L1: 0.0169
+Number: 05334  | Average: PSNR: 30.9574  SSIM: 0.9455  LPIPS: 0.0412  L1: 0.0082 | Current batch: 381  PSNR: 26.6297  SSIM: 0.9128  LPIPS: 0.0656  L1: 0.0132
+Number: 05348  | Average: PSNR: 30.9464  SSIM: 0.9454  LPIPS: 0.0413  L1: 0.0082 | Current batch: 382  PSNR: 26.7497  SSIM: 0.9049  LPIPS: 0.0671  L1: 0.0150
+Number: 05362  | Average: PSNR: 30.9371  SSIM: 0.9453  LPIPS: 0.0413  L1: 0.0082 | Current batch: 383  PSNR: 27.3620  SSIM: 0.9158  LPIPS: 0.0573  L1: 0.0129
+Number: 05376  | Average: PSNR: 30.9283  SSIM: 0.9452  LPIPS: 0.0414  L1: 0.0082 | Current batch: 384  PSNR: 27.5837  SSIM: 0.9018  LPIPS: 0.0639  L1: 0.0146
+Number: 05390  | Average: PSNR: 30.9223  SSIM: 0.9451  LPIPS: 0.0414  L1: 0.0082 | Current batch: 385  PSNR: 28.6223  SSIM: 0.9237  LPIPS: 0.0593  L1: 0.0115
+Number: 05404  | Average: PSNR: 30.9181  SSIM: 0.9451  LPIPS: 0.0414  L1: 0.0082 | Current batch: 386  PSNR: 29.2795  SSIM: 0.9286  LPIPS: 0.0489  L1: 0.0111
+Number: 05418  | Average: PSNR: 30.9068  SSIM: 0.9450  LPIPS: 0.0415  L1: 0.0082 | Current batch: 387  PSNR: 26.5517  SSIM: 0.9141  LPIPS: 0.0572  L1: 0.0150
+Number: 05432  | Average: PSNR: 30.8965  SSIM: 0.9449  LPIPS: 0.0415  L1: 0.0083 | Current batch: 388  PSNR: 26.9078  SSIM: 0.9085  LPIPS: 0.0663  L1: 0.0139
+Number: 05446  | Average: PSNR: 30.8871  SSIM: 0.9448  LPIPS: 0.0416  L1: 0.0083 | Current batch: 389  PSNR: 27.2253  SSIM: 0.8971  LPIPS: 0.0759  L1: 0.0145
+Number: 05460  | Average: PSNR: 30.8764  SSIM: 0.9447  LPIPS: 0.0417  L1: 0.0083 | Current batch: 390  PSNR: 26.7384  SSIM: 0.8986  LPIPS: 0.0722  L1: 0.0155
+Number: 05474  | Average: PSNR: 30.8657  SSIM: 0.9446  LPIPS: 0.0418  L1: 0.0083 | Current batch: 391  PSNR: 26.6955  SSIM: 0.9058  LPIPS: 0.0598  L1: 0.0140
+Number: 05488  | Average: PSNR: 30.8532  SSIM: 0.9445  LPIPS: 0.0418  L1: 0.0083 | Current batch: 392  PSNR: 25.9664  SSIM: 0.9058  LPIPS: 0.0648  L1: 0.0148
+Number: 05502  | Average: PSNR: 30.8390  SSIM: 0.9444  LPIPS: 0.0419  L1: 0.0083 | Current batch: 393  PSNR: 25.2412  SSIM: 0.8929  LPIPS: 0.0813  L1: 0.0183
+Number: 05516  | Average: PSNR: 30.8279  SSIM: 0.9442  LPIPS: 0.0420  L1: 0.0084 | Current batch: 394  PSNR: 26.4631  SSIM: 0.8928  LPIPS: 0.0781  L1: 0.0145
+Number: 05530  | Average: PSNR: 30.8161  SSIM: 0.9441  LPIPS: 0.0421  L1: 0.0084 | Current batch: 395  PSNR: 26.1721  SSIM: 0.8929  LPIPS: 0.0750  L1: 0.0152
+Number: 05544  | Average: PSNR: 30.8032  SSIM: 0.9439  LPIPS: 0.0422  L1: 0.0084 | Current batch: 396  PSNR: 25.7026  SSIM: 0.8837  LPIPS: 0.0817  L1: 0.0175
+Number: 05558  | Average: PSNR: 30.7976  SSIM: 0.9439  LPIPS: 0.0422  L1: 0.0084 | Current batch: 397  PSNR: 28.6049  SSIM: 0.9214  LPIPS: 0.0548  L1: 0.0121
+Number: 05572  | Average: PSNR: 30.7900  SSIM: 0.9438  LPIPS: 0.0423  L1: 0.0084 | Current batch: 398  PSNR: 27.7789  SSIM: 0.9043  LPIPS: 0.0752  L1: 0.0126
+Number: 05586  | Average: PSNR: 30.7828  SSIM: 0.9437  LPIPS: 0.0424  L1: 0.0084 | Current batch: 399  PSNR: 27.8936  SSIM: 0.9034  LPIPS: 0.0672  L1: 0.0138
+Number: 05600  | Average: PSNR: 30.7759  SSIM: 0.9436  LPIPS: 0.0424  L1: 0.0084 | Current batch: 400  PSNR: 28.0242  SSIM: 0.9264  LPIPS: 0.0525  L1: 0.0121
+Number: 05614  | Average: PSNR: 30.7647  SSIM: 0.9435  LPIPS: 0.0424  L1: 0.0085 | Current batch: 401  PSNR: 26.2870  SSIM: 0.9062  LPIPS: 0.0655  L1: 0.0145
+Number: 05628  | Average: PSNR: 30.7554  SSIM: 0.9435  LPIPS: 0.0425  L1: 0.0085 | Current batch: 402  PSNR: 27.0234  SSIM: 0.9123  LPIPS: 0.0634  L1: 0.0146
+Number: 05642  | Average: PSNR: 30.7401  SSIM: 0.9433  LPIPS: 0.0426  L1: 0.0085 | Current batch: 403  PSNR: 24.5908  SSIM: 0.8732  LPIPS: 0.0927  L1: 0.0186
+Number: 05656  | Average: PSNR: 30.7334  SSIM: 0.9432  LPIPS: 0.0427  L1: 0.0085 | Current batch: 404  PSNR: 28.0298  SSIM: 0.9083  LPIPS: 0.0608  L1: 0.0129
+Number: 05670  | Average: PSNR: 30.7224  SSIM: 0.9431  LPIPS: 0.0428  L1: 0.0085 | Current batch: 405  PSNR: 26.2837  SSIM: 0.8976  LPIPS: 0.0770  L1: 0.0150
+Number: 05684  | Average: PSNR: 30.7131  SSIM: 0.9430  LPIPS: 0.0428  L1: 0.0085 | Current batch: 406  PSNR: 26.9447  SSIM: 0.9042  LPIPS: 0.0650  L1: 0.0142
+Number: 05698  | Average: PSNR: 30.7041  SSIM: 0.9429  LPIPS: 0.0429  L1: 0.0086 | Current batch: 407  PSNR: 27.0698  SSIM: 0.9033  LPIPS: 0.0666  L1: 0.0146
+Number: 05712  | Average: PSNR: 30.6954  SSIM: 0.9428  LPIPS: 0.0429  L1: 0.0086 | Current batch: 408  PSNR: 27.1414  SSIM: 0.8984  LPIPS: 0.0728  L1: 0.0148
+Number: 05726  | Average: PSNR: 30.6860  SSIM: 0.9427  LPIPS: 0.0430  L1: 0.0086 | Current batch: 409  PSNR: 26.8625  SSIM: 0.9027  LPIPS: 0.0641  L1: 0.0151
+Number: 05740  | Average: PSNR: 30.6761  SSIM: 0.9426  LPIPS: 0.0431  L1: 0.0086 | Current batch: 410  PSNR: 26.6061  SSIM: 0.8979  LPIPS: 0.0743  L1: 0.0145
+Number: 05754  | Average: PSNR: 30.6635  SSIM: 0.9425  LPIPS: 0.0432  L1: 0.0086 | Current batch: 411  PSNR: 25.4998  SSIM: 0.8877  LPIPS: 0.0800  L1: 0.0181
+Number: 05768  | Average: PSNR: 30.6561  SSIM: 0.9424  LPIPS: 0.0432  L1: 0.0086 | Current batch: 412  PSNR: 27.6439  SSIM: 0.9171  LPIPS: 0.0579  L1: 0.0127
+Number: 05782  | Average: PSNR: 30.6420  SSIM: 0.9422  LPIPS: 0.0433  L1: 0.0087 | Current batch: 413  PSNR: 24.8168  SSIM: 0.8726  LPIPS: 0.0876  L1: 0.0195
+Number: 05796  | Average: PSNR: 30.6340  SSIM: 0.9422  LPIPS: 0.0433  L1: 0.0087 | Current batch: 414  PSNR: 27.3348  SSIM: 0.9172  LPIPS: 0.0569  L1: 0.0130
+Number: 05810  | Average: PSNR: 30.6205  SSIM: 0.9420  LPIPS: 0.0434  L1: 0.0087 | Current batch: 415  PSNR: 25.0444  SSIM: 0.8880  LPIPS: 0.0793  L1: 0.0179
+Number: 05824  | Average: PSNR: 30.6159  SSIM: 0.9420  LPIPS: 0.0434  L1: 0.0087 | Current batch: 416  PSNR: 28.6699  SSIM: 0.9168  LPIPS: 0.0526  L1: 0.0112
+Number: 05838  | Average: PSNR: 30.6053  SSIM: 0.9419  LPIPS: 0.0435  L1: 0.0087 | Current batch: 417  PSNR: 26.2042  SSIM: 0.8923  LPIPS: 0.0751  L1: 0.0168
+Number: 05852  | Average: PSNR: 30.5970  SSIM: 0.9418  LPIPS: 0.0436  L1: 0.0087 | Current batch: 418  PSNR: 27.1367  SSIM: 0.9091  LPIPS: 0.0625  L1: 0.0137
+Number: 05866  | Average: PSNR: 30.5837  SSIM: 0.9416  LPIPS: 0.0437  L1: 0.0088 | Current batch: 419  PSNR: 25.0365  SSIM: 0.8867  LPIPS: 0.0816  L1: 0.0178
+Number: 05880  | Average: PSNR: 30.5715  SSIM: 0.9415  LPIPS: 0.0437  L1: 0.0088 | Current batch: 420  PSNR: 25.4450  SSIM: 0.8924  LPIPS: 0.0670  L1: 0.0175
+Number: 05894  | Average: PSNR: 30.5633  SSIM: 0.9414  LPIPS: 0.0438  L1: 0.0088 | Current batch: 421  PSNR: 27.1246  SSIM: 0.9017  LPIPS: 0.0765  L1: 0.0140
+Number: 05908  | Average: PSNR: 30.5584  SSIM: 0.9414  LPIPS: 0.0438  L1: 0.0088 | Current batch: 422  PSNR: 28.4799  SSIM: 0.9150  LPIPS: 0.0576  L1: 0.0126
+Number: 05922  | Average: PSNR: 30.5515  SSIM: 0.9413  LPIPS: 0.0439  L1: 0.0088 | Current batch: 423  PSNR: 27.6757  SSIM: 0.8938  LPIPS: 0.0791  L1: 0.0132
+Number: 05936  | Average: PSNR: 30.5453  SSIM: 0.9412  LPIPS: 0.0439  L1: 0.0088 | Current batch: 424  PSNR: 27.9172  SSIM: 0.9247  LPIPS: 0.0536  L1: 0.0128
+Number: 05950  | Average: PSNR: 30.5368  SSIM: 0.9411  LPIPS: 0.0440  L1: 0.0088 | Current batch: 425  PSNR: 26.9329  SSIM: 0.9128  LPIPS: 0.0668  L1: 0.0132
+Number: 05964  | Average: PSNR: 30.5266  SSIM: 0.9410  LPIPS: 0.0441  L1: 0.0088 | Current batch: 426  PSNR: 26.1603  SSIM: 0.8909  LPIPS: 0.0780  L1: 0.0159
+Number: 05978  | Average: PSNR: 30.5191  SSIM: 0.9410  LPIPS: 0.0441  L1: 0.0088 | Current batch: 427  PSNR: 27.3583  SSIM: 0.9314  LPIPS: 0.0491  L1: 0.0115
+Number: 05992  | Average: PSNR: 30.5121  SSIM: 0.9409  LPIPS: 0.0441  L1: 0.0089 | Current batch: 428  PSNR: 27.5011  SSIM: 0.9091  LPIPS: 0.0633  L1: 0.0124
+Number: 06006  | Average: PSNR: 30.5022  SSIM: 0.9408  LPIPS: 0.0442  L1: 0.0089 | Current batch: 429  PSNR: 26.2532  SSIM: 0.8722  LPIPS: 0.0851  L1: 0.0192
+Number: 06020  | Average: PSNR: 30.4864  SSIM: 0.9405  LPIPS: 0.0444  L1: 0.0089 | Current batch: 430  PSNR: 23.7449  SSIM: 0.8337  LPIPS: 0.1159  L1: 0.0235
+Number: 06034  | Average: PSNR: 30.4706  SSIM: 0.9403  LPIPS: 0.0445  L1: 0.0089 | Current batch: 431  PSNR: 23.6610  SSIM: 0.8359  LPIPS: 0.1113  L1: 0.0230
+Number: 06048  | Average: PSNR: 30.4570  SSIM: 0.9400  LPIPS: 0.0447  L1: 0.0090 | Current batch: 432  PSNR: 24.6153  SSIM: 0.8326  LPIPS: 0.1203  L1: 0.0233
+Number: 06062  | Average: PSNR: 30.4393  SSIM: 0.9397  LPIPS: 0.0449  L1: 0.0090 | Current batch: 433  PSNR: 22.7784  SSIM: 0.7996  LPIPS: 0.1366  L1: 0.0290
+Number: 06076  | Average: PSNR: 30.4212  SSIM: 0.9394  LPIPS: 0.0451  L1: 0.0091 | Current batch: 434  PSNR: 22.5932  SSIM: 0.8159  LPIPS: 0.1293  L1: 0.0267
+Number: 06090  | Average: PSNR: 30.4039  SSIM: 0.9392  LPIPS: 0.0453  L1: 0.0091 | Current batch: 435  PSNR: 22.8669  SSIM: 0.8240  LPIPS: 0.1180  L1: 0.0257
+Number: 06104  | Average: PSNR: 30.3905  SSIM: 0.9389  LPIPS: 0.0454  L1: 0.0091 | Current batch: 436  PSNR: 24.5879  SSIM: 0.8463  LPIPS: 0.1087  L1: 0.0212
+Number: 06118  | Average: PSNR: 30.3702  SSIM: 0.9386  LPIPS: 0.0456  L1: 0.0092 | Current batch: 437  PSNR: 21.5127  SSIM: 0.8031  LPIPS: 0.1340  L1: 0.0314
+Number: 06132  | Average: PSNR: 30.3537  SSIM: 0.9384  LPIPS: 0.0458  L1: 0.0092 | Current batch: 438  PSNR: 23.1257  SSIM: 0.8186  LPIPS: 0.1313  L1: 0.0236
+Number: 06146  | Average: PSNR: 30.3402  SSIM: 0.9381  LPIPS: 0.0460  L1: 0.0092 | Current batch: 439  PSNR: 24.4566  SSIM: 0.8430  LPIPS: 0.1140  L1: 0.0226
+Number: 06160  | Average: PSNR: 30.3257  SSIM: 0.9379  LPIPS: 0.0461  L1: 0.0093 | Current batch: 440  PSNR: 23.9250  SSIM: 0.8352  LPIPS: 0.1154  L1: 0.0251
+Number: 06174  | Average: PSNR: 30.3098  SSIM: 0.9376  LPIPS: 0.0463  L1: 0.0093 | Current batch: 441  PSNR: 23.3095  SSIM: 0.8153  LPIPS: 0.1222  L1: 0.0259
+Number: 06188  | Average: PSNR: 30.2938  SSIM: 0.9374  LPIPS: 0.0465  L1: 0.0094 | Current batch: 442  PSNR: 23.2517  SSIM: 0.8211  LPIPS: 0.1350  L1: 0.0255
+Number: 06202  | Average: PSNR: 30.2777  SSIM: 0.9371  LPIPS: 0.0467  L1: 0.0094 | Current batch: 443  PSNR: 23.1509  SSIM: 0.8089  LPIPS: 0.1281  L1: 0.0282
+Number: 06216  | Average: PSNR: 30.2646  SSIM: 0.9369  LPIPS: 0.0468  L1: 0.0094 | Current batch: 444  PSNR: 24.4788  SSIM: 0.8467  LPIPS: 0.1083  L1: 0.0216
+Number: 06230  | Average: PSNR: 30.2466  SSIM: 0.9366  LPIPS: 0.0470  L1: 0.0095 | Current batch: 445  PSNR: 22.2465  SSIM: 0.8188  LPIPS: 0.1221  L1: 0.0280
+Number: 06244  | Average: PSNR: 30.2336  SSIM: 0.9364  LPIPS: 0.0472  L1: 0.0095 | Current batch: 446  PSNR: 24.4646  SSIM: 0.8385  LPIPS: 0.1230  L1: 0.0214
+Number: 06258  | Average: PSNR: 30.2160  SSIM: 0.9361  LPIPS: 0.0474  L1: 0.0095 | Current batch: 447  PSNR: 22.3657  SSIM: 0.8174  LPIPS: 0.1324  L1: 0.0271
+Number: 06272  | Average: PSNR: 30.2017  SSIM: 0.9359  LPIPS: 0.0475  L1: 0.0096 | Current batch: 448  PSNR: 23.8094  SSIM: 0.8458  LPIPS: 0.1078  L1: 0.0219
+Number: 06286  | Average: PSNR: 30.1852  SSIM: 0.9356  LPIPS: 0.0477  L1: 0.0096 | Current batch: 449  PSNR: 22.8088  SSIM: 0.8132  LPIPS: 0.1217  L1: 0.0271
+Number: 06300  | Average: PSNR: 30.1690  SSIM: 0.9353  LPIPS: 0.0479  L1: 0.0096 | Current batch: 450  PSNR: 22.8660  SSIM: 0.7983  LPIPS: 0.1344  L1: 0.0279
+Number: 06314  | Average: PSNR: 30.1541  SSIM: 0.9351  LPIPS: 0.0480  L1: 0.0097 | Current batch: 451  PSNR: 23.4567  SSIM: 0.8377  LPIPS: 0.1077  L1: 0.0242
+Number: 06328  | Average: PSNR: 30.1430  SSIM: 0.9349  LPIPS: 0.0481  L1: 0.0097 | Current batch: 452  PSNR: 25.1539  SSIM: 0.8500  LPIPS: 0.1083  L1: 0.0197
+Number: 06342  | Average: PSNR: 30.1246  SSIM: 0.9347  LPIPS: 0.0483  L1: 0.0097 | Current batch: 453  PSNR: 21.7840  SSIM: 0.8088  LPIPS: 0.1259  L1: 0.0289
+Number: 06356  | Average: PSNR: 30.1119  SSIM: 0.9345  LPIPS: 0.0484  L1: 0.0098 | Current batch: 454  PSNR: 24.3608  SSIM: 0.8464  LPIPS: 0.1166  L1: 0.0229
+Number: 06370  | Average: PSNR: 30.0957  SSIM: 0.9342  LPIPS: 0.0486  L1: 0.0098 | Current batch: 455  PSNR: 22.7290  SSIM: 0.8095  LPIPS: 0.1355  L1: 0.0277
+Number: 06384  | Average: PSNR: 30.0825  SSIM: 0.9340  LPIPS: 0.0488  L1: 0.0098 | Current batch: 456  PSNR: 24.0967  SSIM: 0.8432  LPIPS: 0.1173  L1: 0.0217
+Number: 06398  | Average: PSNR: 30.0674  SSIM: 0.9338  LPIPS: 0.0489  L1: 0.0099 | Current batch: 457  PSNR: 23.1963  SSIM: 0.8311  LPIPS: 0.1177  L1: 0.0248
+Number: 06412  | Average: PSNR: 30.0502  SSIM: 0.9335  LPIPS: 0.0491  L1: 0.0099 | Current batch: 458  PSNR: 22.1615  SSIM: 0.8012  LPIPS: 0.1357  L1: 0.0296
+Number: 06426  | Average: PSNR: 30.0342  SSIM: 0.9333  LPIPS: 0.0493  L1: 0.0099 | Current batch: 459  PSNR: 22.6985  SSIM: 0.8363  LPIPS: 0.1168  L1: 0.0256
+Number: 06440  | Average: PSNR: 30.0199  SSIM: 0.9330  LPIPS: 0.0495  L1: 0.0100 | Current batch: 460  PSNR: 23.4837  SSIM: 0.8111  LPIPS: 0.1330  L1: 0.0249
+Number: 06454  | Average: PSNR: 30.0053  SSIM: 0.9328  LPIPS: 0.0496  L1: 0.0100 | Current batch: 461  PSNR: 23.2965  SSIM: 0.8256  LPIPS: 0.1227  L1: 0.0262
+Number: 06468  | Average: PSNR: 29.9908  SSIM: 0.9325  LPIPS: 0.0498  L1: 0.0100 | Current batch: 462  PSNR: 23.2810  SSIM: 0.8231  LPIPS: 0.1332  L1: 0.0244
+Number: 06482  | Average: PSNR: 29.9786  SSIM: 0.9323  LPIPS: 0.0500  L1: 0.0101 | Current batch: 463  PSNR: 24.3495  SSIM: 0.8387  LPIPS: 0.1192  L1: 0.0225
+Number: 06496  | Average: PSNR: 29.9623  SSIM: 0.9321  LPIPS: 0.0501  L1: 0.0101 | Current batch: 464  PSNR: 22.4261  SSIM: 0.8178  LPIPS: 0.1298  L1: 0.0280
+Number: 06510  | Average: PSNR: 29.9476  SSIM: 0.9319  LPIPS: 0.0503  L1: 0.0101 | Current batch: 465  PSNR: 23.1321  SSIM: 0.8340  LPIPS: 0.1173  L1: 0.0250
+Number: 06524  | Average: PSNR: 29.9338  SSIM: 0.9316  LPIPS: 0.0504  L1: 0.0102 | Current batch: 466  PSNR: 23.4945  SSIM: 0.8177  LPIPS: 0.1333  L1: 0.0254
+Number: 06538  | Average: PSNR: 29.9156  SSIM: 0.9314  LPIPS: 0.0506  L1: 0.0102 | Current batch: 467  PSNR: 21.4526  SSIM: 0.8058  LPIPS: 0.1327  L1: 0.0310
+Number: 06552  | Average: PSNR: 29.9053  SSIM: 0.9312  LPIPS: 0.0508  L1: 0.0102 | Current batch: 468  PSNR: 25.0924  SSIM: 0.8396  LPIPS: 0.1147  L1: 0.0200
+Number: 06566  | Average: PSNR: 29.8930  SSIM: 0.9310  LPIPS: 0.0509  L1: 0.0103 | Current batch: 469  PSNR: 24.1393  SSIM: 0.8412  LPIPS: 0.1272  L1: 0.0226
+Number: 06580  | Average: PSNR: 29.8791  SSIM: 0.9308  LPIPS: 0.0511  L1: 0.0103 | Current batch: 470  PSNR: 23.3574  SSIM: 0.8333  LPIPS: 0.1182  L1: 0.0251
+Number: 06594  | Average: PSNR: 29.8624  SSIM: 0.9305  LPIPS: 0.0512  L1: 0.0103 | Current batch: 471  PSNR: 21.9992  SSIM: 0.8119  LPIPS: 0.1254  L1: 0.0284
+Number: 06608  | Average: PSNR: 29.8471  SSIM: 0.9303  LPIPS: 0.0514  L1: 0.0104 | Current batch: 472  PSNR: 22.6428  SSIM: 0.8137  LPIPS: 0.1255  L1: 0.0283
+Number: 06622  | Average: PSNR: 29.8329  SSIM: 0.9300  LPIPS: 0.0515  L1: 0.0104 | Current batch: 473  PSNR: 23.1260  SSIM: 0.8184  LPIPS: 0.1249  L1: 0.0257
+Number: 06636  | Average: PSNR: 29.8185  SSIM: 0.9298  LPIPS: 0.0517  L1: 0.0104 | Current batch: 474  PSNR: 23.0147  SSIM: 0.8160  LPIPS: 0.1277  L1: 0.0287
+Number: 06650  | Average: PSNR: 29.8081  SSIM: 0.9296  LPIPS: 0.0518  L1: 0.0105 | Current batch: 475  PSNR: 24.8749  SSIM: 0.8538  LPIPS: 0.1055  L1: 0.0194
+Number: 06664  | Average: PSNR: 29.7935  SSIM: 0.9294  LPIPS: 0.0520  L1: 0.0105 | Current batch: 476  PSNR: 22.8670  SSIM: 0.8231  LPIPS: 0.1307  L1: 0.0274
+Number: 06678  | Average: PSNR: 29.7786  SSIM: 0.9292  LPIPS: 0.0521  L1: 0.0105 | Current batch: 477  PSNR: 22.7013  SSIM: 0.8169  LPIPS: 0.1324  L1: 0.0274
+Number: 06692  | Average: PSNR: 29.7622  SSIM: 0.9289  LPIPS: 0.0523  L1: 0.0106 | Current batch: 478  PSNR: 21.9326  SSIM: 0.8029  LPIPS: 0.1349  L1: 0.0299
+Number: 06706  | Average: PSNR: 29.7459  SSIM: 0.9286  LPIPS: 0.0525  L1: 0.0106 | Current batch: 479  PSNR: 21.9507  SSIM: 0.7829  LPIPS: 0.1503  L1: 0.0308
+Number: 06720  | Average: PSNR: 29.7334  SSIM: 0.9284  LPIPS: 0.0527  L1: 0.0106 | Current batch: 480  PSNR: 23.7496  SSIM: 0.8417  LPIPS: 0.1167  L1: 0.0227
+Number: 06734  | Average: PSNR: 29.7219  SSIM: 0.9282  LPIPS: 0.0528  L1: 0.0107 | Current batch: 481  PSNR: 24.1836  SSIM: 0.8344  LPIPS: 0.1278  L1: 0.0223
+Number: 06748  | Average: PSNR: 29.7074  SSIM: 0.9280  LPIPS: 0.0530  L1: 0.0107 | Current batch: 482  PSNR: 22.7343  SSIM: 0.8109  LPIPS: 0.1325  L1: 0.0270
+Number: 06762  | Average: PSNR: 29.6925  SSIM: 0.9278  LPIPS: 0.0531  L1: 0.0107 | Current batch: 483  PSNR: 22.5181  SSIM: 0.8248  LPIPS: 0.1198  L1: 0.0283
+Number: 06776  | Average: PSNR: 29.6790  SSIM: 0.9276  LPIPS: 0.0532  L1: 0.0108 | Current batch: 484  PSNR: 23.1686  SSIM: 0.8402  LPIPS: 0.1112  L1: 0.0259
+Number: 06790  | Average: PSNR: 29.6664  SSIM: 0.9273  LPIPS: 0.0534  L1: 0.0108 | Current batch: 485  PSNR: 23.5558  SSIM: 0.8147  LPIPS: 0.1281  L1: 0.0252
+Number: 06804  | Average: PSNR: 29.6513  SSIM: 0.9271  LPIPS: 0.0536  L1: 0.0108 | Current batch: 486  PSNR: 22.3226  SSIM: 0.7951  LPIPS: 0.1457  L1: 0.0291
+Number: 06818  | Average: PSNR: 29.6382  SSIM: 0.9269  LPIPS: 0.0537  L1: 0.0109 | Current batch: 487  PSNR: 23.2991  SSIM: 0.8363  LPIPS: 0.1134  L1: 0.0269
+Number: 06832  | Average: PSNR: 29.6280  SSIM: 0.9267  LPIPS: 0.0538  L1: 0.0109 | Current batch: 488  PSNR: 24.6364  SSIM: 0.8557  LPIPS: 0.1019  L1: 0.0202
+Number: 06846  | Average: PSNR: 29.6163  SSIM: 0.9265  LPIPS: 0.0539  L1: 0.0109 | Current batch: 489  PSNR: 23.9247  SSIM: 0.8259  LPIPS: 0.1246  L1: 0.0231
+Number: 06860  | Average: PSNR: 29.6044  SSIM: 0.9263  LPIPS: 0.0541  L1: 0.0109 | Current batch: 490  PSNR: 23.7741  SSIM: 0.8333  LPIPS: 0.1152  L1: 0.0237
+Number: 06874  | Average: PSNR: 29.5888  SSIM: 0.9261  LPIPS: 0.0542  L1: 0.0110 | Current batch: 491  PSNR: 21.9296  SSIM: 0.8146  LPIPS: 0.1346  L1: 0.0283
+Number: 06888  | Average: PSNR: 29.5762  SSIM: 0.9259  LPIPS: 0.0544  L1: 0.0110 | Current batch: 492  PSNR: 23.3861  SSIM: 0.8280  LPIPS: 0.1205  L1: 0.0242
+Number: 06902  | Average: PSNR: 29.5658  SSIM: 0.9257  LPIPS: 0.0545  L1: 0.0110 | Current batch: 493  PSNR: 24.4800  SSIM: 0.8417  LPIPS: 0.1133  L1: 0.0197
+Number: 06916  | Average: PSNR: 29.5524  SSIM: 0.9255  LPIPS: 0.0546  L1: 0.0111 | Current batch: 494  PSNR: 22.9224  SSIM: 0.8216  LPIPS: 0.1283  L1: 0.0275
+Number: 06930  | Average: PSNR: 29.5396  SSIM: 0.9253  LPIPS: 0.0548  L1: 0.0111 | Current batch: 495  PSNR: 23.2186  SSIM: 0.8237  LPIPS: 0.1255  L1: 0.0248
+Number: 06944  | Average: PSNR: 29.5283  SSIM: 0.9251  LPIPS: 0.0549  L1: 0.0111 | Current batch: 496  PSNR: 23.9610  SSIM: 0.8326  LPIPS: 0.1104  L1: 0.0239
+Number: 06958  | Average: PSNR: 29.5154  SSIM: 0.9249  LPIPS: 0.0550  L1: 0.0111 | Current batch: 497  PSNR: 23.0968  SSIM: 0.8234  LPIPS: 0.1304  L1: 0.0250
+Number: 06972  | Average: PSNR: 29.5007  SSIM: 0.9247  LPIPS: 0.0552  L1: 0.0112 | Current batch: 498  PSNR: 22.1897  SSIM: 0.8210  LPIPS: 0.1271  L1: 0.0285
+Number: 06986  | Average: PSNR: 29.4858  SSIM: 0.9245  LPIPS: 0.0553  L1: 0.0112 | Current batch: 499  PSNR: 22.0513  SSIM: 0.8185  LPIPS: 0.1310  L1: 0.0292
+Number: 07000  | Average: PSNR: 29.4744  SSIM: 0.9243  LPIPS: 0.0555  L1: 0.0112 | Current batch: 500  PSNR: 23.8231  SSIM: 0.8081  LPIPS: 0.1366  L1: 0.0269
+Number: 07014  | Average: PSNR: 29.4633  SSIM: 0.9241  LPIPS: 0.0556  L1: 0.0113 | Current batch: 501  PSNR: 23.9136  SSIM: 0.8297  LPIPS: 0.1149  L1: 0.0244
+Number: 07028  | Average: PSNR: 29.4507  SSIM: 0.9239  LPIPS: 0.0557  L1: 0.0113 | Current batch: 502  PSNR: 23.1021  SSIM: 0.8335  LPIPS: 0.1085  L1: 0.0253
+Number: 07042  | Average: PSNR: 29.4396  SSIM: 0.9237  LPIPS: 0.0558  L1: 0.0113 | Current batch: 503  PSNR: 23.8846  SSIM: 0.8354  LPIPS: 0.1134  L1: 0.0243
+Number: 07056  | Average: PSNR: 29.4298  SSIM: 0.9236  LPIPS: 0.0559  L1: 0.0113 | Current batch: 504  PSNR: 24.5198  SSIM: 0.8548  LPIPS: 0.0983  L1: 0.0214
+Number: 07070  | Average: PSNR: 29.4245  SSIM: 0.9235  LPIPS: 0.0560  L1: 0.0113 | Current batch: 505  PSNR: 26.7449  SSIM: 0.8803  LPIPS: 0.0817  L1: 0.0165
+Number: 07084  | Average: PSNR: 29.4142  SSIM: 0.9233  LPIPS: 0.0561  L1: 0.0114 | Current batch: 506  PSNR: 24.1812  SSIM: 0.8387  LPIPS: 0.1021  L1: 0.0233
+Number: 07098  | Average: PSNR: 29.4031  SSIM: 0.9232  LPIPS: 0.0562  L1: 0.0114 | Current batch: 507  PSNR: 23.7861  SSIM: 0.8408  LPIPS: 0.1043  L1: 0.0234
+Number: 07112  | Average: PSNR: 29.3934  SSIM: 0.9231  LPIPS: 0.0562  L1: 0.0114 | Current batch: 508  PSNR: 24.4969  SSIM: 0.8562  LPIPS: 0.0878  L1: 0.0231
+Number: 07126  | Average: PSNR: 29.3857  SSIM: 0.9230  LPIPS: 0.0563  L1: 0.0114 | Current batch: 509  PSNR: 25.4587  SSIM: 0.8792  LPIPS: 0.0851  L1: 0.0179
+Number: 07140  | Average: PSNR: 29.3766  SSIM: 0.9229  LPIPS: 0.0563  L1: 0.0114 | Current batch: 510  PSNR: 24.7390  SSIM: 0.8782  LPIPS: 0.0819  L1: 0.0208
+Number: 07154  | Average: PSNR: 29.3659  SSIM: 0.9227  LPIPS: 0.0564  L1: 0.0115 | Current batch: 511  PSNR: 23.9182  SSIM: 0.8404  LPIPS: 0.1039  L1: 0.0242
+Number: 07168  | Average: PSNR: 29.3564  SSIM: 0.9226  LPIPS: 0.0565  L1: 0.0115 | Current batch: 512  PSNR: 24.5350  SSIM: 0.8490  LPIPS: 0.0993  L1: 0.0250
+Number: 07182  | Average: PSNR: 29.3488  SSIM: 0.9224  LPIPS: 0.0566  L1: 0.0115 | Current batch: 513  PSNR: 25.4387  SSIM: 0.8534  LPIPS: 0.1004  L1: 0.0199
+Number: 07196  | Average: PSNR: 29.3399  SSIM: 0.9223  LPIPS: 0.0567  L1: 0.0115 | Current batch: 514  PSNR: 24.7459  SSIM: 0.8594  LPIPS: 0.0939  L1: 0.0199
+Number: 07210  | Average: PSNR: 29.3302  SSIM: 0.9222  LPIPS: 0.0567  L1: 0.0116 | Current batch: 515  PSNR: 24.3632  SSIM: 0.8511  LPIPS: 0.0900  L1: 0.0240
+Number: 07224  | Average: PSNR: 29.3238  SSIM: 0.9221  LPIPS: 0.0568  L1: 0.0116 | Current batch: 516  PSNR: 26.0316  SSIM: 0.8795  LPIPS: 0.0789  L1: 0.0187
+Number: 07238  | Average: PSNR: 29.3121  SSIM: 0.9219  LPIPS: 0.0569  L1: 0.0116 | Current batch: 517  PSNR: 23.2525  SSIM: 0.8368  LPIPS: 0.1012  L1: 0.0252
+Number: 07252  | Average: PSNR: 29.3025  SSIM: 0.9218  LPIPS: 0.0569  L1: 0.0116 | Current batch: 518  PSNR: 24.3426  SSIM: 0.8419  LPIPS: 0.1011  L1: 0.0247
+Number: 07266  | Average: PSNR: 29.2924  SSIM: 0.9216  LPIPS: 0.0570  L1: 0.0116 | Current batch: 519  PSNR: 24.0657  SSIM: 0.8379  LPIPS: 0.1038  L1: 0.0237
+Number: 07280  | Average: PSNR: 29.2824  SSIM: 0.9215  LPIPS: 0.0571  L1: 0.0117 | Current batch: 520  PSNR: 24.1075  SSIM: 0.8570  LPIPS: 0.0941  L1: 0.0226
+Number: 07294  | Average: PSNR: 29.2737  SSIM: 0.9214  LPIPS: 0.0572  L1: 0.0117 | Current batch: 521  PSNR: 24.7376  SSIM: 0.8596  LPIPS: 0.0949  L1: 0.0201
+Number: 07308  | Average: PSNR: 29.2587  SSIM: 0.9211  LPIPS: 0.0573  L1: 0.0117 | Current batch: 522  PSNR: 21.4578  SSIM: 0.8039  LPIPS: 0.1238  L1: 0.0325
+Number: 07322  | Average: PSNR: 29.2488  SSIM: 0.9210  LPIPS: 0.0574  L1: 0.0117 | Current batch: 523  PSNR: 24.0852  SSIM: 0.8463  LPIPS: 0.0981  L1: 0.0237
+Number: 07336  | Average: PSNR: 29.2394  SSIM: 0.9209  LPIPS: 0.0575  L1: 0.0118 | Current batch: 524  PSNR: 24.3237  SSIM: 0.8506  LPIPS: 0.1032  L1: 0.0228
+Number: 07350  | Average: PSNR: 29.2321  SSIM: 0.9207  LPIPS: 0.0576  L1: 0.0118 | Current batch: 525  PSNR: 25.3787  SSIM: 0.8448  LPIPS: 0.1036  L1: 0.0197
+Number: 07364  | Average: PSNR: 29.2238  SSIM: 0.9206  LPIPS: 0.0576  L1: 0.0118 | Current batch: 526  PSNR: 24.8844  SSIM: 0.8575  LPIPS: 0.0986  L1: 0.0213
+Number: 07378  | Average: PSNR: 29.2136  SSIM: 0.9205  LPIPS: 0.0577  L1: 0.0118 | Current batch: 527  PSNR: 23.8430  SSIM: 0.8600  LPIPS: 0.0958  L1: 0.0213
+Number: 07392  | Average: PSNR: 29.2061  SSIM: 0.9204  LPIPS: 0.0578  L1: 0.0118 | Current batch: 528  PSNR: 25.2719  SSIM: 0.8727  LPIPS: 0.0904  L1: 0.0208
+Number: 07406  | Average: PSNR: 29.1990  SSIM: 0.9203  LPIPS: 0.0578  L1: 0.0119 | Current batch: 529  PSNR: 25.4502  SSIM: 0.8608  LPIPS: 0.0916  L1: 0.0196
+Number: 07420  | Average: PSNR: 29.1900  SSIM: 0.9202  LPIPS: 0.0579  L1: 0.0119 | Current batch: 530  PSNR: 24.4310  SSIM: 0.8596  LPIPS: 0.0978  L1: 0.0218
+Number: 07434  | Average: PSNR: 29.1805  SSIM: 0.9200  LPIPS: 0.0580  L1: 0.0119 | Current batch: 531  PSNR: 24.1566  SSIM: 0.8345  LPIPS: 0.1053  L1: 0.0230
+Number: 07448  | Average: PSNR: 29.1695  SSIM: 0.9198  LPIPS: 0.0581  L1: 0.0119 | Current batch: 532  PSNR: 23.3170  SSIM: 0.8297  LPIPS: 0.1156  L1: 0.0252
+Number: 07462  | Average: PSNR: 29.1609  SSIM: 0.9197  LPIPS: 0.0582  L1: 0.0119 | Current batch: 533  PSNR: 24.5984  SSIM: 0.8583  LPIPS: 0.0974  L1: 0.0213
+Number: 07476  | Average: PSNR: 29.1512  SSIM: 0.9196  LPIPS: 0.0583  L1: 0.0120 | Current batch: 534  PSNR: 23.9316  SSIM: 0.8532  LPIPS: 0.0991  L1: 0.0229
+Number: 07490  | Average: PSNR: 29.1431  SSIM: 0.9195  LPIPS: 0.0583  L1: 0.0120 | Current batch: 535  PSNR: 24.8394  SSIM: 0.8745  LPIPS: 0.0912  L1: 0.0204
+Number: 07504  | Average: PSNR: 29.1357  SSIM: 0.9194  LPIPS: 0.0584  L1: 0.0120 | Current batch: 536  PSNR: 25.1594  SSIM: 0.8777  LPIPS: 0.0809  L1: 0.0190
+Number: 07518  | Average: PSNR: 29.1287  SSIM: 0.9193  LPIPS: 0.0584  L1: 0.0120 | Current batch: 537  PSNR: 25.3974  SSIM: 0.8690  LPIPS: 0.0855  L1: 0.0197
+Number: 07532  | Average: PSNR: 29.1202  SSIM: 0.9192  LPIPS: 0.0585  L1: 0.0120 | Current batch: 538  PSNR: 24.5817  SSIM: 0.8585  LPIPS: 0.0954  L1: 0.0229
+Number: 07546  | Average: PSNR: 29.1111  SSIM: 0.9191  LPIPS: 0.0586  L1: 0.0120 | Current batch: 539  PSNR: 24.1782  SSIM: 0.8486  LPIPS: 0.1075  L1: 0.0217
+Number: 07560  | Average: PSNR: 29.1055  SSIM: 0.9190  LPIPS: 0.0586  L1: 0.0120 | Current batch: 540  PSNR: 26.0936  SSIM: 0.8833  LPIPS: 0.0794  L1: 0.0172
+Number: 07574  | Average: PSNR: 29.0949  SSIM: 0.9189  LPIPS: 0.0587  L1: 0.0121 | Current batch: 541  PSNR: 23.3849  SSIM: 0.8473  LPIPS: 0.1091  L1: 0.0260
+Number: 07588  | Average: PSNR: 29.0825  SSIM: 0.9187  LPIPS: 0.0588  L1: 0.0121 | Current batch: 542  PSNR: 22.3587  SSIM: 0.8365  LPIPS: 0.1021  L1: 0.0291
+Number: 07602  | Average: PSNR: 29.0751  SSIM: 0.9186  LPIPS: 0.0589  L1: 0.0121 | Current batch: 543  PSNR: 25.0776  SSIM: 0.8619  LPIPS: 0.0986  L1: 0.0187
+Number: 07616  | Average: PSNR: 29.0674  SSIM: 0.9185  LPIPS: 0.0589  L1: 0.0121 | Current batch: 544  PSNR: 24.8657  SSIM: 0.8537  LPIPS: 0.1042  L1: 0.0202
+Number: 07630  | Average: PSNR: 29.0591  SSIM: 0.9184  LPIPS: 0.0590  L1: 0.0121 | Current batch: 545  PSNR: 24.5829  SSIM: 0.8579  LPIPS: 0.0945  L1: 0.0208
+Number: 07644  | Average: PSNR: 29.0503  SSIM: 0.9183  LPIPS: 0.0591  L1: 0.0122 | Current batch: 546  PSNR: 24.2409  SSIM: 0.8450  LPIPS: 0.1039  L1: 0.0225
+Number: 07658  | Average: PSNR: 29.0409  SSIM: 0.9182  LPIPS: 0.0592  L1: 0.0122 | Current batch: 547  PSNR: 23.8978  SSIM: 0.8587  LPIPS: 0.0942  L1: 0.0223
+Number: 07672  | Average: PSNR: 29.0303  SSIM: 0.9180  LPIPS: 0.0592  L1: 0.0122 | Current batch: 548  PSNR: 23.2381  SSIM: 0.8448  LPIPS: 0.1044  L1: 0.0249
+Number: 07686  | Average: PSNR: 29.0253  SSIM: 0.9180  LPIPS: 0.0593  L1: 0.0122 | Current batch: 549  PSNR: 26.3024  SSIM: 0.8732  LPIPS: 0.0900  L1: 0.0191
+Number: 07700  | Average: PSNR: 29.0169  SSIM: 0.9178  LPIPS: 0.0594  L1: 0.0122 | Current batch: 550  PSNR: 24.3772  SSIM: 0.8407  LPIPS: 0.1053  L1: 0.0233
+Number: 07714  | Average: PSNR: 29.0115  SSIM: 0.9177  LPIPS: 0.0594  L1: 0.0123 | Current batch: 551  PSNR: 26.0558  SSIM: 0.8607  LPIPS: 0.0920  L1: 0.0205
+Number: 07728  | Average: PSNR: 29.0043  SSIM: 0.9176  LPIPS: 0.0595  L1: 0.0123 | Current batch: 552  PSNR: 25.0378  SSIM: 0.8508  LPIPS: 0.0938  L1: 0.0207
+Number: 07742  | Average: PSNR: 28.9960  SSIM: 0.9175  LPIPS: 0.0596  L1: 0.0123 | Current batch: 553  PSNR: 24.4009  SSIM: 0.8630  LPIPS: 0.0911  L1: 0.0218
+Number: 07756  | Average: PSNR: 28.9894  SSIM: 0.9174  LPIPS: 0.0596  L1: 0.0123 | Current batch: 554  PSNR: 25.3634  SSIM: 0.8574  LPIPS: 0.0887  L1: 0.0200
+Number: 07770  | Average: PSNR: 28.9813  SSIM: 0.9173  LPIPS: 0.0597  L1: 0.0123 | Current batch: 555  PSNR: 24.4982  SSIM: 0.8516  LPIPS: 0.0957  L1: 0.0225
+Number: 07784  | Average: PSNR: 28.9726  SSIM: 0.9171  LPIPS: 0.0598  L1: 0.0123 | Current batch: 556  PSNR: 24.1292  SSIM: 0.8467  LPIPS: 0.1064  L1: 0.0209
+Number: 07798  | Average: PSNR: 28.9659  SSIM: 0.9170  LPIPS: 0.0598  L1: 0.0123 | Current batch: 557  PSNR: 25.2186  SSIM: 0.8543  LPIPS: 0.0916  L1: 0.0204
+Number: 07812  | Average: PSNR: 28.9593  SSIM: 0.9169  LPIPS: 0.0599  L1: 0.0124 | Current batch: 558  PSNR: 25.3143  SSIM: 0.8619  LPIPS: 0.0930  L1: 0.0197
+Number: 07826  | Average: PSNR: 28.9495  SSIM: 0.9168  LPIPS: 0.0600  L1: 0.0124 | Current batch: 559  PSNR: 23.4621  SSIM: 0.8446  LPIPS: 0.1020  L1: 0.0244
+Number: 07840  | Average: PSNR: 28.9388  SSIM: 0.9167  LPIPS: 0.0600  L1: 0.0124 | Current batch: 560  PSNR: 22.9486  SSIM: 0.8402  LPIPS: 0.1051  L1: 0.0257
+Number: 07854  | Average: PSNR: 28.9286  SSIM: 0.9165  LPIPS: 0.0601  L1: 0.0124 | Current batch: 561  PSNR: 23.1984  SSIM: 0.8319  LPIPS: 0.1070  L1: 0.0255
+Number: 07868  | Average: PSNR: 28.9210  SSIM: 0.9164  LPIPS: 0.0602  L1: 0.0124 | Current batch: 562  PSNR: 24.6977  SSIM: 0.8455  LPIPS: 0.1022  L1: 0.0216
+Number: 07882  | Average: PSNR: 28.9128  SSIM: 0.9163  LPIPS: 0.0602  L1: 0.0125 | Current batch: 563  PSNR: 24.2931  SSIM: 0.8493  LPIPS: 0.0935  L1: 0.0230
+Number: 07896  | Average: PSNR: 28.9020  SSIM: 0.9161  LPIPS: 0.0603  L1: 0.0125 | Current batch: 564  PSNR: 22.8000  SSIM: 0.8295  LPIPS: 0.1118  L1: 0.0278
+Number: 07910  | Average: PSNR: 28.8914  SSIM: 0.9160  LPIPS: 0.0604  L1: 0.0125 | Current batch: 565  PSNR: 22.9543  SSIM: 0.8472  LPIPS: 0.1013  L1: 0.0266
+Number: 07924  | Average: PSNR: 28.8836  SSIM: 0.9159  LPIPS: 0.0605  L1: 0.0125 | Current batch: 566  PSNR: 24.4504  SSIM: 0.8495  LPIPS: 0.0976  L1: 0.0228
+Number: 07938  | Average: PSNR: 28.8734  SSIM: 0.9157  LPIPS: 0.0606  L1: 0.0126 | Current batch: 567  PSNR: 23.0777  SSIM: 0.8368  LPIPS: 0.1079  L1: 0.0261
+Number: 07952  | Average: PSNR: 28.8658  SSIM: 0.9156  LPIPS: 0.0606  L1: 0.0126 | Current batch: 568  PSNR: 24.5980  SSIM: 0.8479  LPIPS: 0.0965  L1: 0.0220
+Number: 07966  | Average: PSNR: 28.8566  SSIM: 0.9155  LPIPS: 0.0607  L1: 0.0126 | Current batch: 569  PSNR: 23.6437  SSIM: 0.8410  LPIPS: 0.1137  L1: 0.0250
+Number: 07980  | Average: PSNR: 28.8490  SSIM: 0.9154  LPIPS: 0.0608  L1: 0.0126 | Current batch: 570  PSNR: 24.4891  SSIM: 0.8482  LPIPS: 0.0968  L1: 0.0224
+Number: 07994  | Average: PSNR: 28.8382  SSIM: 0.9152  LPIPS: 0.0609  L1: 0.0126 | Current batch: 571  PSNR: 22.7023  SSIM: 0.8286  LPIPS: 0.1129  L1: 0.0262
+Number: 08008  | Average: PSNR: 28.8310  SSIM: 0.9151  LPIPS: 0.0610  L1: 0.0127 | Current batch: 572  PSNR: 24.6911  SSIM: 0.8298  LPIPS: 0.1147  L1: 0.0263
+Number: 08022  | Average: PSNR: 28.8181  SSIM: 0.9147  LPIPS: 0.0612  L1: 0.0127 | Current batch: 573  PSNR: 21.4661  SSIM: 0.7349  LPIPS: 0.1770  L1: 0.0392
+Number: 08036  | Average: PSNR: 28.8046  SSIM: 0.9145  LPIPS: 0.0614  L1: 0.0127 | Current batch: 574  PSNR: 21.0827  SSIM: 0.7647  LPIPS: 0.1782  L1: 0.0348
+Number: 08050  | Average: PSNR: 28.7968  SSIM: 0.9143  LPIPS: 0.0615  L1: 0.0128 | Current batch: 575  PSNR: 24.2871  SSIM: 0.7874  LPIPS: 0.1526  L1: 0.0250
+Number: 08064  | Average: PSNR: 28.7828  SSIM: 0.9139  LPIPS: 0.0617  L1: 0.0128 | Current batch: 576  PSNR: 20.7165  SSIM: 0.7185  LPIPS: 0.1791  L1: 0.0387
+Number: 08078  | Average: PSNR: 28.7704  SSIM: 0.9137  LPIPS: 0.0619  L1: 0.0128 | Current batch: 577  PSNR: 21.6805  SSIM: 0.7639  LPIPS: 0.1597  L1: 0.0336
+Number: 08092  | Average: PSNR: 28.7550  SSIM: 0.9133  LPIPS: 0.0621  L1: 0.0129 | Current batch: 578  PSNR: 19.8285  SSIM: 0.7326  LPIPS: 0.1883  L1: 0.0439
+Number: 08106  | Average: PSNR: 28.7435  SSIM: 0.9131  LPIPS: 0.0623  L1: 0.0129 | Current batch: 579  PSNR: 22.1045  SSIM: 0.7525  LPIPS: 0.1662  L1: 0.0317
+Number: 08120  | Average: PSNR: 28.7314  SSIM: 0.9128  LPIPS: 0.0625  L1: 0.0130 | Current batch: 580  PSNR: 21.7033  SSIM: 0.7414  LPIPS: 0.1813  L1: 0.0346
+Number: 08134  | Average: PSNR: 28.7190  SSIM: 0.9125  LPIPS: 0.0627  L1: 0.0130 | Current batch: 581  PSNR: 21.5382  SSIM: 0.7439  LPIPS: 0.1661  L1: 0.0367
+Number: 08148  | Average: PSNR: 28.7067  SSIM: 0.9122  LPIPS: 0.0629  L1: 0.0131 | Current batch: 582  PSNR: 21.5780  SSIM: 0.7511  LPIPS: 0.1700  L1: 0.0349
+Number: 08162  | Average: PSNR: 28.6930  SSIM: 0.9119  LPIPS: 0.0631  L1: 0.0131 | Current batch: 583  PSNR: 20.7172  SSIM: 0.7408  LPIPS: 0.1852  L1: 0.0378
+Number: 08176  | Average: PSNR: 28.6825  SSIM: 0.9117  LPIPS: 0.0632  L1: 0.0131 | Current batch: 584  PSNR: 22.5369  SSIM: 0.7781  LPIPS: 0.1545  L1: 0.0312
+Number: 08190  | Average: PSNR: 28.6685  SSIM: 0.9114  LPIPS: 0.0634  L1: 0.0132 | Current batch: 585  PSNR: 20.5163  SSIM: 0.7551  LPIPS: 0.1783  L1: 0.0381
+Number: 08204  | Average: PSNR: 28.6575  SSIM: 0.9111  LPIPS: 0.0636  L1: 0.0132 | Current batch: 586  PSNR: 22.2394  SSIM: 0.7538  LPIPS: 0.1661  L1: 0.0379
+Number: 08218  | Average: PSNR: 28.6449  SSIM: 0.9109  LPIPS: 0.0638  L1: 0.0132 | Current batch: 587  PSNR: 21.2301  SSIM: 0.7399  LPIPS: 0.1825  L1: 0.0365
+Number: 08232  | Average: PSNR: 28.6328  SSIM: 0.9106  LPIPS: 0.0640  L1: 0.0133 | Current batch: 588  PSNR: 21.5315  SSIM: 0.7799  LPIPS: 0.1625  L1: 0.0319
+Number: 08246  | Average: PSNR: 28.6229  SSIM: 0.9104  LPIPS: 0.0641  L1: 0.0133 | Current batch: 589  PSNR: 22.7992  SSIM: 0.7760  LPIPS: 0.1628  L1: 0.0303
+Number: 08260  | Average: PSNR: 28.6116  SSIM: 0.9102  LPIPS: 0.0643  L1: 0.0133 | Current batch: 590  PSNR: 21.9975  SSIM: 0.7895  LPIPS: 0.1482  L1: 0.0332
+Number: 08274  | Average: PSNR: 28.6012  SSIM: 0.9099  LPIPS: 0.0645  L1: 0.0134 | Current batch: 591  PSNR: 22.4562  SSIM: 0.7621  LPIPS: 0.1625  L1: 0.0328
+Number: 08288  | Average: PSNR: 28.5879  SSIM: 0.9097  LPIPS: 0.0647  L1: 0.0134 | Current batch: 592  PSNR: 20.7176  SSIM: 0.7340  LPIPS: 0.1835  L1: 0.0402
+Number: 08302  | Average: PSNR: 28.5757  SSIM: 0.9094  LPIPS: 0.0648  L1: 0.0135 | Current batch: 593  PSNR: 21.3208  SSIM: 0.7587  LPIPS: 0.1695  L1: 0.0347
+Number: 08316  | Average: PSNR: 28.5635  SSIM: 0.9091  LPIPS: 0.0650  L1: 0.0135 | Current batch: 594  PSNR: 21.3395  SSIM: 0.7581  LPIPS: 0.1657  L1: 0.0348
+Number: 08330  | Average: PSNR: 28.5511  SSIM: 0.9088  LPIPS: 0.0652  L1: 0.0135 | Current batch: 595  PSNR: 21.1887  SSIM: 0.7300  LPIPS: 0.1796  L1: 0.0375
+Number: 08344  | Average: PSNR: 28.5381  SSIM: 0.9086  LPIPS: 0.0654  L1: 0.0136 | Current batch: 596  PSNR: 20.8384  SSIM: 0.7489  LPIPS: 0.1717  L1: 0.0378
+Number: 08358  | Average: PSNR: 28.5271  SSIM: 0.9083  LPIPS: 0.0656  L1: 0.0136 | Current batch: 597  PSNR: 21.9704  SSIM: 0.7408  LPIPS: 0.1768  L1: 0.0362
+Number: 08372  | Average: PSNR: 28.5167  SSIM: 0.9081  LPIPS: 0.0657  L1: 0.0136 | Current batch: 598  PSNR: 22.2579  SSIM: 0.7921  LPIPS: 0.1608  L1: 0.0326
+Number: 08386  | Average: PSNR: 28.5044  SSIM: 0.9079  LPIPS: 0.0659  L1: 0.0137 | Current batch: 599  PSNR: 21.1825  SSIM: 0.7715  LPIPS: 0.1648  L1: 0.0364
+Number: 08400  | Average: PSNR: 28.4909  SSIM: 0.9076  LPIPS: 0.0661  L1: 0.0137 | Current batch: 600  PSNR: 20.4126  SSIM: 0.7273  LPIPS: 0.1939  L1: 0.0399
+Number: 08414  | Average: PSNR: 28.4768  SSIM: 0.9073  LPIPS: 0.0663  L1: 0.0138 | Current batch: 601  PSNR: 19.9990  SSIM: 0.7385  LPIPS: 0.1804  L1: 0.0416
+Number: 08428  | Average: PSNR: 28.4659  SSIM: 0.9070  LPIPS: 0.0665  L1: 0.0138 | Current batch: 602  PSNR: 21.8971  SSIM: 0.7486  LPIPS: 0.1661  L1: 0.0358
+Number: 08442  | Average: PSNR: 28.4527  SSIM: 0.9068  LPIPS: 0.0666  L1: 0.0138 | Current batch: 603  PSNR: 20.5491  SSIM: 0.7600  LPIPS: 0.1705  L1: 0.0374
+Number: 08456  | Average: PSNR: 28.4421  SSIM: 0.9066  LPIPS: 0.0668  L1: 0.0139 | Current batch: 604  PSNR: 22.0169  SSIM: 0.7737  LPIPS: 0.1568  L1: 0.0315
+Number: 08470  | Average: PSNR: 28.4310  SSIM: 0.9064  LPIPS: 0.0669  L1: 0.0139 | Current batch: 605  PSNR: 21.7543  SSIM: 0.7798  LPIPS: 0.1651  L1: 0.0335
+Number: 08484  | Average: PSNR: 28.4177  SSIM: 0.9061  LPIPS: 0.0671  L1: 0.0140 | Current batch: 606  PSNR: 20.3843  SSIM: 0.7423  LPIPS: 0.1815  L1: 0.0401
+Number: 08498  | Average: PSNR: 28.4084  SSIM: 0.9058  LPIPS: 0.0673  L1: 0.0140 | Current batch: 607  PSNR: 22.7730  SSIM: 0.7570  LPIPS: 0.1641  L1: 0.0304
+Number: 08512  | Average: PSNR: 28.3981  SSIM: 0.9056  LPIPS: 0.0675  L1: 0.0140 | Current batch: 608  PSNR: 22.1050  SSIM: 0.7399  LPIPS: 0.1710  L1: 0.0356
+Number: 08526  | Average: PSNR: 28.3877  SSIM: 0.9053  LPIPS: 0.0676  L1: 0.0140 | Current batch: 609  PSNR: 22.0858  SSIM: 0.7730  LPIPS: 0.1602  L1: 0.0321
+Number: 08540  | Average: PSNR: 28.3767  SSIM: 0.9051  LPIPS: 0.0678  L1: 0.0141 | Current batch: 610  PSNR: 21.6942  SSIM: 0.7539  LPIPS: 0.1761  L1: 0.0346
+Number: 08554  | Average: PSNR: 28.3663  SSIM: 0.9048  LPIPS: 0.0680  L1: 0.0141 | Current batch: 611  PSNR: 21.9846  SSIM: 0.7525  LPIPS: 0.1666  L1: 0.0402
+Number: 08568  | Average: PSNR: 28.3566  SSIM: 0.9047  LPIPS: 0.0681  L1: 0.0142 | Current batch: 612  PSNR: 22.4583  SSIM: 0.7879  LPIPS: 0.1440  L1: 0.0321
+Number: 08582  | Average: PSNR: 28.3449  SSIM: 0.9044  LPIPS: 0.0683  L1: 0.0142 | Current batch: 613  PSNR: 21.1929  SSIM: 0.7537  LPIPS: 0.1761  L1: 0.0359
+Number: 08596  | Average: PSNR: 28.3348  SSIM: 0.9042  LPIPS: 0.0684  L1: 0.0142 | Current batch: 614  PSNR: 22.1427  SSIM: 0.7617  LPIPS: 0.1689  L1: 0.0346
+Number: 08610  | Average: PSNR: 28.3231  SSIM: 0.9039  LPIPS: 0.0686  L1: 0.0143 | Current batch: 615  PSNR: 21.1330  SSIM: 0.7614  LPIPS: 0.1618  L1: 0.0371
+Number: 08624  | Average: PSNR: 28.3132  SSIM: 0.9037  LPIPS: 0.0687  L1: 0.0143 | Current batch: 616  PSNR: 22.2059  SSIM: 0.7823  LPIPS: 0.1559  L1: 0.0322
+Number: 08638  | Average: PSNR: 28.3011  SSIM: 0.9035  LPIPS: 0.0689  L1: 0.0143 | Current batch: 617  PSNR: 20.8197  SSIM: 0.7364  LPIPS: 0.1849  L1: 0.0396
+Number: 08652  | Average: PSNR: 28.2908  SSIM: 0.9032  LPIPS: 0.0691  L1: 0.0144 | Current batch: 618  PSNR: 21.9804  SSIM: 0.7516  LPIPS: 0.1698  L1: 0.0314
+Number: 08666  | Average: PSNR: 28.2801  SSIM: 0.9030  LPIPS: 0.0692  L1: 0.0144 | Current batch: 619  PSNR: 21.6609  SSIM: 0.7524  LPIPS: 0.1665  L1: 0.0335
+Number: 08680  | Average: PSNR: 28.2690  SSIM: 0.9027  LPIPS: 0.0694  L1: 0.0144 | Current batch: 620  PSNR: 21.4040  SSIM: 0.7525  LPIPS: 0.1710  L1: 0.0368
+Number: 08694  | Average: PSNR: 28.2558  SSIM: 0.9025  LPIPS: 0.0696  L1: 0.0145 | Current batch: 621  PSNR: 20.0405  SSIM: 0.7342  LPIPS: 0.1795  L1: 0.0429
+Number: 08708  | Average: PSNR: 28.2484  SSIM: 0.9023  LPIPS: 0.0697  L1: 0.0145 | Current batch: 622  PSNR: 23.6626  SSIM: 0.7910  LPIPS: 0.1533  L1: 0.0287
+Number: 08722  | Average: PSNR: 28.2390  SSIM: 0.9020  LPIPS: 0.0699  L1: 0.0145 | Current batch: 623  PSNR: 22.3735  SSIM: 0.7462  LPIPS: 0.1758  L1: 0.0329
+Number: 08736  | Average: PSNR: 28.2288  SSIM: 0.9018  LPIPS: 0.0700  L1: 0.0146 | Current batch: 624  PSNR: 21.8912  SSIM: 0.7621  LPIPS: 0.1644  L1: 0.0351
+Number: 08750  | Average: PSNR: 28.2175  SSIM: 0.9015  LPIPS: 0.0702  L1: 0.0146 | Current batch: 625  PSNR: 21.1445  SSIM: 0.7270  LPIPS: 0.1867  L1: 0.0400
+Number: 08764  | Average: PSNR: 28.2062  SSIM: 0.9013  LPIPS: 0.0704  L1: 0.0146 | Current batch: 626  PSNR: 21.1615  SSIM: 0.7572  LPIPS: 0.1622  L1: 0.0356
+Number: 08778  | Average: PSNR: 28.1980  SSIM: 0.9011  LPIPS: 0.0705  L1: 0.0147 | Current batch: 627  PSNR: 23.0699  SSIM: 0.7635  LPIPS: 0.1643  L1: 0.0301
+Number: 08792  | Average: PSNR: 28.1879  SSIM: 0.9008  LPIPS: 0.0707  L1: 0.0147 | Current batch: 628  PSNR: 21.8790  SSIM: 0.7522  LPIPS: 0.1688  L1: 0.0351
+Number: 08806  | Average: PSNR: 28.1789  SSIM: 0.9006  LPIPS: 0.0708  L1: 0.0147 | Current batch: 629  PSNR: 22.5271  SSIM: 0.7692  LPIPS: 0.1468  L1: 0.0320
+Number: 08820  | Average: PSNR: 28.1682  SSIM: 0.9004  LPIPS: 0.0709  L1: 0.0147 | Current batch: 630  PSNR: 21.4516  SSIM: 0.7555  LPIPS: 0.1650  L1: 0.0370
+Number: 08834  | Average: PSNR: 28.1580  SSIM: 0.9002  LPIPS: 0.0711  L1: 0.0148 | Current batch: 631  PSNR: 21.7009  SSIM: 0.7639  LPIPS: 0.1581  L1: 0.0354
+Number: 08848  | Average: PSNR: 28.1481  SSIM: 0.9000  LPIPS: 0.0712  L1: 0.0148 | Current batch: 632  PSNR: 21.8987  SSIM: 0.7608  LPIPS: 0.1669  L1: 0.0345
+Number: 08862  | Average: PSNR: 28.1393  SSIM: 0.8998  LPIPS: 0.0713  L1: 0.0148 | Current batch: 633  PSNR: 22.6048  SSIM: 0.7868  LPIPS: 0.1537  L1: 0.0290
+Number: 08876  | Average: PSNR: 28.1272  SSIM: 0.8995  LPIPS: 0.0715  L1: 0.0149 | Current batch: 634  PSNR: 20.4514  SSIM: 0.7290  LPIPS: 0.1837  L1: 0.0394
+Number: 08890  | Average: PSNR: 28.1176  SSIM: 0.8993  LPIPS: 0.0717  L1: 0.0149 | Current batch: 635  PSNR: 22.0357  SSIM: 0.7741  LPIPS: 0.1569  L1: 0.0319
+Number: 08904  | Average: PSNR: 28.1064  SSIM: 0.8991  LPIPS: 0.0718  L1: 0.0149 | Current batch: 636  PSNR: 20.9583  SSIM: 0.7556  LPIPS: 0.1688  L1: 0.0359
+Number: 08918  | Average: PSNR: 28.0944  SSIM: 0.8989  LPIPS: 0.0720  L1: 0.0150 | Current batch: 637  PSNR: 20.4673  SSIM: 0.7641  LPIPS: 0.1748  L1: 0.0375
+Number: 08932  | Average: PSNR: 28.0842  SSIM: 0.8987  LPIPS: 0.0721  L1: 0.0150 | Current batch: 638  PSNR: 21.6026  SSIM: 0.7665  LPIPS: 0.1623  L1: 0.0334
+Number: 08946  | Average: PSNR: 28.0733  SSIM: 0.8985  LPIPS: 0.0723  L1: 0.0150 | Current batch: 639  PSNR: 21.1120  SSIM: 0.7592  LPIPS: 0.1626  L1: 0.0362
+Number: 08960  | Average: PSNR: 28.0620  SSIM: 0.8982  LPIPS: 0.0724  L1: 0.0151 | Current batch: 640  PSNR: 20.8277  SSIM: 0.7418  LPIPS: 0.1673  L1: 0.0397
+Number: 08974  | Average: PSNR: 28.0501  SSIM: 0.8980  LPIPS: 0.0726  L1: 0.0151 | Current batch: 641  PSNR: 20.4792  SSIM: 0.7480  LPIPS: 0.1837  L1: 0.0422
+Number: 08988  | Average: PSNR: 28.0405  SSIM: 0.8978  LPIPS: 0.0727  L1: 0.0151 | Current batch: 642  PSNR: 21.8937  SSIM: 0.7510  LPIPS: 0.1704  L1: 0.0362
+Number: 09002  | Average: PSNR: 28.0321  SSIM: 0.8975  LPIPS: 0.0729  L1: 0.0152 | Current batch: 643  PSNR: 22.6121  SSIM: 0.7552  LPIPS: 0.1747  L1: 0.0339
+Number: 09016  | Average: PSNR: 28.0233  SSIM: 0.8974  LPIPS: 0.0730  L1: 0.0152 | Current batch: 644  PSNR: 22.3781  SSIM: 0.7883  LPIPS: 0.1417  L1: 0.0296
+Number: 09030  | Average: PSNR: 28.0123  SSIM: 0.8972  LPIPS: 0.0731  L1: 0.0152 | Current batch: 645  PSNR: 20.9138  SSIM: 0.7992  LPIPS: 0.1393  L1: 0.0346
+Number: 09044  | Average: PSNR: 28.0058  SSIM: 0.8971  LPIPS: 0.0732  L1: 0.0152 | Current batch: 646  PSNR: 23.8408  SSIM: 0.8136  LPIPS: 0.1154  L1: 0.0268
+Number: 09058  | Average: PSNR: 27.9952  SSIM: 0.8969  LPIPS: 0.0733  L1: 0.0153 | Current batch: 647  PSNR: 21.1355  SSIM: 0.7579  LPIPS: 0.1556  L1: 0.0375
+Number: 09072  | Average: PSNR: 27.9871  SSIM: 0.8967  LPIPS: 0.0734  L1: 0.0153 | Current batch: 648  PSNR: 22.7213  SSIM: 0.7850  LPIPS: 0.1539  L1: 0.0315
+Number: 09086  | Average: PSNR: 27.9768  SSIM: 0.8965  LPIPS: 0.0735  L1: 0.0153 | Current batch: 649  PSNR: 21.3328  SSIM: 0.7671  LPIPS: 0.1542  L1: 0.0377
+Number: 09100  | Average: PSNR: 27.9700  SSIM: 0.8963  LPIPS: 0.0736  L1: 0.0154 | Current batch: 650  PSNR: 23.5500  SSIM: 0.7779  LPIPS: 0.1381  L1: 0.0295
+Number: 09114  | Average: PSNR: 27.9610  SSIM: 0.8962  LPIPS: 0.0737  L1: 0.0154 | Current batch: 651  PSNR: 22.1255  SSIM: 0.8123  LPIPS: 0.1275  L1: 0.0325
+Number: 09128  | Average: PSNR: 27.9533  SSIM: 0.8961  LPIPS: 0.0738  L1: 0.0154 | Current batch: 652  PSNR: 22.9357  SSIM: 0.8292  LPIPS: 0.1172  L1: 0.0284
+Number: 09142  | Average: PSNR: 27.9430  SSIM: 0.8959  LPIPS: 0.0739  L1: 0.0154 | Current batch: 653  PSNR: 21.2076  SSIM: 0.7657  LPIPS: 0.1536  L1: 0.0364
+Number: 09156  | Average: PSNR: 27.9329  SSIM: 0.8957  LPIPS: 0.0740  L1: 0.0155 | Current batch: 654  PSNR: 21.3655  SSIM: 0.7707  LPIPS: 0.1413  L1: 0.0357
+Number: 09170  | Average: PSNR: 27.9248  SSIM: 0.8955  LPIPS: 0.0741  L1: 0.0155 | Current batch: 655  PSNR: 22.5677  SSIM: 0.7996  LPIPS: 0.1255  L1: 0.0312
+Number: 09184  | Average: PSNR: 27.9186  SSIM: 0.8954  LPIPS: 0.0742  L1: 0.0155 | Current batch: 656  PSNR: 23.8586  SSIM: 0.8040  LPIPS: 0.1238  L1: 0.0266
+Number: 09198  | Average: PSNR: 27.9086  SSIM: 0.8953  LPIPS: 0.0742  L1: 0.0155 | Current batch: 657  PSNR: 21.3683  SSIM: 0.8000  LPIPS: 0.1229  L1: 0.0348
+Number: 09212  | Average: PSNR: 27.9013  SSIM: 0.8951  LPIPS: 0.0743  L1: 0.0156 | Current batch: 658  PSNR: 23.1069  SSIM: 0.7930  LPIPS: 0.1357  L1: 0.0294
+Number: 09226  | Average: PSNR: 27.8922  SSIM: 0.8949  LPIPS: 0.0744  L1: 0.0156 | Current batch: 659  PSNR: 21.8959  SSIM: 0.7932  LPIPS: 0.1326  L1: 0.0330
+Number: 09240  | Average: PSNR: 27.8837  SSIM: 0.8948  LPIPS: 0.0745  L1: 0.0156 | Current batch: 660  PSNR: 22.3019  SSIM: 0.8053  LPIPS: 0.1262  L1: 0.0329
+Number: 09254  | Average: PSNR: 27.8755  SSIM: 0.8946  LPIPS: 0.0746  L1: 0.0156 | Current batch: 661  PSNR: 22.4770  SSIM: 0.7859  LPIPS: 0.1374  L1: 0.0316
+Number: 09268  | Average: PSNR: 27.8662  SSIM: 0.8945  LPIPS: 0.0747  L1: 0.0157 | Current batch: 662  PSNR: 21.6957  SSIM: 0.7791  LPIPS: 0.1405  L1: 0.0330
+Number: 09282  | Average: PSNR: 27.8572  SSIM: 0.8943  LPIPS: 0.0748  L1: 0.0157 | Current batch: 663  PSNR: 21.8971  SSIM: 0.7812  LPIPS: 0.1443  L1: 0.0342
+Number: 09296  | Average: PSNR: 27.8508  SSIM: 0.8942  LPIPS: 0.0749  L1: 0.0157 | Current batch: 664  PSNR: 23.5882  SSIM: 0.8307  LPIPS: 0.1188  L1: 0.0258
+Number: 09310  | Average: PSNR: 27.8421  SSIM: 0.8940  LPIPS: 0.0750  L1: 0.0157 | Current batch: 665  PSNR: 22.0652  SSIM: 0.7845  LPIPS: 0.1361  L1: 0.0334
+Number: 09324  | Average: PSNR: 27.8351  SSIM: 0.8939  LPIPS: 0.0751  L1: 0.0158 | Current batch: 666  PSNR: 23.1785  SSIM: 0.8015  LPIPS: 0.1367  L1: 0.0282
+Number: 09338  | Average: PSNR: 27.8275  SSIM: 0.8938  LPIPS: 0.0751  L1: 0.0158 | Current batch: 667  PSNR: 22.8202  SSIM: 0.8049  LPIPS: 0.1345  L1: 0.0310
+Number: 09352  | Average: PSNR: 27.8173  SSIM: 0.8936  LPIPS: 0.0753  L1: 0.0158 | Current batch: 668  PSNR: 21.0181  SSIM: 0.7709  LPIPS: 0.1579  L1: 0.0358
+Number: 09366  | Average: PSNR: 27.8113  SSIM: 0.8935  LPIPS: 0.0753  L1: 0.0158 | Current batch: 669  PSNR: 23.7984  SSIM: 0.8100  LPIPS: 0.1211  L1: 0.0269
+Number: 09380  | Average: PSNR: 27.8036  SSIM: 0.8933  LPIPS: 0.0754  L1: 0.0158 | Current batch: 670  PSNR: 22.6162  SSIM: 0.7993  LPIPS: 0.1350  L1: 0.0303
+Number: 09394  | Average: PSNR: 27.7955  SSIM: 0.8932  LPIPS: 0.0755  L1: 0.0159 | Current batch: 671  PSNR: 22.3706  SSIM: 0.8051  LPIPS: 0.1371  L1: 0.0333
+Number: 09408  | Average: PSNR: 27.7886  SSIM: 0.8930  LPIPS: 0.0756  L1: 0.0159 | Current batch: 672  PSNR: 23.1694  SSIM: 0.7928  LPIPS: 0.1253  L1: 0.0303
+Number: 09422  | Average: PSNR: 27.7807  SSIM: 0.8929  LPIPS: 0.0757  L1: 0.0159 | Current batch: 673  PSNR: 22.4497  SSIM: 0.7781  LPIPS: 0.1373  L1: 0.0312
+Number: 09436  | Average: PSNR: 27.7742  SSIM: 0.8927  LPIPS: 0.0758  L1: 0.0159 | Current batch: 674  PSNR: 23.4270  SSIM: 0.8084  LPIPS: 0.1283  L1: 0.0292
+Number: 09450  | Average: PSNR: 27.7669  SSIM: 0.8926  LPIPS: 0.0759  L1: 0.0160 | Current batch: 675  PSNR: 22.8299  SSIM: 0.7777  LPIPS: 0.1416  L1: 0.0314
+Number: 09464  | Average: PSNR: 27.7601  SSIM: 0.8924  LPIPS: 0.0759  L1: 0.0160 | Current batch: 676  PSNR: 23.1900  SSIM: 0.8093  LPIPS: 0.1198  L1: 0.0277
+Number: 09478  | Average: PSNR: 27.7528  SSIM: 0.8923  LPIPS: 0.0760  L1: 0.0160 | Current batch: 677  PSNR: 22.7835  SSIM: 0.7872  LPIPS: 0.1426  L1: 0.0297
+Number: 09492  | Average: PSNR: 27.7472  SSIM: 0.8922  LPIPS: 0.0761  L1: 0.0160 | Current batch: 678  PSNR: 23.9549  SSIM: 0.8051  LPIPS: 0.1316  L1: 0.0274
+Number: 09506  | Average: PSNR: 27.7384  SSIM: 0.8920  LPIPS: 0.0762  L1: 0.0160 | Current batch: 679  PSNR: 21.7990  SSIM: 0.7906  LPIPS: 0.1456  L1: 0.0342
+Number: 09520  | Average: PSNR: 27.7305  SSIM: 0.8918  LPIPS: 0.0763  L1: 0.0161 | Current batch: 680  PSNR: 22.3682  SSIM: 0.7710  LPIPS: 0.1445  L1: 0.0332
+Number: 09534  | Average: PSNR: 27.7265  SSIM: 0.8918  LPIPS: 0.0764  L1: 0.0161 | Current batch: 681  PSNR: 25.0181  SSIM: 0.8325  LPIPS: 0.1090  L1: 0.0229
+Number: 09548  | Average: PSNR: 27.7193  SSIM: 0.8916  LPIPS: 0.0764  L1: 0.0161 | Current batch: 682  PSNR: 22.7872  SSIM: 0.7853  LPIPS: 0.1364  L1: 0.0303
+Number: 09562  | Average: PSNR: 27.7116  SSIM: 0.8914  LPIPS: 0.0765  L1: 0.0161 | Current batch: 683  PSNR: 22.5008  SSIM: 0.7876  LPIPS: 0.1368  L1: 0.0343
+Number: 09576  | Average: PSNR: 27.7042  SSIM: 0.8913  LPIPS: 0.0766  L1: 0.0161 | Current batch: 684  PSNR: 22.6481  SSIM: 0.8178  LPIPS: 0.1196  L1: 0.0276
+Number: 09590  | Average: PSNR: 27.6968  SSIM: 0.8912  LPIPS: 0.0767  L1: 0.0162 | Current batch: 685  PSNR: 22.5814  SSIM: 0.7832  LPIPS: 0.1469  L1: 0.0332
+Number: 09604  | Average: PSNR: 27.6888  SSIM: 0.8910  LPIPS: 0.0768  L1: 0.0162 | Current batch: 686  PSNR: 22.2254  SSIM: 0.7904  LPIPS: 0.1369  L1: 0.0318
+Number: 09618  | Average: PSNR: 27.6830  SSIM: 0.8909  LPIPS: 0.0768  L1: 0.0162 | Current batch: 687  PSNR: 23.7101  SSIM: 0.8251  LPIPS: 0.1114  L1: 0.0274
+Number: 09632  | Average: PSNR: 27.6748  SSIM: 0.8908  LPIPS: 0.0769  L1: 0.0162 | Current batch: 688  PSNR: 22.0248  SSIM: 0.7806  LPIPS: 0.1363  L1: 0.0339
+Number: 09646  | Average: PSNR: 27.6696  SSIM: 0.8907  LPIPS: 0.0770  L1: 0.0162 | Current batch: 689  PSNR: 24.1280  SSIM: 0.8063  LPIPS: 0.1231  L1: 0.0277
+Number: 09660  | Average: PSNR: 27.6638  SSIM: 0.8905  LPIPS: 0.0771  L1: 0.0163 | Current batch: 690  PSNR: 23.6570  SSIM: 0.7906  LPIPS: 0.1401  L1: 0.0274
+Number: 09674  | Average: PSNR: 27.6564  SSIM: 0.8903  LPIPS: 0.0772  L1: 0.0163 | Current batch: 691  PSNR: 22.5427  SSIM: 0.7794  LPIPS: 0.1411  L1: 0.0320
+Number: 09688  | Average: PSNR: 27.6486  SSIM: 0.8902  LPIPS: 0.0773  L1: 0.0163 | Current batch: 692  PSNR: 22.2868  SSIM: 0.7670  LPIPS: 0.1510  L1: 0.0333
+Number: 09702  | Average: PSNR: 27.6419  SSIM: 0.8900  LPIPS: 0.0774  L1: 0.0163 | Current batch: 693  PSNR: 22.9956  SSIM: 0.7889  LPIPS: 0.1333  L1: 0.0294
+Number: 09716  | Average: PSNR: 27.6343  SSIM: 0.8899  LPIPS: 0.0775  L1: 0.0163 | Current batch: 694  PSNR: 22.3759  SSIM: 0.7799  LPIPS: 0.1477  L1: 0.0319
+Number: 09730  | Average: PSNR: 27.6277  SSIM: 0.8897  LPIPS: 0.0775  L1: 0.0164 | Current batch: 695  PSNR: 23.0249  SSIM: 0.7854  LPIPS: 0.1321  L1: 0.0303
+Number: 09744  | Average: PSNR: 27.6211  SSIM: 0.8896  LPIPS: 0.0776  L1: 0.0164 | Current batch: 696  PSNR: 23.0644  SSIM: 0.8068  LPIPS: 0.1290  L1: 0.0282
+Number: 09758  | Average: PSNR: 27.6136  SSIM: 0.8895  LPIPS: 0.0777  L1: 0.0164 | Current batch: 697  PSNR: 22.3820  SSIM: 0.7952  LPIPS: 0.1331  L1: 0.0311
+Number: 09772  | Average: PSNR: 27.6055  SSIM: 0.8893  LPIPS: 0.0778  L1: 0.0164 | Current batch: 698  PSNR: 21.9171  SSIM: 0.7879  LPIPS: 0.1380  L1: 0.0325
+Number: 09786  | Average: PSNR: 27.6003  SSIM: 0.8892  LPIPS: 0.0779  L1: 0.0164 | Current batch: 699  PSNR: 24.0089  SSIM: 0.8045  LPIPS: 0.1317  L1: 0.0270
+Number: 09800  | Average: PSNR: 27.5915  SSIM: 0.8890  LPIPS: 0.0780  L1: 0.0165 | Current batch: 700  PSNR: 21.4079  SSIM: 0.7816  LPIPS: 0.1427  L1: 0.0361
+Number: 09814  | Average: PSNR: 27.5838  SSIM: 0.8889  LPIPS: 0.0780  L1: 0.0165 | Current batch: 701  PSNR: 22.1922  SSIM: 0.8049  LPIPS: 0.1280  L1: 0.0312
+Number: 09828  | Average: PSNR: 27.5761  SSIM: 0.8888  LPIPS: 0.0781  L1: 0.0165 | Current batch: 702  PSNR: 22.2020  SSIM: 0.8069  LPIPS: 0.1370  L1: 0.0295
+Number: 09842  | Average: PSNR: 27.5686  SSIM: 0.8887  LPIPS: 0.0782  L1: 0.0165 | Current batch: 703  PSNR: 22.2948  SSIM: 0.7858  LPIPS: 0.1367  L1: 0.0327
+Number: 09856  | Average: PSNR: 27.5629  SSIM: 0.8885  LPIPS: 0.0783  L1: 0.0166 | Current batch: 704  PSNR: 23.5722  SSIM: 0.8137  LPIPS: 0.1315  L1: 0.0278
+Number: 09870  | Average: PSNR: 27.5565  SSIM: 0.8884  LPIPS: 0.0784  L1: 0.0166 | Current batch: 705  PSNR: 23.0545  SSIM: 0.7856  LPIPS: 0.1397  L1: 0.0296
+Number: 09884  | Average: PSNR: 27.5490  SSIM: 0.8883  LPIPS: 0.0784  L1: 0.0166 | Current batch: 706  PSNR: 22.2272  SSIM: 0.8180  LPIPS: 0.1321  L1: 0.0278
+Number: 09898  | Average: PSNR: 27.5406  SSIM: 0.8881  LPIPS: 0.0785  L1: 0.0166 | Current batch: 707  PSNR: 21.6573  SSIM: 0.7782  LPIPS: 0.1432  L1: 0.0342
+Number: 09912  | Average: PSNR: 27.5333  SSIM: 0.8880  LPIPS: 0.0786  L1: 0.0166 | Current batch: 708  PSNR: 22.3403  SSIM: 0.7974  LPIPS: 0.1290  L1: 0.0309
+Number: 09926  | Average: PSNR: 27.5268  SSIM: 0.8879  LPIPS: 0.0786  L1: 0.0166 | Current batch: 709  PSNR: 22.9574  SSIM: 0.8115  LPIPS: 0.1168  L1: 0.0291
+Number: 09940  | Average: PSNR: 27.5196  SSIM: 0.8878  LPIPS: 0.0787  L1: 0.0167 | Current batch: 710  PSNR: 22.3877  SSIM: 0.7789  LPIPS: 0.1419  L1: 0.0320
+Number: 09954  | Average: PSNR: 27.5128  SSIM: 0.8876  LPIPS: 0.0788  L1: 0.0167 | Current batch: 711  PSNR: 22.7019  SSIM: 0.7592  LPIPS: 0.1595  L1: 0.0322
+Number: 09968  | Average: PSNR: 27.5063  SSIM: 0.8874  LPIPS: 0.0789  L1: 0.0167 | Current batch: 712  PSNR: 22.8538  SSIM: 0.7794  LPIPS: 0.1367  L1: 0.0294
+Number: 09982  | Average: PSNR: 27.4987  SSIM: 0.8873  LPIPS: 0.0790  L1: 0.0167 | Current batch: 713  PSNR: 22.1127  SSIM: 0.7909  LPIPS: 0.1314  L1: 0.0322
+Number: 09996  | Average: PSNR: 27.4910  SSIM: 0.8871  LPIPS: 0.0791  L1: 0.0168 | Current batch: 714  PSNR: 21.9659  SSIM: 0.7732  LPIPS: 0.1455  L1: 0.0323
+Number: 10010  | Average: PSNR: 27.4825  SSIM: 0.8869  LPIPS: 0.0793  L1: 0.0168 | Current batch: 715  PSNR: 21.4152  SSIM: 0.7123  LPIPS: 0.2091  L1: 0.0415
+Number: 10024  | Average: PSNR: 27.4699  SSIM: 0.8865  LPIPS: 0.0795  L1: 0.0168 | Current batch: 716  PSNR: 18.5170  SSIM: 0.6468  LPIPS: 0.2573  L1: 0.0607
+Number: 10038  | Average: PSNR: 27.4557  SSIM: 0.8862  LPIPS: 0.0798  L1: 0.0169 | Current batch: 717  PSNR: 17.2571  SSIM: 0.6168  LPIPS: 0.2747  L1: 0.0658
+Number: 10052  | Average: PSNR: 27.4429  SSIM: 0.8858  LPIPS: 0.0801  L1: 0.0170 | Current batch: 718  PSNR: 18.2911  SSIM: 0.6303  LPIPS: 0.2733  L1: 0.0624
+Number: 10066  | Average: PSNR: 27.4307  SSIM: 0.8855  LPIPS: 0.0803  L1: 0.0170 | Current batch: 719  PSNR: 18.6362  SSIM: 0.6321  LPIPS: 0.2640  L1: 0.0566
+Number: 10080  | Average: PSNR: 27.4190  SSIM: 0.8851  LPIPS: 0.0806  L1: 0.0171 | Current batch: 720  PSNR: 18.9981  SSIM: 0.6308  LPIPS: 0.2662  L1: 0.0557
+Number: 10094  | Average: PSNR: 27.4067  SSIM: 0.8847  LPIPS: 0.0809  L1: 0.0171 | Current batch: 721  PSNR: 18.5393  SSIM: 0.6170  LPIPS: 0.2749  L1: 0.0583
+Number: 10108  | Average: PSNR: 27.3947  SSIM: 0.8844  LPIPS: 0.0811  L1: 0.0172 | Current batch: 722  PSNR: 18.7403  SSIM: 0.6350  LPIPS: 0.2842  L1: 0.0551
+Number: 10122  | Average: PSNR: 27.3823  SSIM: 0.8840  LPIPS: 0.0814  L1: 0.0173 | Current batch: 723  PSNR: 18.4382  SSIM: 0.6015  LPIPS: 0.2833  L1: 0.0600
+Number: 10136  | Average: PSNR: 27.3706  SSIM: 0.8836  LPIPS: 0.0817  L1: 0.0173 | Current batch: 724  PSNR: 18.9311  SSIM: 0.6235  LPIPS: 0.2710  L1: 0.0544
+Number: 10150  | Average: PSNR: 27.3581  SSIM: 0.8833  LPIPS: 0.0819  L1: 0.0174 | Current batch: 725  PSNR: 18.3120  SSIM: 0.6384  LPIPS: 0.2654  L1: 0.0615
+Number: 10164  | Average: PSNR: 27.3481  SSIM: 0.8830  LPIPS: 0.0822  L1: 0.0174 | Current batch: 726  PSNR: 20.1031  SSIM: 0.6698  LPIPS: 0.2469  L1: 0.0479
+Number: 10178  | Average: PSNR: 27.3370  SSIM: 0.8827  LPIPS: 0.0824  L1: 0.0175 | Current batch: 727  PSNR: 19.2777  SSIM: 0.6615  LPIPS: 0.2495  L1: 0.0525
+Number: 10192  | Average: PSNR: 27.3268  SSIM: 0.8824  LPIPS: 0.0826  L1: 0.0175 | Current batch: 728  PSNR: 19.9146  SSIM: 0.6524  LPIPS: 0.2603  L1: 0.0476
+Number: 10206  | Average: PSNR: 27.3153  SSIM: 0.8820  LPIPS: 0.0829  L1: 0.0176 | Current batch: 729  PSNR: 18.9411  SSIM: 0.6328  LPIPS: 0.2734  L1: 0.0559
+Number: 10220  | Average: PSNR: 27.3038  SSIM: 0.8817  LPIPS: 0.0831  L1: 0.0176 | Current batch: 730  PSNR: 18.9072  SSIM: 0.6493  LPIPS: 0.2661  L1: 0.0533
+Number: 10234  | Average: PSNR: 27.2926  SSIM: 0.8814  LPIPS: 0.0834  L1: 0.0177 | Current batch: 731  PSNR: 19.1434  SSIM: 0.6266  LPIPS: 0.2699  L1: 0.0533
+Number: 10248  | Average: PSNR: 27.2804  SSIM: 0.8810  LPIPS: 0.0837  L1: 0.0177 | Current batch: 732  PSNR: 18.3608  SSIM: 0.6192  LPIPS: 0.2754  L1: 0.0581
+Number: 10262  | Average: PSNR: 27.2687  SSIM: 0.8807  LPIPS: 0.0839  L1: 0.0178 | Current batch: 733  PSNR: 18.6706  SSIM: 0.6386  LPIPS: 0.2706  L1: 0.0554
+Number: 10276  | Average: PSNR: 27.2591  SSIM: 0.8804  LPIPS: 0.0841  L1: 0.0178 | Current batch: 734  PSNR: 20.2533  SSIM: 0.6688  LPIPS: 0.2341  L1: 0.0498
+Number: 10290  | Average: PSNR: 27.2475  SSIM: 0.8801  LPIPS: 0.0844  L1: 0.0179 | Current batch: 735  PSNR: 18.7123  SSIM: 0.6305  LPIPS: 0.2614  L1: 0.0579
+Number: 10304  | Average: PSNR: 27.2355  SSIM: 0.8797  LPIPS: 0.0846  L1: 0.0179 | Current batch: 736  PSNR: 18.4418  SSIM: 0.6418  LPIPS: 0.2678  L1: 0.0550
+Number: 10318  | Average: PSNR: 27.2225  SSIM: 0.8794  LPIPS: 0.0849  L1: 0.0180 | Current batch: 737  PSNR: 17.6300  SSIM: 0.6120  LPIPS: 0.2788  L1: 0.0632
+Number: 10332  | Average: PSNR: 27.2104  SSIM: 0.8790  LPIPS: 0.0851  L1: 0.0180 | Current batch: 738  PSNR: 18.2803  SSIM: 0.6293  LPIPS: 0.2731  L1: 0.0574
+Number: 10346  | Average: PSNR: 27.1996  SSIM: 0.8787  LPIPS: 0.0854  L1: 0.0181 | Current batch: 739  PSNR: 19.2654  SSIM: 0.6484  LPIPS: 0.2491  L1: 0.0541
+Number: 10360  | Average: PSNR: 27.1887  SSIM: 0.8784  LPIPS: 0.0856  L1: 0.0181 | Current batch: 740  PSNR: 19.0948  SSIM: 0.6385  LPIPS: 0.2732  L1: 0.0537
+Number: 10374  | Average: PSNR: 27.1765  SSIM: 0.8780  LPIPS: 0.0859  L1: 0.0182 | Current batch: 741  PSNR: 18.1761  SSIM: 0.6059  LPIPS: 0.2856  L1: 0.0608
+Number: 10388  | Average: PSNR: 27.1639  SSIM: 0.8777  LPIPS: 0.0861  L1: 0.0182 | Current batch: 742  PSNR: 17.7942  SSIM: 0.6177  LPIPS: 0.2830  L1: 0.0653
+Number: 10402  | Average: PSNR: 27.1499  SSIM: 0.8773  LPIPS: 0.0865  L1: 0.0183 | Current batch: 743  PSNR: 16.8072  SSIM: 0.5773  LPIPS: 0.3179  L1: 0.0723
+Number: 10416  | Average: PSNR: 27.1381  SSIM: 0.8769  LPIPS: 0.0867  L1: 0.0184 | Current batch: 744  PSNR: 18.3323  SSIM: 0.6286  LPIPS: 0.2866  L1: 0.0577
+Number: 10430  | Average: PSNR: 27.1278  SSIM: 0.8766  LPIPS: 0.0870  L1: 0.0184 | Current batch: 745  PSNR: 19.4519  SSIM: 0.6562  LPIPS: 0.2598  L1: 0.0509
+Number: 10444  | Average: PSNR: 27.1188  SSIM: 0.8764  LPIPS: 0.0872  L1: 0.0185 | Current batch: 746  PSNR: 20.4556  SSIM: 0.6663  LPIPS: 0.2457  L1: 0.0487
+Number: 10458  | Average: PSNR: 27.1073  SSIM: 0.8761  LPIPS: 0.0874  L1: 0.0185 | Current batch: 747  PSNR: 18.5312  SSIM: 0.6538  LPIPS: 0.2535  L1: 0.0544
+Number: 10472  | Average: PSNR: 27.0957  SSIM: 0.8757  LPIPS: 0.0876  L1: 0.0186 | Current batch: 748  PSNR: 18.3948  SSIM: 0.6219  LPIPS: 0.2579  L1: 0.0589
+Number: 10486  | Average: PSNR: 27.0843  SSIM: 0.8754  LPIPS: 0.0879  L1: 0.0186 | Current batch: 749  PSNR: 18.5522  SSIM: 0.6520  LPIPS: 0.2631  L1: 0.0586
+Number: 10500  | Average: PSNR: 27.0733  SSIM: 0.8751  LPIPS: 0.0881  L1: 0.0187 | Current batch: 750  PSNR: 18.8346  SSIM: 0.6224  LPIPS: 0.2831  L1: 0.0574
+Number: 10514  | Average: PSNR: 27.0619  SSIM: 0.8748  LPIPS: 0.0883  L1: 0.0187 | Current batch: 751  PSNR: 18.5342  SSIM: 0.6448  LPIPS: 0.2572  L1: 0.0552
+Number: 10528  | Average: PSNR: 27.0531  SSIM: 0.8745  LPIPS: 0.0885  L1: 0.0187 | Current batch: 752  PSNR: 20.4593  SSIM: 0.6589  LPIPS: 0.2387  L1: 0.0492
+Number: 10542  | Average: PSNR: 27.0428  SSIM: 0.8742  LPIPS: 0.0887  L1: 0.0188 | Current batch: 753  PSNR: 19.2811  SSIM: 0.6605  LPIPS: 0.2475  L1: 0.0514
+Number: 10556  | Average: PSNR: 27.0319  SSIM: 0.8738  LPIPS: 0.0890  L1: 0.0188 | Current batch: 754  PSNR: 18.8211  SSIM: 0.5926  LPIPS: 0.2966  L1: 0.0582
+Number: 10570  | Average: PSNR: 27.0202  SSIM: 0.8735  LPIPS: 0.0893  L1: 0.0189 | Current batch: 755  PSNR: 18.2157  SSIM: 0.6346  LPIPS: 0.2663  L1: 0.0568
+Number: 10584  | Average: PSNR: 27.0098  SSIM: 0.8732  LPIPS: 0.0895  L1: 0.0189 | Current batch: 756  PSNR: 19.1443  SSIM: 0.6028  LPIPS: 0.2676  L1: 0.0541
+Number: 10598  | Average: PSNR: 27.0004  SSIM: 0.8729  LPIPS: 0.0897  L1: 0.0190 | Current batch: 757  PSNR: 19.9196  SSIM: 0.6500  LPIPS: 0.2610  L1: 0.0520
+Number: 10612  | Average: PSNR: 26.9893  SSIM: 0.8725  LPIPS: 0.0900  L1: 0.0190 | Current batch: 758  PSNR: 18.5789  SSIM: 0.6287  LPIPS: 0.2660  L1: 0.0567
+Number: 10626  | Average: PSNR: 26.9800  SSIM: 0.8723  LPIPS: 0.0902  L1: 0.0191 | Current batch: 759  PSNR: 19.9420  SSIM: 0.6597  LPIPS: 0.2561  L1: 0.0498
+Number: 10640  | Average: PSNR: 26.9686  SSIM: 0.8719  LPIPS: 0.0904  L1: 0.0191 | Current batch: 760  PSNR: 18.2488  SSIM: 0.6234  LPIPS: 0.2784  L1: 0.0635
+Number: 10654  | Average: PSNR: 26.9575  SSIM: 0.8716  LPIPS: 0.0907  L1: 0.0192 | Current batch: 761  PSNR: 18.5767  SSIM: 0.6475  LPIPS: 0.2693  L1: 0.0581
+Number: 10668  | Average: PSNR: 26.9465  SSIM: 0.8713  LPIPS: 0.0909  L1: 0.0192 | Current batch: 762  PSNR: 18.5848  SSIM: 0.6198  LPIPS: 0.2764  L1: 0.0595
+Number: 10682  | Average: PSNR: 26.9351  SSIM: 0.8710  LPIPS: 0.0911  L1: 0.0193 | Current batch: 763  PSNR: 18.2388  SSIM: 0.6218  LPIPS: 0.2762  L1: 0.0577
+Number: 10696  | Average: PSNR: 26.9248  SSIM: 0.8707  LPIPS: 0.0914  L1: 0.0193 | Current batch: 764  PSNR: 19.0770  SSIM: 0.6323  LPIPS: 0.2663  L1: 0.0518
+Number: 10710  | Average: PSNR: 26.9134  SSIM: 0.8703  LPIPS: 0.0916  L1: 0.0194 | Current batch: 765  PSNR: 18.1973  SSIM: 0.6135  LPIPS: 0.2748  L1: 0.0627
+Number: 10724  | Average: PSNR: 26.9022  SSIM: 0.8700  LPIPS: 0.0918  L1: 0.0194 | Current batch: 766  PSNR: 18.3285  SSIM: 0.6201  LPIPS: 0.2735  L1: 0.0595
+Number: 10738  | Average: PSNR: 26.8919  SSIM: 0.8697  LPIPS: 0.0921  L1: 0.0195 | Current batch: 767  PSNR: 19.0238  SSIM: 0.6401  LPIPS: 0.2596  L1: 0.0538
+Number: 10752  | Average: PSNR: 26.8825  SSIM: 0.8694  LPIPS: 0.0923  L1: 0.0195 | Current batch: 768  PSNR: 19.6541  SSIM: 0.6645  LPIPS: 0.2439  L1: 0.0517
+Number: 10766  | Average: PSNR: 26.8736  SSIM: 0.8692  LPIPS: 0.0925  L1: 0.0196 | Current batch: 769  PSNR: 20.0172  SSIM: 0.6530  LPIPS: 0.2433  L1: 0.0565
+Number: 10780  | Average: PSNR: 26.8617  SSIM: 0.8688  LPIPS: 0.0927  L1: 0.0196 | Current batch: 770  PSNR: 17.7084  SSIM: 0.6211  LPIPS: 0.2704  L1: 0.0612
+Number: 10794  | Average: PSNR: 26.8508  SSIM: 0.8685  LPIPS: 0.0929  L1: 0.0197 | Current batch: 771  PSNR: 18.4672  SSIM: 0.6405  LPIPS: 0.2527  L1: 0.0558
+Number: 10808  | Average: PSNR: 26.8395  SSIM: 0.8682  LPIPS: 0.0932  L1: 0.0197 | Current batch: 772  PSNR: 18.1011  SSIM: 0.6129  LPIPS: 0.2876  L1: 0.0617
+Number: 10822  | Average: PSNR: 26.8273  SSIM: 0.8679  LPIPS: 0.0934  L1: 0.0198 | Current batch: 773  PSNR: 17.4608  SSIM: 0.6204  LPIPS: 0.2738  L1: 0.0613
+Number: 10836  | Average: PSNR: 26.8171  SSIM: 0.8676  LPIPS: 0.0936  L1: 0.0198 | Current batch: 774  PSNR: 18.8665  SSIM: 0.6473  LPIPS: 0.2519  L1: 0.0554
+Number: 10850  | Average: PSNR: 26.8083  SSIM: 0.8673  LPIPS: 0.0938  L1: 0.0199 | Current batch: 775  PSNR: 20.0533  SSIM: 0.6681  LPIPS: 0.2439  L1: 0.0506
+Number: 10864  | Average: PSNR: 26.7993  SSIM: 0.8671  LPIPS: 0.0940  L1: 0.0199 | Current batch: 776  PSNR: 19.7752  SSIM: 0.6487  LPIPS: 0.2534  L1: 0.0497
+Number: 10878  | Average: PSNR: 26.7874  SSIM: 0.8667  LPIPS: 0.0942  L1: 0.0200 | Current batch: 777  PSNR: 17.5714  SSIM: 0.6188  LPIPS: 0.2875  L1: 0.0663
+Number: 10892  | Average: PSNR: 26.7756  SSIM: 0.8664  LPIPS: 0.0945  L1: 0.0200 | Current batch: 778  PSNR: 17.6491  SSIM: 0.6055  LPIPS: 0.2679  L1: 0.0643
+Number: 10906  | Average: PSNR: 26.7668  SSIM: 0.8661  LPIPS: 0.0947  L1: 0.0201 | Current batch: 779  PSNR: 19.9083  SSIM: 0.6312  LPIPS: 0.2619  L1: 0.0535
+Number: 10920  | Average: PSNR: 26.7561  SSIM: 0.8658  LPIPS: 0.0949  L1: 0.0201 | Current batch: 780  PSNR: 18.3745  SSIM: 0.6432  LPIPS: 0.2526  L1: 0.0598
+Number: 10934  | Average: PSNR: 26.7465  SSIM: 0.8655  LPIPS: 0.0951  L1: 0.0202 | Current batch: 781  PSNR: 19.2800  SSIM: 0.6276  LPIPS: 0.2731  L1: 0.0548
+Number: 10948  | Average: PSNR: 26.7358  SSIM: 0.8652  LPIPS: 0.0953  L1: 0.0202 | Current batch: 782  PSNR: 18.3934  SSIM: 0.6442  LPIPS: 0.2592  L1: 0.0593
+Number: 10962  | Average: PSNR: 26.7296  SSIM: 0.8650  LPIPS: 0.0955  L1: 0.0202 | Current batch: 783  PSNR: 21.8341  SSIM: 0.6979  LPIPS: 0.2202  L1: 0.0427
+Number: 10976  | Average: PSNR: 26.7186  SSIM: 0.8647  LPIPS: 0.0957  L1: 0.0203 | Current batch: 784  PSNR: 18.1377  SSIM: 0.6141  LPIPS: 0.2729  L1: 0.0609
+Number: 10990  | Average: PSNR: 26.7099  SSIM: 0.8644  LPIPS: 0.0959  L1: 0.0203 | Current batch: 785  PSNR: 19.8825  SSIM: 0.6607  LPIPS: 0.2482  L1: 0.0470
+Number: 11004  | Average: PSNR: 26.6998  SSIM: 0.8641  LPIPS: 0.0961  L1: 0.0204 | Current batch: 786  PSNR: 18.8222  SSIM: 0.6301  LPIPS: 0.2505  L1: 0.0563
+Number: 11018  | Average: PSNR: 26.6922  SSIM: 0.8639  LPIPS: 0.0962  L1: 0.0204 | Current batch: 787  PSNR: 20.6966  SSIM: 0.7004  LPIPS: 0.2026  L1: 0.0440
+Number: 11032  | Average: PSNR: 26.6834  SSIM: 0.8637  LPIPS: 0.0964  L1: 0.0204 | Current batch: 788  PSNR: 19.7263  SSIM: 0.7081  LPIPS: 0.1963  L1: 0.0476
+Number: 11046  | Average: PSNR: 26.6775  SSIM: 0.8636  LPIPS: 0.0965  L1: 0.0205 | Current batch: 789  PSNR: 22.0820  SSIM: 0.7252  LPIPS: 0.1953  L1: 0.0399
+Number: 11060  | Average: PSNR: 26.6684  SSIM: 0.8633  LPIPS: 0.0966  L1: 0.0205 | Current batch: 790  PSNR: 19.4700  SSIM: 0.6800  LPIPS: 0.2146  L1: 0.0515
+Number: 11074  | Average: PSNR: 26.6619  SSIM: 0.8631  LPIPS: 0.0968  L1: 0.0205 | Current batch: 791  PSNR: 21.5274  SSIM: 0.7016  LPIPS: 0.1969  L1: 0.0430
+Number: 11088  | Average: PSNR: 26.6531  SSIM: 0.8629  LPIPS: 0.0969  L1: 0.0206 | Current batch: 792  PSNR: 19.6348  SSIM: 0.6760  LPIPS: 0.2153  L1: 0.0472
+Number: 11102  | Average: PSNR: 26.6455  SSIM: 0.8627  LPIPS: 0.0970  L1: 0.0206 | Current batch: 793  PSNR: 20.6378  SSIM: 0.7202  LPIPS: 0.1860  L1: 0.0438
+Number: 11116  | Average: PSNR: 26.6378  SSIM: 0.8625  LPIPS: 0.0972  L1: 0.0206 | Current batch: 794  PSNR: 20.5538  SSIM: 0.6795  LPIPS: 0.2180  L1: 0.0439
+Number: 11130  | Average: PSNR: 26.6288  SSIM: 0.8622  LPIPS: 0.0973  L1: 0.0207 | Current batch: 795  PSNR: 19.4668  SSIM: 0.6501  LPIPS: 0.2240  L1: 0.0555
+Number: 11144  | Average: PSNR: 26.6216  SSIM: 0.8620  LPIPS: 0.0974  L1: 0.0207 | Current batch: 796  PSNR: 20.8978  SSIM: 0.7192  LPIPS: 0.1813  L1: 0.0412
+Number: 11158  | Average: PSNR: 26.6142  SSIM: 0.8619  LPIPS: 0.0976  L1: 0.0207 | Current batch: 797  PSNR: 20.7219  SSIM: 0.7236  LPIPS: 0.1897  L1: 0.0443
+Number: 11172  | Average: PSNR: 26.6049  SSIM: 0.8616  LPIPS: 0.0977  L1: 0.0208 | Current batch: 798  PSNR: 19.2398  SSIM: 0.6931  LPIPS: 0.2030  L1: 0.0498
+Number: 11186  | Average: PSNR: 26.5964  SSIM: 0.8614  LPIPS: 0.0978  L1: 0.0208 | Current batch: 799  PSNR: 19.7507  SSIM: 0.6992  LPIPS: 0.2117  L1: 0.0503
+Number: 11200  | Average: PSNR: 26.5875  SSIM: 0.8612  LPIPS: 0.0980  L1: 0.0208 | Current batch: 800  PSNR: 19.5013  SSIM: 0.6921  LPIPS: 0.2086  L1: 0.0517
+Number: 11214  | Average: PSNR: 26.5777  SSIM: 0.8610  LPIPS: 0.0981  L1: 0.0209 | Current batch: 801  PSNR: 18.7436  SSIM: 0.6990  LPIPS: 0.2007  L1: 0.0524
+Number: 11228  | Average: PSNR: 26.5680  SSIM: 0.8608  LPIPS: 0.0983  L1: 0.0209 | Current batch: 802  PSNR: 18.7652  SSIM: 0.6622  LPIPS: 0.2261  L1: 0.0518
+Number: 11242  | Average: PSNR: 26.5595  SSIM: 0.8606  LPIPS: 0.0984  L1: 0.0209 | Current batch: 803  PSNR: 19.7614  SSIM: 0.6891  LPIPS: 0.2148  L1: 0.0477
+Number: 11256  | Average: PSNR: 26.5500  SSIM: 0.8604  LPIPS: 0.0985  L1: 0.0210 | Current batch: 804  PSNR: 18.9527  SSIM: 0.7111  LPIPS: 0.1929  L1: 0.0510
+Number: 11270  | Average: PSNR: 26.5415  SSIM: 0.8602  LPIPS: 0.0987  L1: 0.0210 | Current batch: 805  PSNR: 19.6659  SSIM: 0.6918  LPIPS: 0.2064  L1: 0.0482
+Number: 11284  | Average: PSNR: 26.5332  SSIM: 0.8600  LPIPS: 0.0988  L1: 0.0210 | Current batch: 806  PSNR: 19.8576  SSIM: 0.7139  LPIPS: 0.1958  L1: 0.0474
+Number: 11298  | Average: PSNR: 26.5254  SSIM: 0.8598  LPIPS: 0.0989  L1: 0.0211 | Current batch: 807  PSNR: 20.2950  SSIM: 0.6746  LPIPS: 0.2168  L1: 0.0466
+Number: 11312  | Average: PSNR: 26.5162  SSIM: 0.8595  LPIPS: 0.0991  L1: 0.0211 | Current batch: 808  PSNR: 19.0625  SSIM: 0.6785  LPIPS: 0.2173  L1: 0.0529
+Number: 11326  | Average: PSNR: 26.5089  SSIM: 0.8593  LPIPS: 0.0992  L1: 0.0212 | Current batch: 809  PSNR: 20.5987  SSIM: 0.6750  LPIPS: 0.2248  L1: 0.0472
+Number: 11340  | Average: PSNR: 26.5015  SSIM: 0.8591  LPIPS: 0.0993  L1: 0.0212 | Current batch: 810  PSNR: 20.5577  SSIM: 0.7087  LPIPS: 0.2012  L1: 0.0442
+Number: 11354  | Average: PSNR: 26.4946  SSIM: 0.8589  LPIPS: 0.0995  L1: 0.0212 | Current batch: 811  PSNR: 20.8764  SSIM: 0.6899  LPIPS: 0.2010  L1: 0.0437
+Number: 11368  | Average: PSNR: 26.4873  SSIM: 0.8587  LPIPS: 0.0996  L1: 0.0212 | Current batch: 812  PSNR: 20.5326  SSIM: 0.6858  LPIPS: 0.2062  L1: 0.0471
+Number: 11382  | Average: PSNR: 26.4801  SSIM: 0.8585  LPIPS: 0.0997  L1: 0.0213 | Current batch: 813  PSNR: 20.6484  SSIM: 0.7131  LPIPS: 0.1968  L1: 0.0437
+Number: 11396  | Average: PSNR: 26.4707  SSIM: 0.8583  LPIPS: 0.0999  L1: 0.0213 | Current batch: 814  PSNR: 18.8628  SSIM: 0.6649  LPIPS: 0.2174  L1: 0.0551
+Number: 11410  | Average: PSNR: 26.4634  SSIM: 0.8581  LPIPS: 0.1000  L1: 0.0213 | Current batch: 815  PSNR: 20.4752  SSIM: 0.7118  LPIPS: 0.1938  L1: 0.0450
+Number: 11424  | Average: PSNR: 26.4556  SSIM: 0.8579  LPIPS: 0.1001  L1: 0.0214 | Current batch: 816  PSNR: 20.1542  SSIM: 0.6839  LPIPS: 0.2084  L1: 0.0460
+Number: 11438  | Average: PSNR: 26.4493  SSIM: 0.8577  LPIPS: 0.1002  L1: 0.0214 | Current batch: 817  PSNR: 21.2553  SSIM: 0.7136  LPIPS: 0.1898  L1: 0.0407
+Number: 11452  | Average: PSNR: 26.4402  SSIM: 0.8574  LPIPS: 0.1004  L1: 0.0214 | Current batch: 818  PSNR: 19.0098  SSIM: 0.6361  LPIPS: 0.2267  L1: 0.0555
+Number: 11466  | Average: PSNR: 26.4321  SSIM: 0.8572  LPIPS: 0.1005  L1: 0.0215 | Current batch: 819  PSNR: 19.8567  SSIM: 0.6790  LPIPS: 0.2235  L1: 0.0520
+Number: 11480  | Average: PSNR: 26.4246  SSIM: 0.8571  LPIPS: 0.1007  L1: 0.0215 | Current batch: 820  PSNR: 20.2245  SSIM: 0.7152  LPIPS: 0.2074  L1: 0.0448
+Number: 11494  | Average: PSNR: 26.4165  SSIM: 0.8568  LPIPS: 0.1008  L1: 0.0215 | Current batch: 821  PSNR: 19.8092  SSIM: 0.6657  LPIPS: 0.2154  L1: 0.0492
+Number: 11508  | Average: PSNR: 26.4084  SSIM: 0.8566  LPIPS: 0.1009  L1: 0.0216 | Current batch: 822  PSNR: 19.7599  SSIM: 0.6705  LPIPS: 0.2167  L1: 0.0515
+Number: 11522  | Average: PSNR: 26.4015  SSIM: 0.8564  LPIPS: 0.1011  L1: 0.0216 | Current batch: 823  PSNR: 20.6994  SSIM: 0.6991  LPIPS: 0.1985  L1: 0.0445
+Number: 11536  | Average: PSNR: 26.3941  SSIM: 0.8562  LPIPS: 0.1012  L1: 0.0216 | Current batch: 824  PSNR: 20.3293  SSIM: 0.6792  LPIPS: 0.2001  L1: 0.0453
+Number: 11550  | Average: PSNR: 26.3861  SSIM: 0.8559  LPIPS: 0.1013  L1: 0.0217 | Current batch: 825  PSNR: 19.8241  SSIM: 0.6505  LPIPS: 0.2172  L1: 0.0497
+Number: 11564  | Average: PSNR: 26.3784  SSIM: 0.8557  LPIPS: 0.1014  L1: 0.0217 | Current batch: 826  PSNR: 19.9731  SSIM: 0.7016  LPIPS: 0.1984  L1: 0.0487
+Number: 11578  | Average: PSNR: 26.3717  SSIM: 0.8556  LPIPS: 0.1016  L1: 0.0217 | Current batch: 827  PSNR: 20.8556  SSIM: 0.7004  LPIPS: 0.1961  L1: 0.0423
+Number: 11592  | Average: PSNR: 26.3645  SSIM: 0.8554  LPIPS: 0.1017  L1: 0.0217 | Current batch: 828  PSNR: 20.4384  SSIM: 0.7092  LPIPS: 0.2007  L1: 0.0430
+Number: 11606  | Average: PSNR: 26.3569  SSIM: 0.8552  LPIPS: 0.1018  L1: 0.0218 | Current batch: 829  PSNR: 20.0402  SSIM: 0.6900  LPIPS: 0.2034  L1: 0.0474
+Number: 11620  | Average: PSNR: 26.3488  SSIM: 0.8550  LPIPS: 0.1019  L1: 0.0218 | Current batch: 830  PSNR: 19.6628  SSIM: 0.6994  LPIPS: 0.1925  L1: 0.0538
+Number: 11634  | Average: PSNR: 26.3431  SSIM: 0.8549  LPIPS: 0.1020  L1: 0.0218 | Current batch: 831  PSNR: 21.6086  SSIM: 0.7331  LPIPS: 0.1919  L1: 0.0383
+Number: 11648  | Average: PSNR: 26.3360  SSIM: 0.8547  LPIPS: 0.1021  L1: 0.0219 | Current batch: 832  PSNR: 20.3710  SSIM: 0.7119  LPIPS: 0.1999  L1: 0.0454
+Number: 11662  | Average: PSNR: 26.3277  SSIM: 0.8545  LPIPS: 0.1023  L1: 0.0219 | Current batch: 833  PSNR: 19.4857  SSIM: 0.6876  LPIPS: 0.2149  L1: 0.0486
+Number: 11676  | Average: PSNR: 26.3190  SSIM: 0.8543  LPIPS: 0.1024  L1: 0.0219 | Current batch: 834  PSNR: 19.0499  SSIM: 0.6839  LPIPS: 0.2194  L1: 0.0518
+Number: 11690  | Average: PSNR: 26.3108  SSIM: 0.8541  LPIPS: 0.1026  L1: 0.0220 | Current batch: 835  PSNR: 19.4626  SSIM: 0.6688  LPIPS: 0.2238  L1: 0.0551
+Number: 11704  | Average: PSNR: 26.3042  SSIM: 0.8539  LPIPS: 0.1026  L1: 0.0220 | Current batch: 836  PSNR: 20.7572  SSIM: 0.7186  LPIPS: 0.1845  L1: 0.0420
+Number: 11718  | Average: PSNR: 26.2965  SSIM: 0.8537  LPIPS: 0.1028  L1: 0.0220 | Current batch: 837  PSNR: 19.8915  SSIM: 0.6963  LPIPS: 0.1973  L1: 0.0479
+Number: 11732  | Average: PSNR: 26.2880  SSIM: 0.8535  LPIPS: 0.1029  L1: 0.0221 | Current batch: 838  PSNR: 19.1745  SSIM: 0.6547  LPIPS: 0.2277  L1: 0.0570
+Number: 11746  | Average: PSNR: 26.2827  SSIM: 0.8533  LPIPS: 0.1030  L1: 0.0221 | Current batch: 839  PSNR: 21.8624  SSIM: 0.7304  LPIPS: 0.1866  L1: 0.0371
+Number: 11760  | Average: PSNR: 26.2744  SSIM: 0.8531  LPIPS: 0.1032  L1: 0.0221 | Current batch: 840  PSNR: 19.2606  SSIM: 0.6891  LPIPS: 0.2207  L1: 0.0529
+Number: 11774  | Average: PSNR: 26.2678  SSIM: 0.8530  LPIPS: 0.1032  L1: 0.0221 | Current batch: 841  PSNR: 20.7905  SSIM: 0.7464  LPIPS: 0.1759  L1: 0.0416
+Number: 11788  | Average: PSNR: 26.2592  SSIM: 0.8528  LPIPS: 0.1034  L1: 0.0222 | Current batch: 842  PSNR: 19.0278  SSIM: 0.6620  LPIPS: 0.2317  L1: 0.0549
+Number: 11802  | Average: PSNR: 26.2518  SSIM: 0.8526  LPIPS: 0.1035  L1: 0.0222 | Current batch: 843  PSNR: 19.9953  SSIM: 0.7081  LPIPS: 0.2029  L1: 0.0484
+Number: 11816  | Average: PSNR: 26.2434  SSIM: 0.8524  LPIPS: 0.1037  L1: 0.0223 | Current batch: 844  PSNR: 19.1257  SSIM: 0.6682  LPIPS: 0.2298  L1: 0.0546
+Number: 11830  | Average: PSNR: 26.2368  SSIM: 0.8522  LPIPS: 0.1038  L1: 0.0223 | Current batch: 845  PSNR: 20.6874  SSIM: 0.7153  LPIPS: 0.1947  L1: 0.0399
+Number: 11844  | Average: PSNR: 26.2291  SSIM: 0.8520  LPIPS: 0.1039  L1: 0.0223 | Current batch: 846  PSNR: 19.6933  SSIM: 0.6944  LPIPS: 0.2137  L1: 0.0503
+Number: 11858  | Average: PSNR: 26.2205  SSIM: 0.8518  LPIPS: 0.1040  L1: 0.0223 | Current batch: 847  PSNR: 18.9686  SSIM: 0.6696  LPIPS: 0.2242  L1: 0.0530
+Number: 11872  | Average: PSNR: 26.2129  SSIM: 0.8516  LPIPS: 0.1042  L1: 0.0224 | Current batch: 848  PSNR: 19.7672  SSIM: 0.6719  LPIPS: 0.2236  L1: 0.0487
+Number: 11886  | Average: PSNR: 26.2047  SSIM: 0.8514  LPIPS: 0.1043  L1: 0.0224 | Current batch: 849  PSNR: 19.2861  SSIM: 0.6546  LPIPS: 0.2273  L1: 0.0525
+Number: 11900  | Average: PSNR: 26.1961  SSIM: 0.8512  LPIPS: 0.1045  L1: 0.0224 | Current batch: 850  PSNR: 18.8979  SSIM: 0.6681  LPIPS: 0.2207  L1: 0.0518
+Number: 11914  | Average: PSNR: 26.1891  SSIM: 0.8510  LPIPS: 0.1046  L1: 0.0225 | Current batch: 851  PSNR: 20.1953  SSIM: 0.7084  LPIPS: 0.1985  L1: 0.0459
+Number: 11928  | Average: PSNR: 26.1818  SSIM: 0.8508  LPIPS: 0.1047  L1: 0.0225 | Current batch: 852  PSNR: 20.0075  SSIM: 0.6928  LPIPS: 0.1992  L1: 0.0472
+Number: 11942  | Average: PSNR: 26.1773  SSIM: 0.8507  LPIPS: 0.1048  L1: 0.0225 | Current batch: 853  PSNR: 22.3538  SSIM: 0.7477  LPIPS: 0.1695  L1: 0.0366
+Number: 11956  | Average: PSNR: 26.1688  SSIM: 0.8505  LPIPS: 0.1049  L1: 0.0226 | Current batch: 854  PSNR: 18.8781  SSIM: 0.6690  LPIPS: 0.2251  L1: 0.0526
+Number: 11970  | Average: PSNR: 26.1602  SSIM: 0.8502  LPIPS: 0.1051  L1: 0.0226 | Current batch: 855  PSNR: 18.7987  SSIM: 0.6528  LPIPS: 0.2403  L1: 0.0568
+Number: 11984  | Average: PSNR: 26.1518  SSIM: 0.8500  LPIPS: 0.1052  L1: 0.0226 | Current batch: 856  PSNR: 18.9950  SSIM: 0.6668  LPIPS: 0.2144  L1: 0.0546
+Number: 11998  | Average: PSNR: 26.1430  SSIM: 0.8498  LPIPS: 0.1053  L1: 0.0227 | Current batch: 857  PSNR: 18.6149  SSIM: 0.6482  LPIPS: 0.2354  L1: 0.0568
+Setting up [LPIPS] perceptual loss: trunk [alex], v[0.1], spatial [off]
+Loading model from: C:\Users\aceth\AppData\Local\Programs\Python\Python39\lib\site-packages\lpips\weights\v0.1\alex.pth
